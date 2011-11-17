@@ -60,14 +60,14 @@ public class SphereRecognizer {
 			l.imageLoaded(image);
 		}
 		image.normalize();
-		image.applyFilter(new GaussFilter(3, 2));
+		image.applyFilter(new GaussFilter(3, 1));
 		image.applyFilter(new SobelFilter());
 		image.normalize();
-//		image.applyFilter(new GaussFilter(3, 2));
+//		image.applyFilter(new GaussFilter(3, 1));
 //		image.applyFilter(new MedianFilter());
 		image.applyFilter(new BlackAndWhiteFilter(0.1f));
 //		image.applyFilter(new BlurFilter());
-//		image.applyFilter(new MedianFilter());
+		image.applyFilter(new MedianFilter());
 //		image.applyFilter(new BlackAndWhiteFilter(0.5f));
 		for (SphereRecognizerListener l : listeners) {
 			l.imageProcessed(image);
@@ -89,7 +89,7 @@ public class SphereRecognizer {
 			}
 			spheres = distribution.findPeaks(spheres);
 			for (SphereRecognizerListener l : listeners) {
-				l.spheresUpdated(spheres);
+				l.spheresUpdated(new ArrayList<Sphere>(spheres));
 			}
 		}
 		return spheres;
