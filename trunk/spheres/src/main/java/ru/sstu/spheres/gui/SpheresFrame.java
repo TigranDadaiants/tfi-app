@@ -37,10 +37,10 @@ public class SpheresFrame extends JFrame implements SphereRecognizerListener {
 
 	private static final long serialVersionUID = 5768669984021604460L;
 
-	private static final int IMAGE_WIDTH = 500;
-	private static final int IMAGE_HEIGHT = 600;
-	private static final int HISTOGRAM_WIDTH = 500;
-	private static final int HISTOGRAM_HEIGHT = 200;
+	private static final int IMAGE_WIDTH = 450;
+	private static final int IMAGE_HEIGHT = 500;
+	private static final int HISTOGRAM_WIDTH = 450;
+	private static final int HISTOGRAM_HEIGHT = 150;
 
 	private ImagePanel original = new ImagePanel(IMAGE_WIDTH, IMAGE_HEIGHT);
 	private ImagePanel processed = new ImagePanel(IMAGE_WIDTH, IMAGE_HEIGHT);
@@ -60,6 +60,7 @@ public class SpheresFrame extends JFrame implements SphereRecognizerListener {
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 0;
 		c.gridy = 0;
+		c.weightx = 1.0;
 		c.weighty = 1.0;
 		final int gap = 5;
 		c.insets = new Insets(gap, gap, gap, gap);
