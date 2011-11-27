@@ -6,7 +6,6 @@ import java.util.List;
 
 import ru.sstu.images.analysis.Image;
 import ru.sstu.images.filters.BlackAndWhiteFilter;
-import ru.sstu.images.filters.BlurFilter;
 import ru.sstu.images.filters.GaussFilter;
 import ru.sstu.images.filters.MedianFilter;
 import ru.sstu.images.filters.edges.SobelFilter;
@@ -23,6 +22,8 @@ public class SphereRecognizer {
 
 	private List<SphereRecognizerListener> listeners
 			= new ArrayList<SphereRecognizerListener>();
+
+	private volatile boolean stopped;
 
 	/**
 	 * @param settings settings
@@ -88,10 +89,21 @@ public class SphereRecognizer {
 				}
 			}
 			spheres = distribution.findPeaks(spheres);
+			if (stopped) {
+				break;
+			}
 			for (SphereRecognizerListener l : listeners) {
 				l.spheresUpdated(new ArrayList<Sphere>(spheres));
 			}
 		}
+		listeners.clear();
 		return spheres;
+	}
+
+	/**
+	 * Schedules calculation process stopping.
+	 */
+	public void stop() {
+		stopped = true;
 	}
 }

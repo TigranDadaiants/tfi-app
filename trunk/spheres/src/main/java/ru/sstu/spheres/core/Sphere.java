@@ -67,9 +67,18 @@ public class Sphere {
 	 * @return test result
 	 */
 	public boolean isSame(Sphere sphere, float sigma) {
-		// FIXME
-		return Math.abs(x - sphere.x) < sigma
-				&& Math.abs(y - sphere.y) < sigma
-				&& Math.abs(radius - sphere.radius) < sigma;
+		double dx = x - sphere.x;
+		double dy = y - sphere.y;
+		double distance = Math.sqrt(dx * dx + dy * dy);
+		double dr = radius - sphere.radius;
+		if (Math.abs(distance + dr) <= sigma) {
+			return true;
+		}
+		if (Math.abs(distance - dr) <= sigma) {
+			return true;
+		}
+		return Math.abs(x - sphere.x) <= sigma
+				&& Math.abs(y - sphere.y) <= sigma
+				&& Math.abs(radius - sphere.radius) <= sigma;
 	}
 }

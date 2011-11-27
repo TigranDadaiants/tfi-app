@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
@@ -35,7 +33,7 @@ import ru.sstu.spheres.core.SphereRecognizerSettings;
  */
 public class SpheresFrame extends JFrame implements SphereRecognizerListener {
 
-	private static final long serialVersionUID = 5768669984021604460L;
+	private static final long serialVersionUID = 8836242979291405575L;
 
 	private static final int IMAGE_WIDTH = 450;
 	private static final int IMAGE_HEIGHT = 500;
@@ -49,6 +47,8 @@ public class SpheresFrame extends JFrame implements SphereRecognizerListener {
 	private SettingsPanel<SphereRecognizerSettings> settingsPanel;
 
 	private JFileChooser fileChooser = new JFileChooser(".");
+
+	private SphereRecognizer recognizer;
 
 	public SpheresFrame(SphereRecognizerSettings settings)
 			throws PropertyException {
@@ -137,29 +137,16 @@ public class SpheresFrame extends JFrame implements SphereRecognizerListener {
 					.read(fileChooser.getSelectedFile()));
 			settingsPanel.update();
 			SphereRecognizerSettings settings = settingsPanel.getSettings();
-			final SphereRecognizer recognizer = new SphereRecognizer(settings);
+			if (recognizer != null) {
+				recognizer.removeListener(this);
+				recognizer.stop();
+			}
+			recognizer = new SphereRecognizer(settings);
 			recognizer.addListener(this);
 			Runnable runnable = new Runnable() {
 				@Override
 				public void run() {
-					List<Sphere> spheres = recognizer.recognize(image);
-					System.out.println(" Total = " + spheres.size());
-					SortedMap<Number, Integer> histogram
-							= new TreeMap<Number, Integer>();
-					for (Sphere s : spheres) {
-						Integer r = histogram.get(s.getRadius());
-						if (r == null) {
-							r = 0;
-						}
-						r++;
-						histogram.put(s.getRadius(), r);
-					}
-					for (Number n : histogram.keySet()) {
-						System.out.format("%4d : %4d%n", n.intValue(),
-								histogram.get(n));
-					}
-					repaint();
-					recognizer.removeListener(SpheresFrame.this);
+					recognizer.recognize(image);
 				}
 			};
 			new Thread(runnable).start();
