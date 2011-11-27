@@ -41,7 +41,6 @@ public class DistributionFunction {
 				}
 			}
 		}
-		System.out.println(" Max = " + max);
 		return spheres;
 	}
 
@@ -188,6 +187,7 @@ public class DistributionFunction {
 		}
 	}
 
+	// FIXME
 	public static void main(String[] args) {
 		SphereRecognizerSettings config = new SphereRecognizerSettings();
 		float average = 0.0f;
