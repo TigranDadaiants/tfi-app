@@ -21,8 +21,11 @@ public class SphereRecognizerSettings extends AbstractSettings {
 	@Property("sigma")
 	private float sigma;
 
-	@Property("threshold")
-	private float threshold;
+	@Property("threshold.peak.probability")
+	private float peakThreshold;
+
+	@Property("threshold.black.white")
+	private float blackWhiteThreshold;
 
 	/**
 	 * @return the minRadius
@@ -67,16 +70,30 @@ public class SphereRecognizerSettings extends AbstractSettings {
 	}
 
 	/**
-	 * @return the threshold
+	 * @return the peakThreshold
 	 */
-	public float getThreshold() {
-		return threshold;
+	public float getPeakThreshold() {
+		return peakThreshold;
 	}
 
 	/**
-	 * @param threshold the threshold to set
+	 * @param peakThreshold the peakThreshold to set
 	 */
-	public void setThreshold(float threshold) {
-		this.threshold = threshold;
+	public void setPeakThreshold(float peakThreshold) {
+		this.peakThreshold = peakThreshold;
+	}
+
+	/**
+	 * @return the blackWhiteThreshold
+	 */
+	public float getBlackWhiteThreshold() {
+		return blackWhiteThreshold;
+	}
+
+	/**
+	 * @param blackWhiteThreshold the blackWhiteThreshold to set
+	 */
+	public void setBlackWhiteThreshold(float blackWhiteThreshold) {
+		this.blackWhiteThreshold = blackWhiteThreshold;
 	}
 }
