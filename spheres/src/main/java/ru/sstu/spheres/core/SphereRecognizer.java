@@ -18,6 +18,11 @@ import ru.sstu.images.filters.edges.SobelFilter;
  */
 public class SphereRecognizer {
 
+	private static final int GAUSS_FILTER_MATRIX_SIZE = 3;
+	private static final float GAUSS_FILTER_SIGMA = 1.4f;
+	private static final GaussFilter GAUSS_FILTER
+			= new GaussFilter(GAUSS_FILTER_MATRIX_SIZE, GAUSS_FILTER_SIGMA);
+
 	private final SphereRecognizerSettings settings;
 
 	private List<SphereRecognizerListener> listeners
@@ -61,15 +66,11 @@ public class SphereRecognizer {
 			l.imageLoaded(image);
 		}
 		image.normalize();
-		image.applyFilter(new GaussFilter(3, 1));
+		image.applyFilter(GAUSS_FILTER);
 		image.applyFilter(new SobelFilter());
-		image.normalize();
-//		image.applyFilter(new GaussFilter(3, 1));
-//		image.applyFilter(new MedianFilter());
-		image.applyFilter(new BlackAndWhiteFilter(0.1f));
-//		image.applyFilter(new BlurFilter());
+		image.applyFilter(new BlackAndWhiteFilter(settings
+				.getBlackWhiteThreshold()));
 		image.applyFilter(new MedianFilter());
-//		image.applyFilter(new BlackAndWhiteFilter(0.5f));
 		for (SphereRecognizerListener l : listeners) {
 			l.imageProcessed(image);
 		}

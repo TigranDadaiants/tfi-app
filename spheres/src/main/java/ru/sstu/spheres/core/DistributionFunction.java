@@ -45,13 +45,25 @@ public class DistributionFunction {
 	}
 
 	private boolean isPeak(int x, int y) {
-		if (data[x][y] < config.getThreshold()) {
+		if (data[x][y] < config.getPeakThreshold()) {
 			return false;
 		}
-		return data[x][y] > data[x - 1][y]
-				&& data[x][y] > data[x + 1][y]
-				&& data[x][y] > data[x][y - 1]
-				&& data[x][y] > data[x][y + 1];
+		final int[][] offsets = {
+				{-1, -1},
+				{-1, 0},
+				{-1, 1},
+				{0, -1},
+				{0, 1},
+				{1, -1},
+				{1, 0},
+				{1, 1},
+		};
+		for (int[] offset : offsets) {
+			if (data[x][y] < data[x + offset[0]][y + offset[1]]) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void updatePeaks(Sphere peak, List<Sphere> peaks) {
