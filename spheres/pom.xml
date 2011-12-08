@@ -5,19 +5,13 @@
 	<parent>
 		<groupId>ru.sstu.tfi.app</groupId>
 		<artifactId>tfi-parent</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>1-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.sstu.tfi.app</groupId>
 	<artifactId>spheres</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>Spheres Recognition Application</name>
-	<!--
-	<scm>
-		<connection>scm:svn:https://evrusarsd0302.saratov.epam.com:8443/svn/lib-cnr/trunk</connection>
-		<url>https://evrusarsd0302.saratov.epam.com:8443/svn/lib-cnr/trunk</url>
-	</scm>
-	-->
 	<dependencies>
 		<dependency>
 			<groupId>ru.sstu.tfi.sdk</groupId>
