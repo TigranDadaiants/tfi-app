@@ -10,13 +10,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.sstu.tfi.app</groupId>
 	<artifactId>sm-cross</artifactId>
-	<version>${parent.version}</version>
+	<version>${project.parent.version}</version>
 	<name>Strength of Material. Cross task.</name>
 	<dependencies>
 		<dependency>
 			<groupId>ru.sstu.tfi.app</groupId>
 			<artifactId>sm-core</artifactId>
-			<version>${parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
 </project>
