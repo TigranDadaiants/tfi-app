@@ -1,9 +1,7 @@
 package ru.sstu.spheres.gui;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import ru.sstu.properties.core.PropertyException;
+import ru.sstu.properties.core.PropertyHelper;
 import ru.sstu.spheres.core.SphereRecognizerSettings;
 
 /**
@@ -16,15 +14,10 @@ public class Main {
 
 	/**
 	 * @param args arguments
-	 * @throws IOException if cannot load settings
 	 * @throws PropertyException if cannot load settings
 	 */
-	public static void main(String[] args)
-			throws IOException, PropertyException {
-		SphereRecognizerSettings settings = new SphereRecognizerSettings();
-		Properties properties = new Properties();
-		properties.load(Main.class.getResourceAsStream("/config.properties"));
-		settings.load(properties);
-		new SpheresFrame(settings);
+	public static void main(String[] args) throws PropertyException {
+		new SpheresFrame(PropertyHelper.load(new SphereRecognizerSettings(),
+				Main.class.getResourceAsStream("/config.properties")));
 	}
 }
