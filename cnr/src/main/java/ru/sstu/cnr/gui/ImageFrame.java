@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -33,6 +32,7 @@ import ru.sstu.images.analysis.Peak;
 import ru.sstu.images.analysis.Projection;
 import ru.sstu.ocr.core.CharacterSample;
 import ru.sstu.properties.core.PropertyException;
+import ru.sstu.properties.core.PropertyHelper;
 import ru.sstu.properties.gui.SettingsPanel;
 
 /**
@@ -118,9 +118,9 @@ public class ImageFrame extends JFrame {
 	}
 
 	private void initSettingsPanel() throws IOException, PropertyException {
-		Properties properties = new Properties();
-		properties.load(getClass().getResourceAsStream("/cnr.properties"));
-		RecognizerSettings settings = new RecognizerSettings(properties);
+		RecognizerSettings settings = PropertyHelper
+				.load(new RecognizerSettings(),
+						getClass().getResourceAsStream("/cnr.properties"));
 		settingsPanel = new SettingsPanel<RecognizerSettings>(settings, "msg");
 		add(settingsPanel, BorderLayout.EAST);
 	}

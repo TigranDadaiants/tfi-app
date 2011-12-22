@@ -1,10 +1,6 @@
 package ru.sstu.cnr.core;
 
-import java.util.Properties;
-
-import ru.sstu.properties.core.AbstractSettings;
 import ru.sstu.properties.core.Property;
-import ru.sstu.properties.core.PropertyException;
 
 /**
  * <code>RecognizerSettings</code> class contains settings for
@@ -13,7 +9,7 @@ import ru.sstu.properties.core.PropertyException;
  * @author Denis_Murashev
  * @since CNR 1.0
  */
-public class RecognizerSettings extends AbstractSettings {
+public class RecognizerSettings {
 
 	@Property("min.band.height")
 	private int minBandHeight;
@@ -47,22 +43,6 @@ public class RecognizerSettings extends AbstractSettings {
 
 	@Property("rus.letter.threshold")
 	private float rusLetterThreshold;
-
-	/**
-	 * Initializes default settings.
-	 */
-	public RecognizerSettings() {
-	}
-
-	/**
-	 * Initializes settings using given properties.
-	 *
-	 * @param properties properties
-	 * @throws PropertyException if cannot load properties
-	 */
-	public RecognizerSettings(Properties properties) throws PropertyException {
-		load(properties);
-	}
 
 	/**
 	 * @return the minBandHeight
