@@ -1,6 +1,5 @@
 package ru.sstu.spheres.core;
 
-import ru.sstu.properties.core.AbstractSettings;
 import ru.sstu.properties.core.Property;
 
 /**
@@ -10,7 +9,7 @@ import ru.sstu.properties.core.Property;
  * @author denis_murashev
  * @since Spheres 1.0
  */
-public class SphereRecognizerSettings extends AbstractSettings {
+public class SphereRecognizerSettings {
 
 	@Property("radius.min")
 	private int minRadius;
