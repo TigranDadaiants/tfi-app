@@ -16,13 +16,13 @@ public class CarNumberRecognizerTest extends TestCase {
 
 	// TODO Provide more tests
 	private static final String[][] TEST_DATA = {
-		{"/0245OK43.png", "0245OK43"},
+//		{"/0245OK43.png", "0245OK43"},
 //		{"/A123478.png",  "A123478"},
 		{"/AH733147.png", "AH733147"},
 //		{"/C357BM25.jpg", "C357BM25"},
 		{"/K200PT98.jpg", "K200PT98"},
 		{"/X777XX77.jpg", "X777XX77"},
-		{"/Y559YA99.jpg", "Y559YA99"},
+//		{"/Y559YA99.jpg", "Y559YA99"},
 		{"/AE618P29.png", "AE618P29"},
 //		{"/AO36578.png",  "AO36578"},
 	};
