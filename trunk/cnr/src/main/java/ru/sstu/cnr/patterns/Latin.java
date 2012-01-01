@@ -1,7 +1,7 @@
 package ru.sstu.cnr.patterns;
 
-import ru.sstu.ocr.core.CharacterType;
 import ru.sstu.ocr.core.CharacterPattern;
+import ru.sstu.ocr.core.CharacterType;
 
 /**
  * <code>Latin</code> enumeration contains patterns for Latin letters.
@@ -185,7 +185,7 @@ public enum Latin implements CharacterPattern {
 
 	@Override
 	public float[][] getPattern() {
-		return pattern;
+		return pattern.clone();
 	}
 
 	@Override

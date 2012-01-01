@@ -1,7 +1,7 @@
 package ru.sstu.cnr.patterns;
 
-import ru.sstu.ocr.core.CharacterType;
 import ru.sstu.ocr.core.CharacterPattern;
+import ru.sstu.ocr.core.CharacterType;
 
 /**
  * <code>Digit</code> enumeration contains patterns for digits.
@@ -159,7 +159,7 @@ public enum Digit implements CharacterPattern {
 
 	@Override
 	public float[][] getPattern() {
-		return pattern;
+		return pattern.clone();
 	}
 
 	@Override

@@ -242,9 +242,9 @@ public class ImageFrame extends JFrame {
 		}
 	}
 
-	private class ImagePanel extends JPanel {
+	private static class ImagePanel extends JPanel {
 
-		private static final long serialVersionUID = -2125664199824368293L;
+		private static final long serialVersionUID = 3896164790309691646L;
 
 		private final int width;
 		private final int height;
@@ -282,9 +282,9 @@ public class ImageFrame extends JFrame {
 		}
 	}
 
-	private class ProjectionPanel extends JPanel {
+	private static class ProjectionPanel extends JPanel {
 
-		private static final long serialVersionUID = -5248408101795225649L;
+		private static final long serialVersionUID = 1256419973067115967L;
 
 		private final boolean inverted;
 		private Projection projection;
@@ -346,9 +346,9 @@ public class ImageFrame extends JFrame {
 		}
 	}
 
-	private class ImagesListPanel extends JPanel {
+	private static class ImagesListPanel extends JPanel {
 
-		private static final long serialVersionUID = 6263606434350497117L;
+		private static final long serialVersionUID = 1193277591073748221L;
 
 		private List<BufferedImage> images;
 
