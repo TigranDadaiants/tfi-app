@@ -118,7 +118,7 @@ public class SpheresFrame extends JFrame implements SphereRecognizerListener {
 		exitItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				SpheresFrame.this.dispose();
 			}
 		});
 
