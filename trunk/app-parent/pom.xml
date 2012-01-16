@@ -13,7 +13,7 @@
 	<version>1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<url>http://code.google.com/p/tfi-app/</url>
-	<name>TFI Applications Bundle</name>
+	<name>TFI Desktop Applications</name>
 	<issueManagement>
 		<system>Google</system>
 		<url>http://code.google.com/p/tfi-app/issues/list</url>
