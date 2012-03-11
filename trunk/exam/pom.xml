@@ -11,5 +11,8 @@
 	<groupId>ru.sstu.tfi.app</groupId>
 	<artifactId>exam</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>Examination Question Organizer</name>
+	<name>Examination Items Organizer</name>
+	<properties>
+		<project.build.mainClass>ru.sstu.exam.ui.MainFrame</project.build.mainClass>
+	</properties>
 </project>
