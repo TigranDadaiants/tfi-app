@@ -29,32 +29,33 @@ public class ExamOrganizer {
 	 * Writes organized questions to given print writer.
 	 *
 	 * @param writer print writer
+	 * @throws ExamException if some error occurs
 	 */
-	public void save(PrintWriter writer) {
+	public void save(PrintWriter writer) throws ExamException {
 		StringTokenizer tokenizer = new StringTokenizer(data, "\n");
 		List<String> list = new ArrayList<String>();
 		while (tokenizer.hasMoreTokens()) {
-			list.add(tokenizer.nextToken());
+			String token = tokenizer.nextToken();
+			token = token.replaceAll("^\\d*[.)]?", "");
+			token = token.trim();
+			if (!"".equals(token)) {
+				list.add(token);
+			}
 		}
 		Collections.shuffle(list);
-		final int items = 2;
-		int count = list.size() / items;
-		writer.print("<html>");
-		writer.print("<head></head>");
-		writer.print("<body>");
-		writer.print("<table width='100%'>");
-		for (int i = 0; i < count; i++) {
-			writer.print("<tr><td style='border: 1px solid #333333;'>");
-			writer.print("<h1># " + (i + 1) + "</h1>");
-			writer.print("<ol>");
-			for (int j = 0; j < items; j++) {
-				writer.print("<li>" + list.get(2 * i + j) + "</li>");
+		final int itemsCount = 2;
+		int papersCount = list.size() / itemsCount;
+		List<TestPaper> testPapers = new ArrayList<TestPaper>(papersCount);
+		for (int i = 0; i < papersCount; i++) {
+			TestPaper paper = new TestPaper();
+			paper.setIndex(i + 1);
+			List<String> items = new ArrayList<String>(itemsCount);
+			for (int j = 0; j < itemsCount; j++) {
+				items.add(list.get(2 * i + j));
 			}
-			writer.print("</ol>");
-			writer.print("</td></tr>");
+			paper.setItems(items);
+			testPapers.add(paper);
 		}
-		writer.print("</table>");
-		writer.print("</body>");
-		writer.print("</html>");
+		new TestPaperFormatter().format(writer, testPapers);
 	}
 }
