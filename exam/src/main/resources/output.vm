@@ -1,0 +1,20 @@
+<html>
+  <head></head>
+  <body>
+    <table width='100%' cellspacing='0' cellpadding='5'
+           style='border-collapse: collapse;'>
+#foreach($p in ${testPapers})
+      <tr>
+        <td style='border: 1px solid #333333;'>
+          <h1># ${p.index}</h1>
+          <ol>
+  #foreach($i in ${p.items})
+            <li>${i}</li>
+  #end
+          </ol>
+        </td>
+      </tr>
+#end
+    </table>
+  </body>
+</html>

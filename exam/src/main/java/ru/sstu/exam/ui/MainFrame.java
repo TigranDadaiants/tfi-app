@@ -17,6 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import ru.sstu.exam.core.ExamException;
 import ru.sstu.exam.core.ExamOrganizer;
 
 /**
@@ -56,8 +57,16 @@ public class MainFrame extends JFrame {
 				}
 			}
 		});
+		JMenuItem exitItem = new JMenuItem("Exit");
+		exitItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainFrame.this.dispose();
+			}
+		});
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.add(saveItem);
+		fileMenu.add(exitItem);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
@@ -73,6 +82,9 @@ public class MainFrame extends JFrame {
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(MainFrame.this,
 					"Cannot save your data.");
+		} catch (ExamException e) {
+			JOptionPane.showMessageDialog(MainFrame.this,
+					"Cannot format your data.");
 		} finally {
 			if (writer != null) {
 				writer.close();
