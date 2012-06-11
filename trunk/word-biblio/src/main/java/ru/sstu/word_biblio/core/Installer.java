@@ -16,7 +16,7 @@ import java.nio.channels.ReadableByteChannel;
  */
 public class Installer {
 
-	private static final String DESTINATION_PATH 
+	private static final String DESTINATION_PATH
 			= "%s\\%s\\Bibliography\\Style\\gost.xsl";
 
 	private static final int BUFFER_SIZE = 16 * 1024;
