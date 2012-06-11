@@ -1,12 +1,21 @@
-package code.gui;
+package ru.sstu.word_biblio.code.gui;
 
-import java.io.*;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.nio.channels.FileChannel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.channels.ReadableByteChannel;
 
-import code.Search;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+
+import ru.sstu.word_biblio.code.Search;
 
 public class MainForm extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -18,46 +27,18 @@ public class MainForm extends JFrame {
 	private JButton close = new JButton("Close");
 	JRadioButton off2010;
 	JRadioButton off2007;
-	FileChannel srcChannel;
+	ReadableByteChannel srcChannel;
 	Search sFile;
-	long flag;
 	String version;
 
-	public MainForm(FileChannel src) throws IOException {
+	public MainForm(ReadableByteChannel src) throws IOException {
 		super("Office Bibliography");
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 250, 420, 200);
 		this.setResizable(false);
 		this.srcChannel = src;
 		sFile = new Search();
-		flag = 0;
 		version = "office12";
-
-		this.addWindowListener(new WindowListener() {
-
-			public void windowClosing(WindowEvent event) {
-					System.exit(0);
-			}
-
-			public void windowActivated(WindowEvent e) {
-			}
-
-			public void windowClosed(WindowEvent e) {
-			}
-
-			public void windowDeactivated(WindowEvent e) {
-			}
-
-			public void windowDeiconified(WindowEvent e) {
-			}
-
-			public void windowIconified(WindowEvent e) {
-			}
-
-			public void windowOpened(WindowEvent e) {
-			}
-
-		});
 
 		this.setLayout(null);
 		this.setBackground(new Color(200, 200, 200));
@@ -74,7 +55,7 @@ public class MainForm extends JFrame {
 		this.add(caption);
 		
 		caption = new JLabel();
-		caption.setText("Важно! Office должен быть версии не позже 2007!");
+		caption.setText("Важно! Office должен быть версии не ниже 2007!");
 		caption.setBounds(10, 50, 350, 20);
 		caption.setFont(new Font("Arial", Font.BOLD, 12));
 		this.add(caption);
@@ -131,31 +112,27 @@ public class MainForm extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				no.setText("");
 				yes.setText("");
-				
-				JFileChooser chooser = new JFileChooser();
+
+				String rootPath = System.getenv().get("ProgramFiles");
+				JFileChooser chooser = new JFileChooser(rootPath);
 				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				int result = chooser.showOpenDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
 					File selectedFile = chooser.getSelectedFile();
 					if (selectedFile.isDirectory()) {
 
-						String catalog = selectedFile.getPath()	+ "\\"+version+"\\Bibliography\\Style\\WRX.xsl";
+						String catalog = selectedFile.getPath()	+ "\\"+version+"\\Bibliography\\Style\\gost.xsl";
 						try {
-							flag = sFile.search(srcChannel, catalog);
-							if(flag != 0){	
-								open.setEnabled(false);
-								off2010.setEnabled(false);
-								off2007.setEnabled(false);
-								no.setText("УСТАНОВКА ЗАВЕРШЕНА!");
-								yes.setText("Данный компонент добавлен в MS Word.");
-								close.setVisible(true) ;
-							} else {
-								no.setText("ОШИБКА УСТАНОВКИ!");
-								yes.setText("Неправильно выбрана версия программы или папка.");
-							}
-							
+							sFile.search(srcChannel, catalog);
+							open.setEnabled(false);
+							off2010.setEnabled(false);
+							off2007.setEnabled(false);
+							no.setText("УСТАНОВКА ЗАВЕРШЕНА!");
+							yes.setText("Данный компонент добавлен в MS Word.");
+							close.setVisible(true) ;
 						} catch (IOException e) {
-							e.printStackTrace();
+							no.setText("ОШИБКА УСТАНОВКИ!");
+							yes.setText("Неправильно выбрана версия программы или папка.");
 						}
 					}
 				}

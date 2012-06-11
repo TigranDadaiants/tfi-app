@@ -13,7 +13,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>Bibliography Formatter for MS Word 2007+</name>
 	<properties>
-		<project.build.mainClass>ru.sstu.biblio.ui.MainFrame</project.build.mainClass>
+		<project.build.mainClass>ru.sstu.word_biblio.code.Run</project.build.mainClass>
 	</properties>
 	<!--
 	<dependencies>
