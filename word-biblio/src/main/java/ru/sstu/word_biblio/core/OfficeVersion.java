@@ -8,8 +8,14 @@ package ru.sstu.word_biblio.core;
  */
 public enum OfficeVersion {
 
+	/**
+	 * Office 2007.
+	 */
 	OFFICE_2007("office12"),
 
+	/**
+	 * Office 2010.
+	 */
 	OFFICE_2010("office14");
 
 	private final String folderName;

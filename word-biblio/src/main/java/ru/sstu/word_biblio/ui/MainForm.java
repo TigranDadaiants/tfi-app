@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -18,7 +19,10 @@ import ru.sstu.word_biblio.core.Installer;
 import ru.sstu.word_biblio.core.OfficeVersion;
 
 public class MainForm extends JFrame {
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = -1958433664555002205L;
+
+	private static final Font FONT_NORMAL = new Font("Arial", Font.PLAIN, 14);
 
 	private JLabel caption = new JLabel();
 	private JLabel yes = new JLabel();
@@ -28,6 +32,7 @@ public class MainForm extends JFrame {
 	private JRadioButton off2010;
 	private JRadioButton off2007;
 	private JFileChooser chooser;
+	private ResourceBundle bundle;
 	private OfficeVersion version = OfficeVersion.OFFICE_2007;
 
 	public MainForm() {
@@ -38,28 +43,29 @@ public class MainForm extends JFrame {
 
 		this.setLayout(null);
 		this.setBackground(new Color(200, 200, 200));
-		
-		caption.setText("Выберете путь к программе Microsoft Office.");
+
+		bundle = ResourceBundle.getBundle("message");
+		caption.setText(bundle.getString("comment.select"));
 		caption.setBounds(10, 5, 350, 20);
-		caption.setFont(new Font("Arial", Font.PLAIN, 14));
+		caption.setFont(FONT_NORMAL);
 		this.add(caption);
 
 		caption = new JLabel();
-		caption.setText("Нажмите Open, выберете папку и снова нажмите Open");
+		caption.setText(bundle.getString("comment.press"));
 		caption.setBounds(10, 25, 380, 20);
-		caption.setFont(new Font("Arial", Font.PLAIN, 14));
+		caption.setFont(FONT_NORMAL);
 		this.add(caption);
 		
 		caption = new JLabel();
-		caption.setText("Важно! Office должен быть версии не ниже 2007!");
+		caption.setText(bundle.getString("comment.important"));
 		caption.setBounds(10, 50, 350, 20);
 		caption.setFont(new Font("Arial", Font.BOLD, 12));
 		this.add(caption);
 		
 		caption = new JLabel();
-		caption.setText("Какой версии у Вас Office?");
+		caption.setText(bundle.getString("comment.question"));
 		caption.setBounds(100, 75, 350, 25);
-		caption.setFont(new Font("Arial", Font.PLAIN, 14));
+		caption.setFont(FONT_NORMAL);
 		this.add(caption);
 		off2007 = new JRadioButton("2007");
 		off2007.setActionCommand("office12");
@@ -141,12 +147,12 @@ public class MainForm extends JFrame {
 					open.setEnabled(false);
 					off2010.setEnabled(false);
 					off2007.setEnabled(false);
-					no.setText("УСТАНОВКА ЗАВЕРШЕНА!");
-					yes.setText("Данный компонент добавлен в MS Word.");
+					no.setText(bundle.getString("result.success"));
+					yes.setText(bundle.getString("result.success.description"));
 					close.setVisible(true) ;
 				} catch (IOException e) {
-					no.setText("ОШИБКА УСТАНОВКИ!");
-					yes.setText("Неправильно выбрана версия программы или папка.");
+					no.setText(bundle.getString("result.failure"));
+					yes.setText(bundle.getString("result.failure.description"));
 				}
 			}
 		}
