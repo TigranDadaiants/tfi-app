@@ -1,4 +1,4 @@
-package ru.sstu.word_biblio.code.gui;
+package ru.sstu.word_biblio.ui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.nio.channels.ReadableByteChannel;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -15,7 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
-import ru.sstu.word_biblio.code.Search;
+import ru.sstu.word_biblio.core.Installer;
+import ru.sstu.word_biblio.core.OfficeVersion;
 
 public class MainForm extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -25,20 +25,16 @@ public class MainForm extends JFrame {
 	private JLabel no = new JLabel();
 	private JButton open = new JButton("Open");
 	private JButton close = new JButton("Close");
-	JRadioButton off2010;
-	JRadioButton off2007;
-	ReadableByteChannel srcChannel;
-	Search sFile;
-	String version;
+	private JRadioButton off2010;
+	private JRadioButton off2007;
+	private JFileChooser chooser;
+	private OfficeVersion version = OfficeVersion.OFFICE_2007;
 
-	public MainForm(ReadableByteChannel src) throws IOException {
+	public MainForm() {
 		super("Office Bibliography");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 250, 420, 200);
 		this.setResizable(false);
-		this.srcChannel = src;
-		sFile = new Search();
-		version = "office12";
 
 		this.setLayout(null);
 		this.setBackground(new Color(200, 200, 200));
@@ -71,7 +67,7 @@ public class MainForm extends JFrame {
 		off2007.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				version="office12";
+				version = OfficeVersion.OFFICE_2007;
 			}
 		});
 		
@@ -80,7 +76,7 @@ public class MainForm extends JFrame {
 	    off2010.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				version="office14";
+				version = OfficeVersion.OFFICE_2010;
 			}
 		});
 	    
@@ -102,43 +98,16 @@ public class MainForm extends JFrame {
 		close.setVisible(true);
 		close.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);				
+			public void actionPerformed(ActionEvent e) {
+				MainForm.this.dispose();
 			}
 		});
 		
 		open.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				no.setText("");
-				yes.setText("");
-
-				String rootPath = System.getenv().get("ProgramFiles");
-				JFileChooser chooser = new JFileChooser(rootPath);
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int result = chooser.showOpenDialog(null);
-				if (result == JFileChooser.APPROVE_OPTION) {
-					File selectedFile = chooser.getSelectedFile();
-					if (selectedFile.isDirectory()) {
-
-						String catalog = selectedFile.getPath()	+ "\\"+version+"\\Bibliography\\Style\\gost.xsl";
-						try {
-							sFile.search(srcChannel, catalog);
-							open.setEnabled(false);
-							off2010.setEnabled(false);
-							off2007.setEnabled(false);
-							no.setText("УСТАНОВКА ЗАВЕРШЕНА!");
-							yes.setText("Данный компонент добавлен в MS Word.");
-							close.setVisible(true) ;
-						} catch (IOException e) {
-							no.setText("ОШИБКА УСТАНОВКИ!");
-							yes.setText("Неправильно выбрана версия программы или папка.");
-						}
-					}
-				}
-
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				install();
 			}
-
 		});
 		this.add(open);
 		this.add(close);
@@ -153,5 +122,37 @@ public class MainForm extends JFrame {
 		yes.setFont(new Font("Arial", Font.PLAIN, 12));
 		this.add(yes);
 
+		String rootPath = System.getenv().get("ProgramFiles");
+		chooser = new JFileChooser(rootPath);
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		setVisible(true);
+	}
+
+	private void install() {
+		no.setText("");
+		yes.setText("");
+
+		if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+			File selectedFile = chooser.getSelectedFile();
+			if (selectedFile.isDirectory()) {
+				try {
+					new Installer().install(selectedFile, version);
+					open.setEnabled(false);
+					off2010.setEnabled(false);
+					off2007.setEnabled(false);
+					no.setText("УСТАНОВКА ЗАВЕРШЕНА!");
+					yes.setText("Данный компонент добавлен в MS Word.");
+					close.setVisible(true) ;
+				} catch (IOException e) {
+					no.setText("ОШИБКА УСТАНОВКИ!");
+					yes.setText("Неправильно выбрана версия программы или папка.");
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) throws IOException {
+		new MainForm(); 
 	}
 }

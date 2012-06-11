@@ -13,22 +13,8 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>Bibliography Formatter for MS Word 2007+</name>
 	<properties>
-		<project.build.mainClass>ru.sstu.word_biblio.code.Run</project.build.mainClass>
+		<project.build.mainClass>ru.sstu.word_biblio.ui.MainForm</project.build.mainClass>
 	</properties>
-	<!--
-	<dependencies>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
-		</dependency>
-		<dependency>
-			<groupId>velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.5</version>
-		</dependency>
-	</dependencies>
-	-->
 	<build>
 		<plugins>
 			<plugin>
