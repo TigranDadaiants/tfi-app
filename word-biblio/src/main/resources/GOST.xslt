@@ -24,11 +24,11 @@
   <!-- Variable containing all necessary data for a certain style of bibliography. -->
   <xsl:variable name="data">
     <general>
-      <stylename>WRX</stylename>
-      <version>2012.02.23</version>
+      <stylename>√Œ—“</stylename>
+      <version>2012.06.15</version>
       <description> REAL GOST-style.</description>
       <URL/>
-      <author>Warrax, used Ivan MeL (delphi.ucoz.org)</author>
+      <author>Abashev. pvs-51</author>
       <comments/>
       <display_errors>yes</display_errors>
       <citation_as_link>no</citation_as_link>
@@ -471,7 +471,7 @@
       <!-- Gets the name of the style as it will be displayed in Word 2007. -->
       <xsl:when test="b:StyleName">
        <!-- <xsl:value-of select="msxsl:node-set($data)/general/stylename"/>-->
-       <xsl:text>Warrax √Œ—“</xsl:text>
+       <xsl:text>√Œ—“ 7.0.5-2008</xsl:text>
       </xsl:when>
 
       <!-- Gets the version information for the style. -->
