@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title><h:outputText value="#{msg['app.title']}"/></title>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:panelGrid columns="3">
+				<p:outputLabel for="editFullName" value="#{msg['user.name']}"/>
+				<h:inputText id="editFullName" required="true"
+					value="#{userBean.item.fullName}"/>
+				<h:message for="editFullName" showDetail="false"/>
+				<p:outputLabel for="editLogin" value="#{msg['user.login']}"/>
+				<h:inputText id="editLogin" value="#{userBean.item.login}"
+					disabled="#{userBean.item.id != -1}" required="true"/>
+				<h:message for="editLogin" showDetail="false"/>
+				<p:outputLabel for="editPassword"
+					value="#{msg['user.password']}"/>
+				<h:inputSecret id="editPassword"
+					value="#{userBean.item.password}"
+					required="#{userBean.item.id == -1}"/>
+				<h:message for="editPassword" showDetail="false"/>
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<h:commandButton id="save" value="#{msg['action.save']}"
+					action="#{userBean.save}"/>
+				<h:commandButton id="cancel" value="#{msg['action.cancel']}"
+					action="#{userBean.cancel}"/>
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

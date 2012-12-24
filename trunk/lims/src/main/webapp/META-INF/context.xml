@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource
+		auth="Container"
+		name="jdbc/lims"
+		type="javax.sql.DataSource"
+		password=""
+		driverClassName="org.hsqldb.jdbcDriver"
+		maxIdle="2"
+		maxWait="5000"
+		username="sa"
+		url="jdbc:hsqldb:file:/database/lims/lims"
+		maxActive="4"/>
+</Context>
