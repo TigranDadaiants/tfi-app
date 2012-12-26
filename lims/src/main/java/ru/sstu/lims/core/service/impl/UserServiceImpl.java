@@ -6,13 +6,11 @@ import javax.annotation.Resource;
 
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.lims.core.dao.UserDao;
 import ru.sstu.lims.core.domain.User;
 import ru.sstu.lims.core.service.UserService;
 
-@Transactional(readOnly = true)
 @Service("userService")
 class UserServiceImpl implements UserService {
 
@@ -36,7 +34,6 @@ class UserServiceImpl implements UserService {
 	public void reload(User user) {
 	}
 
-	@Transactional(readOnly = false)
 	@Override
 	public void save(User user) {
 		if (user.getPassword() != null && !"".equals(user.getPassword())) {
@@ -49,7 +46,6 @@ class UserServiceImpl implements UserService {
 		userDao.save(user);
 	}
 
-	@Transactional(readOnly = false)
 	@Override
 	public void delete(User user) {
 		userDao.delete(user);

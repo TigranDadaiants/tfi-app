@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel for="editFullName" value="#{msg['user.name']}"/>
+			<h:inputText id="editFullName" required="true"
+				value="#{userBean.item.fullName}"/>
+			<h:message for="editFullName" showDetail="false"/>
+			<h:outputLabel for="editLogin" value="#{msg['user.login']}"/>
+			<h:inputText id="editLogin" value="#{userBean.item.login}"
+				disabled="#{userBean.item.id != -1}" required="true"/>
+			<h:message for="editLogin" showDetail="false"/>
+			<h:outputLabel for="editPassword"
+				value="#{msg['user.password']}"/>
+			<h:inputSecret id="editPassword"
+				value="#{userBean.item.password}"
+				required="#{userBean.item.id == -1}"/>
+			<h:message for="editPassword" showDetail="false"/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:commandButton id="save" value="#{msg['action.save']}"
+				action="#{userBean.save}"/>
+			<h:commandButton id="cancel" value="#{msg['action.cancel']}"
+				action="#{userBean.cancel}"/>
+		</h:panelGrid>
+	</h:form>
+</ui:composition>

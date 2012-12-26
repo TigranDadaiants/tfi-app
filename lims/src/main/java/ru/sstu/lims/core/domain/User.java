@@ -9,9 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * {@code User} class represent user account in LIMS.
+ *
+ * @author denis_murashev
+ * @since LIMS 1.0
+ */
 @Entity
 @Table(name="USER")
 public class User implements Serializable {
+
+	private static final long serialVersionUID = 2903749209314765459L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -81,5 +89,10 @@ public class User implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return fullName;
 	}
 }
