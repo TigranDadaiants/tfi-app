@@ -20,12 +20,12 @@
 		<intercept-url pattern="/images/**" access="permitAll"/>
 		<intercept-url pattern="/**" access="permitAll"/>
 
-		<form-login 
-			login-page="/pages/index.faces"
+		<form-login login-page="/pages/index.faces"
 			default-target-url="/pages/usersList.faces"
 			always-use-default-target="true"
 			login-processing-url="/j_spring_security_check"/>
-		<logout logout-success-url="/pages/index.faces"/>
+		<logout logout-url="/logout"
+			logout-success-url="/pages/index.faces"/>
 		<!-- session-management invalid-session-url="/invalidsession.html" /-->
 	</http>
 

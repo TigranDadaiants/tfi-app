@@ -1,47 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-	<h:head>
-		<title><h:outputText value="#{msg['app.title']}"/></title>
-	</h:head>
-	<h:body>
-		<h:form>
-			<p:dataTable id="users" var="user" value="#{userBean.all}">
-				<p:column style="width: 1px">
-					<f:facet name="header">
-						<p:commandButton action="#{userBean.add}"
-							value="#{msg['action.add']}"/>
-					</f:facet>
-					<p:commandButton action="#{userBean.edit}"
-						value="#{msg['action.edit']}">
-						<f:setPropertyActionListener value="#{user}"
-							target="#{userBean.item}"/>
-					</p:commandButton>
-				</p:column>
-				<p:column style="width: 1px">
-					<p:commandButton action="#{userBean.delete}" update="users"
-						value="#{msg['action.delete']}" ajax="true">
-						<f:setPropertyActionListener value="#{user}"
-							target="#{userBean.item}"/>
-					</p:commandButton>
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['user.name']}"/>
-					</f:facet>
-					<h:outputText value="#{user.fullName}"/>
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['user.login']}"/>
-					</f:facet>
-					<h:outputText value="#{user.login}"/>
-				</p:column>
-			</p:dataTable>
-		</h:form>
-	</h:body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/common.xhtml">
+	<ui:define name="content">
+		<ui:include src="/WEB-INF/facelets/security/usersList.xhtml"/>
+	</ui:define>
+</ui:composition>
