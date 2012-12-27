@@ -11,7 +11,7 @@
 	<groupId>ru.sstu.tfi.app</groupId>
 	<artifactId>lims</artifactId>
 	<packaging>war</packaging>
-	<version>2.0-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>Laboratory Information Management System</name>
 	<properties>
 		<jsf.version>2.1.6</jsf.version>

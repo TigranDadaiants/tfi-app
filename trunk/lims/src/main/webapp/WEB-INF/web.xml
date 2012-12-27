@@ -42,6 +42,17 @@
 	</context-param>
 
 	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>
+			ru.sstu.lims.core.web.filters.CharacterEncodingFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>*.faces</url-pattern>
+	</filter-mapping>
+
+	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>
 			org.springframework.web.filter.DelegatingFilterProxy

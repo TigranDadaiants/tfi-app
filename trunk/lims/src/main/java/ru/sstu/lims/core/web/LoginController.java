@@ -21,7 +21,7 @@ import ru.sstu.web.jsf.JsfController;
 @Scope("request")
 public class LoginController extends JsfController {
 
-//	private static final long serialVersionUID = -1630552674473485880L;
+	private static final long serialVersionUID = -3726884565613410240L;
 
 	// FIXME
 	@Resource
