@@ -16,23 +16,23 @@ import javax.persistence.Table;
  * @since LIMS 1.0
  */
 @Entity
-@Table(name="USER")
+@Table(name = "USER")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 2903749209314765459L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="USER_ID_PK", unique = true, nullable = false)
+	@Column(name = "USER_ID_PK", unique = true, nullable = false)
 	private long id = -1L;
 
-	@Column(name="FULL_NAME", unique = false, nullable = false)
+	@Column(name = "FULL_NAME", unique = false, nullable = false)
 	private String fullName;
 
-	@Column(name="LOGIN", unique = true, nullable = false)
+	@Column(name = "LOGIN", unique = true, nullable = false)
 	private String login;
 
-	@Column(name="PASSWORD", unique = false, nullable = false)
+	@Column(name = "PASSWORD", unique = false, nullable = false)
 	private String password;
 
 	/**
