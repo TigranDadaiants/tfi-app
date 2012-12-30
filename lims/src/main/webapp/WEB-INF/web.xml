@@ -27,7 +27,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext*.xml</param-value>
 	</context-param>
-
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
@@ -37,6 +36,10 @@
 		<param-value>.xhtml</param-value>
 	</context-param>
 	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
+	</context-param>
+	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>glass-x</param-value>
 	</context-param>
@@ -44,7 +47,7 @@
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
 		<filter-class>
-			ru.sstu.lims.core.web.filters.CharacterEncodingFilter
+			ru.sstu.web.core.CharacterEncodingFilter
 		</filter-class>
 	</filter>
 	<filter-mapping>
