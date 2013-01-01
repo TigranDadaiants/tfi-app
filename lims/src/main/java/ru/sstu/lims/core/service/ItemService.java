@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @since LIMS 1.0
  */
-public interface ItemService<T extends Serializable> {
+public interface ItemService<T extends Serializable> extends Serializable {
 
 	/**
 	 * @return all items in the data store

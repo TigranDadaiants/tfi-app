@@ -21,7 +21,7 @@
 		<intercept-url pattern="/**" access="permitAll"/>
 
 		<form-login login-page="/pages/index.faces"
-			default-target-url="/pages/usersList.faces"
+			default-target-url="/pages/positionsList.faces"
 			always-use-default-target="true"
 			login-processing-url="/j_spring_security_check"/>
 		<logout logout-url="/logout"

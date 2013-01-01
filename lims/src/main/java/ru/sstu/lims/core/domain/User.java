@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,18 +16,15 @@ import javax.persistence.Table;
  * @since LIMS 1.0
  */
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 2903749209314765459L;
+//	private static final long serialVersionUID = -8434497639819704089L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "USER_ID_PK", unique = true, nullable = false)
-	private long id = -1L;
-
-	@Column(name = "FULL_NAME", unique = false, nullable = false)
-	private String fullName;
+	@OneToOne
+	@JoinColumn(name = "EMPLOYEE_ID_FK")
+	private Employee employee;
 
 	@Column(name = "LOGIN", unique = true, nullable = false)
 	private String login;
@@ -36,31 +33,17 @@ public class User implements Serializable {
 	private String password;
 
 	/**
-	 * @return the id
+	 * @return the employee
 	 */
-	public long getId() {
-		return id;
+	public Employee getEmployee() {
+		return employee;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param employee the employee to set
 	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the fullName
-	 */
-	public String getFullName() {
-		return fullName;
-	}
-
-	/**
-	 * @param fullName the fullName to set
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	/**
@@ -92,7 +75,28 @@ public class User implements Serializable {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		return prime + employee.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		User other = (User) obj;
+		return employee.equals(other.employee);
+	}
+
+	@Override
 	public String toString() {
-		return fullName;
+		return employee.toString();
 	}
 }

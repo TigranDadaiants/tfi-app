@@ -11,14 +11,14 @@
 	<h:body>
 		<h:form prependId="false">
 			<h:panelGrid columns="2">
-				<h:outputLabel for="j_username" value="#{msg['user.login']}"/>
-				<h:inputText id="j_username" value="#{login.username}"
+				<p:outputLabel for="j_username" value="#{msg['user.login']}"/>
+				<p:inputText id="j_username" value="#{login.username}"
 					required="true"/>
-				<h:outputLabel for="j_password"
+				<p:outputLabel for="j_password"
 					value="#{msg['user.password']}"/>
-				<h:inputSecret id="j_password" value="#{login.password}"
+				<p:password id="j_password" value="#{login.password}"
 					required="true"/>
-				<h:commandButton action="#{login.login}"
+				<p:commandButton action="#{login.login}" ajax="false"
 					value="#{msg['action.login']}"/>
 			</h:panelGrid>
 		</h:form>

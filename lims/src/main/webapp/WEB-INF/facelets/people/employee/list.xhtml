@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:dataTable id="employees" var="employee" value="#{employeeBean.all}">
+			<p:column style="width: 1px">
+				<f:facet name="header">
+					<p:commandButton action="#{employeeBean.add}"
+						value="#{msg['action.add']}" ajax="false"/>
+				</f:facet>
+				<p:commandButton action="#{employeeBean.edit}"
+					value="#{msg['action.edit']}" ajax="false">
+					<f:setPropertyActionListener value="#{employee}"
+						target="#{employeeBean.item}"/>
+				</p:commandButton>
+			</p:column>
+			<p:column style="width: 1px">
+				<p:commandButton action="#{employeeBean.delete}" ajax="false"
+					update="employees" value="#{msg['action.delete']}"
+					disabled="#{employee.id == sessionScope.user.employee.id}">
+					<f:setPropertyActionListener value="#{employee}"
+						target="#{employeeBean.item}"/>
+				</p:commandButton>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['employee.name.full']}"/>
+				</f:facet>
+				<h:outputText value="#{employee.fullName}"/>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['employee.name.short']}"/>
+				</f:facet>
+				<h:outputText value="#{employee.shortName}"/>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</ui:composition>
