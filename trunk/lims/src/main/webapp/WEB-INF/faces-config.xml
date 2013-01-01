@@ -5,7 +5,9 @@
 		http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 	version="2.0">
 	<application>
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<el-resolver>
+			org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		</el-resolver>
 		<locale-config>
 			<default-locale>ru_RU</default-locale>
 			<supported-locale>en_US</supported-locale>
@@ -19,15 +21,32 @@
 		</resource-bundle>
 	</application>
 
+	<converter>
+		<converter-for-class>
+			ru.sstu.lims.core.domain.Position
+		</converter-for-class>
+		<converter-class>
+			ru.sstu.lims.core.web.converters.PositionConverter
+		</converter-class>
+	</converter>
+
 	<!-- configuration of navigation rules -->	
 	<navigation-rule>
 		<navigation-case>
-			<from-outcome>usersList</from-outcome>
-			<to-view-id>/pages/usersList.xhtml</to-view-id>
+			<from-outcome>positionsList</from-outcome>
+			<to-view-id>/pages/positionsList.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>userInfo</from-outcome>
-			<to-view-id>/pages/userInfo.xhtml</to-view-id>
+			<from-outcome>positionInfo</from-outcome>
+			<to-view-id>/pages/positionInfo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>employeesList</from-outcome>
+			<to-view-id>/pages/employeesList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>employeeInfo</from-outcome>
+			<to-view-id>/pages/employeeInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

@@ -8,10 +8,6 @@
 	xmlns:s="http://www.springframework.org/security/tags">
 	<h:form>
 		<h:panelGrid columns="3">
-			<h:outputLabel for="editFullName" value="#{msg['user.name']}"/>
-			<h:inputText id="editFullName" required="true"
-				value="#{userBean.item.fullName}"/>
-			<h:message for="editFullName" showDetail="false"/>
 			<h:outputLabel for="editLogin" value="#{msg['user.login']}"/>
 			<h:inputText id="editLogin" value="#{userBean.item.login}"
 				disabled="#{userBean.item.id != -1}" required="true"/>
@@ -22,6 +18,24 @@
 				value="#{userBean.item.password}"
 				required="#{userBean.item.id == -1}"/>
 			<h:message for="editPassword" showDetail="false"/>
+			<h:outputLabel for="editFullName" value="#{msg['user.name']}"/>
+			<h:inputText id="editFullName" required="true"
+				value="#{userBean.item.fullName}"/>
+			<h:message for="editFullName" showDetail="false"/>
+			<h:outputLabel for="editShortName" value="#{msg['user.short']}"/>
+			<h:inputText id="editShortName" required="true"
+				value="#{userBean.item.shortName}"/>
+			<h:message for="editShortName" showDetail="false"/>
+			<h:outputLabel for="editEnglishName" value="#{msg['user.english']}"/>
+			<h:inputText id="editEnglishName" required="true"
+				value="#{userBean.item.englishName}"/>
+			<h:message for="editEnglishName" showDetail="false"/>
+			<h:outputLabel for="dob" value="#{msg['user.dob']}"/>
+			<p:calendar value="#{userBean.item.birthDate}" id="dob" required="true" />
+			<h:message for="dob" showDetail="false"/>
+			<h:outputLabel for="dismiss" value="#{msg['user.date.dismiss']}"/>
+			<p:calendar value="#{userBean.item.dismissDate}" id="dismiss"/>
+			<h:message for="dismiss" showDetail="false"/>
 		</h:panelGrid>
 		<h:panelGrid columns="2">
 			<h:commandButton id="save" value="#{msg['action.save']}"

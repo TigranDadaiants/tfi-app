@@ -3,9 +3,9 @@ package ru.sstu.lims.core.web;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.faces.bean.RequestScoped;
 import javax.servlet.ServletException;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.lims.core.dao.UserDao;
@@ -18,7 +18,7 @@ import ru.sstu.web.jsf.JsfController;
  * @since LIMS 1.0
  */
 @Controller("login")
-@Scope("request")
+@RequestScoped
 public class LoginController extends JsfController {
 
 	private static final long serialVersionUID = -3726884565613410240L;

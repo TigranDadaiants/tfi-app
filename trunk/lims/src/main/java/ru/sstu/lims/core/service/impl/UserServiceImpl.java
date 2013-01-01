@@ -36,12 +36,14 @@ class UserServiceImpl implements UserService {
 
 	@Override
 	public void save(User user) {
+		// FIXME
 		if (user.getPassword() != null && !"".equals(user.getPassword())) {
 			String password = encoder.encodePassword(user.getPassword(),
 					user.getLogin());
 			user.setPassword(password);
-		} else if (user.getId() != -1L) {
-			user.setPassword(userDao.findById(user.getId()).getPassword());
+		} else if (user.getEmployee().getId() != -1L) {
+			user.setPassword(userDao
+					.findById(user.getEmployee().getId()).getPassword());
 		}
 		userDao.save(user);
 	}

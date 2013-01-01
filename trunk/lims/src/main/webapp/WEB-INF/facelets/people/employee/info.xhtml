@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<h:panelGrid columns="3">
+			<p:outputLabel for="fullName" value="#{msg['employee.name.full']}"/>
+			<p:inputText id="fullName" required="true"
+				value="#{employeeBean.item.fullName}"/>
+			<h:message for="fullName" showDetail="false"/>
+			<p:outputLabel for="shortName" value="#{msg['employee.name.short']}"/>
+			<p:inputText id="shortName" required="true"
+				value="#{employeeBean.item.shortName}"/>
+			<h:message for="shortName" showDetail="false"/>
+			<p:outputLabel for="englishName"
+				value="#{msg['employee.name.english']}"/>
+			<p:inputText id="englishName" required="true"
+				value="#{employeeBean.item.englishName}"/>
+			<h:message for="englishName" showDetail="false"/>
+			<p:outputLabel for="position" value="#{msg['employee.position']}"/>
+			<p:selectOneMenu id="position" value="#{employeeBean.item.position}">
+				<f:selectItems value="#{positionBean.all}" var="position"
+					itemLabel="#{position.name}" itemValue="#{position}"/>
+			</p:selectOneMenu>
+			<h:message for="position" showDetail="false"/>
+			<p:outputLabel for="dob" value="#{msg['employee.date.birth']}"/>
+			<p:calendar value="#{employeeBean.item.birthDate}" id="dob"/>
+			<h:message for="dob" showDetail="false"/>
+			<p:outputLabel for="dismiss" value="#{msg['employee.date.dismiss']}"/>
+			<p:calendar value="#{employeeBean.item.dismissDate}" id="dismiss"/>
+			<h:message for="dismiss" showDetail="false"/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton id="save" value="#{msg['action.save']}"
+				action="#{employeeBean.save}" ajax="false"/>
+			<p:commandButton id="cancel" value="#{msg['action.cancel']}"
+				action="#{employeeBean.cancel}" ajax="false"/>
+		</h:panelGrid>
+		<h:messages/>
+	</h:form>
+</ui:composition>
