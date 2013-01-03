@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.lims.core.dao.EmployeeDao;
 import ru.sstu.lims.core.domain.Employee;
@@ -30,11 +31,13 @@ class EmployeeServiceImpl implements EmployeeService {
 	public void reload(Employee item) {
 	}
 
+	@Transactional
 	@Override
 	public void save(Employee item) {
 		employeeDao.save(item);
 	}
 
+	@Transactional
 	@Override
 	public void delete(Employee item) {
 		employeeDao.delete(item);

@@ -7,6 +7,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:s="http://www.springframework.org/security/tags">
 	<h:form>
+		<p:fileUpload fileUploadListener="#{employeeBean.uploadFile}"
+			mode="advanced" update="employees" auto="true" sizeLimit="1000000"/>
 		<p:dataTable id="employees" var="employee" value="#{employeeBean.all}">
 			<p:column style="width: 1px">
 				<f:facet name="header">

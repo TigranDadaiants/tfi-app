@@ -10,20 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * {@code Position} class represents employee position.
+ * {@code Role} class represents functional roles.
  *
  * @author denis_murashev
  * @since LIMS 1.0
  */
 @Entity
-@Table(name = "POSITIONS")
-public class Position implements Serializable {
+@Table(name = "ROLES")
+public class Role implements Serializable {
 
-	private static final long serialVersionUID = 1743971721995260493L;
+	private static final long serialVersionUID = 8823908233717828158L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "POSITION_ID_PK", unique = true, nullable = false)
+	@Column(name = "ROLE_ID_PK", unique = true, nullable = false)
 	private long id = -1L;
 
 	@Column(name = "NAME", unique = true, nullable = false)
@@ -74,7 +74,7 @@ public class Position implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Position other = (Position) obj;
+		Role other = (Role) obj;
 		return id == other.id;
 	}
 
