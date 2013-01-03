@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.lims.core.dao.UserDao;
 import ru.sstu.lims.core.domain.User;
@@ -34,6 +35,7 @@ class UserServiceImpl implements UserService {
 	public void reload(User user) {
 	}
 
+	@Transactional
 	@Override
 	public void save(User user) {
 		// FIXME
@@ -48,6 +50,7 @@ class UserServiceImpl implements UserService {
 		userDao.save(user);
 	}
 
+	@Transactional
 	@Override
 	public void delete(User user) {
 		userDao.delete(user);

@@ -11,4 +11,12 @@ import ru.sstu.lims.core.domain.Position;
  * @since LIMS 1.0
  */
 public interface PositionDao extends Dao<Position> {
+
+	/**
+	 * Finds {@link Position} with given name.
+	 *
+	 * @param name position name
+	 * @return position
+	 */
+	Position find(String name);
 }
