@@ -1,0 +1,31 @@
+div.loginOuter {
+	width: 320px;
+	height: 190px;
+	margin: 100px auto;
+	border: 1px solid #E8E8E8;
+	background: #F4F4F4;
+}
+
+div.loginInner {
+	width: 220px;
+	margin: 28px auto;
+	text-align:left;
+	background: #F4F4F4;
+}
+
+input.loginInput {
+	height: 20px;
+	margin: 1px 0px 10px 0px;
+	text-indent: 3px;
+	border: 1px solid #E8E8E8;
+}
+
+input.loginButton {
+	width: 72px;
+	height: 24px;
+}
+
+input.loginCheckbox {
+	height: 12px;
+	margin: 0px 0px 0px 12px;
+}

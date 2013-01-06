@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:panel>
+			<f:facet name="header">
+				<h:outputText value="#{msg['issue.name']}"/>
+			</f:facet>
+			<p:selectOneMenu id="status" value="#{teacherIssueBean.item.status}">
+				<f:selectItems value="#{teacherIssueBean.statuses}"
+					var="status"  itemValue="#{status}"
+					itemLabel="#{msg[status.key]}"/>
+				<h:outputText value="#{msg[issue.status.key]}"/>
+			</p:selectOneMenu>
+			<p:editor id="text" value="#{teacherIssueBean.item.description}"
+				width="600"/>
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{teacherIssueBean.save}"
+					value="#{msg['action.save']}"
+					styleClass="inputButton">
+					<f:setPropertyActionListener
+						value="#{teacherIssueBean.item}"
+						target="#{teacherIssueBean.item}"/>
+				</h:commandButton>
+				<h:commandButton action="#{teacherIssueBean.cancel}"
+					value="#{msg['action.cancel']}" styleClass="inputButton"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>

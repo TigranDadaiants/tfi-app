@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<s:authorize ifAllGranted="ROLE_STUDENT">
+		<h:form>
+			<p:panel>
+				<f:facet name="header">
+					<h:outputText value="#{msg['menu.courses']}"/>
+				</f:facet>
+				<p:dataTable width="100%" id="coursesList" rows="20"
+					columnClasses="col" value="#{studentCourseBean.all}" var="course">
+					<p:column style="width:1px">
+						<h:commandLink action="#{studentCourseBean.edit}">
+							<f:setPropertyActionListener
+								target="#{studentCourseBean.item}"
+								value="#{course}"/>
+							<h:graphicImage value="/images/edit.png"/>
+						</h:commandLink>
+					</p:column>
+					<p:column styleClass="userNameCol" sortBy="#{course.course.name}">
+						<f:facet name="header">
+							<h:outputText styleClass="headerText"
+								value="#{msg['course.name']}"/>
+						</f:facet>
+						<h:outputText id="name" value="#{course.course.name}"/>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</s:authorize>
+</ui:composition>

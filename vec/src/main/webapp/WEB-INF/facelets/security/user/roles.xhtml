@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
+		<p:outputLabel for="name" value="#{msg['user.name']}"/>
+		<p:inputText id="name" value="#{userBean.item.user.name}"
+			required="true"/>
+		<h:message for="name" showDetail="false"/>
+
+		<p:outputLabel for="login" value="#{msg['user.login']}"/>
+		<p:inputText id="login" value="#{userBean.item.user.login}"
+			disabled="#{userBean.item.user.id != -1}" required="true"/>
+		<h:message for="login" showDetail="false"/>
+
+		<p:outputLabel for="password" value="#{msg['user.password']}"/>
+		<p:inputSecret id="password" value="#{userBean.item.user.password}"
+			required="#{userBean.item.user.id == -1}"/>
+		<h:message for="password" showDetail="false"/>
+	</h:panelGrid>
+	<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
+		<h:selectBooleanCheckbox id="admin"
+			value="#{userBean.item.user.admin}"
+			disabled="#{userBean.item.user.id == sessionScope.user.id}"/>
+		<h:outputLabel for="admin" value="#{msg['role.admin']}"/>
+		<h:message for="admin" showDetail="false"/>
+
+		<h:selectBooleanCheckbox id="expert"
+			value="#{userBean.item.user.expert}"/>
+		<h:outputLabel for="expert" value="#{msg['role.expert']}"/>
+		<h:message for="expert" showDetail="false"/>
+
+		<h:selectBooleanCheckbox id="teacher"
+			value="#{userBean.item.user.teacher}"/>
+		<h:outputLabel for="teacher" value="#{msg['role.teacher']}"/>
+		<h:message for="teacher" showDetail="false"/>
+
+		<h:selectBooleanCheckbox id="observer"
+			value="#{userBean.item.user.observer}"/>
+		<h:outputLabel for="observer" value="#{msg['role.observer']}"/>
+		<h:message for="observer" showDetail="false"/>
+
+		<h:selectBooleanCheckbox id="student"
+			value="#{userBean.item.user.student}"/>
+		<h:outputLabel for="student" value="#{msg['role.student']}"/>
+		<h:message for="student" showDetail="false"/>
+	</h:panelGrid>
+</ui:composition>

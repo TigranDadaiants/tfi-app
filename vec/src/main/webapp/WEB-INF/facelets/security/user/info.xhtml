@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:panel>
+			<f:facet name="header">
+				<h:outputText value="#{msg['common.user']}"/>
+			</f:facet>
+			<h:panelGrid columns="1">
+				<h:outputText value="#{userBean.item.user.name}"/>
+			</h:panelGrid>
+			<p:tabView>
+				<p:tab title="#{msg['menu.roles']}">
+					<ui:include
+						src="/WEB-INF/facelets/security/user/roles.xhtml"/>
+				</p:tab>
+				<p:tab title="#{msg['menu.groups']}"
+					rendered="#{userBean.item.user.observer or userBean.item.user.student}">
+					<ui:include
+						src="/WEB-INF/facelets/security/user/groups.xhtml"/>
+				</p:tab>
+				<p:tab title="#{msg['menu.courses']}"
+					rendered="#{userBean.item.user.expert or userBean.item.user.teacher}">
+					<ui:include
+						src="/WEB-INF/facelets/security/user/courses.xhtml"/>
+				</p:tab>
+			</p:tabView>
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{userBean.save}"
+					value="#{msg['action.save']}"
+					styleClass="inputButton">
+					<f:setPropertyActionListener target="#{userBean.item}"
+						value="#{userBean.item}"/>
+				</h:commandButton>
+				<h:commandButton action="#{userBean.cancel}"
+					value="#{msg['action.cancel']}" styleClass="inputButton"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>

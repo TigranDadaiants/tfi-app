@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:panel>
+			<f:facet name="header">
+				<h:outputText value="#{msg['lab.variant']}"/>
+			</f:facet>
+			<p:editor id="text" value="#{expertVariantBean.item.text}" width="600"/>
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{expertVariantBean.save}"
+					value="#{msg['action.save']}"
+					styleClass="inputButton">
+					<f:setPropertyActionListener
+						value="#{expertVariantBean.item}"
+						target="#{expertVariantBean.item}"/>
+				</h:commandButton>
+				<h:commandButton action="#{expertVariantBean.cancel}"
+					value="#{msg['action.cancel']}" styleClass="inputButton"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>

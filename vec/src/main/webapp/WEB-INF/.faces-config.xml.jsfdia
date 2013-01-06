@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="usersList::#pages#usersList.xhtml"
+    NAME="output" PATH="/pages/usersList.xhtml"
+    TARGET="rules:#pages#usersList.xhtml" TITLE="usersList" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="userInfo::#pages#userInfo.xhtml"
+    NAME="output1" PATH="/pages/userInfo.xhtml"
+    TARGET="rules:#pages#userInfo.xhtml" TITLE="userInfo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="groupsList::#pages#groupsList.xhtml"
+    NAME="output2" PATH="/pages/groupsList.xhtml"
+    TARGET="rules:#pages#groupsList.xhtml" TITLE="groupsList" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="groupInfo::#pages#groupInfo.xhtml"
+    NAME="output3" PATH="/pages/groupInfo.xhtml"
+    TARGET="rules:#pages#groupInfo.xhtml" TITLE="groupInfo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="expertCoursesList::#pages#expertCoursesList.xhtml"
+    NAME="output4" PATH="/pages/expertCoursesList.xhtml"
+    TARGET="rules:#pages#expertCoursesList.xhtml"
+    TITLE="expertCoursesList" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="expertCourseInfo::#pages#expertCourseInfo.xhtml" NAME="output5"
+    PATH="/pages/expertCourseInfo.xhtml"
+    TARGET="rules:#pages#expertCourseInfo.xhtml"
+    TITLE="expertCourseInfo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="expertLabInfo::#pages#expertLabInfo.xhtml"
+    NAME="output6" PATH="/pages/expertLabInfo.xhtml"
+    TARGET="rules:#pages#expertLabInfo.xhtml" TITLE="expertLabInfo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="expertVariantInfo::#pages#expertVariantInfo.xhtml"
+    NAME="output7" PATH="/pages/expertVariantInfo.xhtml"
+    TARGET="rules:#pages#expertVariantInfo.xhtml"
+    TITLE="expertVariantInfo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="studentCoursesList::#pages#studentCoursesList.xhtml"
+    NAME="output8" PATH="/pages/studentCoursesList.xhtml"
+    TARGET="rules:#pages#studentCoursesList.xhtml"
+    TITLE="studentCoursesList" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="studentCourseInfo::#pages#studentCourseInfo.xhtml"
+    NAME="output9" PATH="/pages/studentCourseInfo.xhtml"
+    TARGET="rules:#pages#studentCourseInfo.xhtml"
+    TITLE="studentCourseInfo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="studentLabInfo::#pages#studentLabInfo.xhtml"
+    NAME="output10" PATH="/pages/studentLabInfo.xhtml"
+    TARGET="rules:#pages#studentLabInfo.xhtml" TITLE="studentLabInfo" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#groupsList.xhtml"
+  PATH="/pages/groupsList.xhtml" SHAPE="288,353,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#userInfo.xhtml"
+  PATH="/pages/userInfo.xhtml" SHAPE="288,241,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#groupInfo.xhtml"
+  PATH="/pages/groupInfo.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#usersList.xhtml"
+  PATH="/pages/usersList.xhtml" SHAPE="288,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#expertCoursesList.xhtml"
+  PATH="/pages/expertCoursesList.xhtml" SHAPE="304,273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#expertCourseInfo.xhtml"
+  PATH="/pages/expertCourseInfo.xhtml" SHAPE="304,305,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#expertLabInfo.xhtml"
+  PATH="/pages/expertLabInfo.xhtml" SHAPE="304,337,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#expertVariantInfo.xhtml"
+  PATH="/pages/expertVariantInfo.xhtml" SHAPE="304,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#studentCoursesList.xhtml"
+  PATH="/pages/studentCoursesList.xhtml" SHAPE="304,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#studentLabInfo.xhtml"
+  PATH="/pages/studentLabInfo.xhtml" SHAPE="304,913,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#studentCourseInfo.xhtml"
+  PATH="/pages/studentCourseInfo.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

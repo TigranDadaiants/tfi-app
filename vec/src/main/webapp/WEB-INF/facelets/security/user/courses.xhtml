@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<p:dataTable width="100%" id="coursesList" rows="20" columnClasses="col"
+		value="#{userBean.courses}" var="course" columnsWidth="1,1,*">
+		<p:column style="width: 1px">
+			<f:facet name="header">
+				<h:outputText value="#{msg['role.expert']}"/>
+			</f:facet>
+			<h:selectBooleanCheckbox id="editExpert" value="#{course.expert}"
+				disabled="#{not userBean.item.user.expert}"/>
+		</p:column>
+		<p:column style="width: 1px">
+			<f:facet name="header">
+				<h:outputText value="#{msg['role.teacher']}" />
+			</f:facet>
+			<h:selectBooleanCheckbox id="editTeacher" value="#{course.teacher}"
+				disabled="#{not userBean.item.user.teacher}"/>
+		</p:column>
+		<p:column sortBy="#{course.course.name}">
+			<f:facet name="header">
+				<h:outputText styleClass="headerText"
+					value="#{msg['course.name']}"/>
+			</f:facet>
+			<h:outputText id="name" value="#{course.course.name}"/>
+		</p:column>
+	</p:dataTable>
+</ui:composition>

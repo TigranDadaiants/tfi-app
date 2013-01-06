@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<div align="center">
+	<div align="center" class="loginOuter shadow" style="width: 350px">
+		<div class="loginInner">
+			<h:form prependId="false">
+				<h:panelGrid columns="2" width="300px">
+					<h:outputLabel for="j_username"
+						value="#{msg['user.login']}"/>
+					<h:inputText id="j_username" value="#{login.username}"
+						required="true"/>
+					<h:outputLabel for="j_password"
+						value="#{msg['user.password']}"/>
+					<h:inputSecret id="j_password" value="#{login.password}"
+						required="true"/>
+					<h:commandButton action="#{login.login}"
+						value="#{msg['action.login']}"/>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</div>
+	</div>
+</ui:composition>
