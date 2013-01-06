@@ -1,0 +1,23 @@
+a.menuLink { text-decoration: none; }
+a.menuLink:link { color: #000000; }
+a.menuLink:visited { color: #000000; }
+a.menuLink:active { color: #000000; }
+a.menuLink:hover { color: #2C82FC; text-decoration: underline; }
+
+div.navigation {
+	width: 220px;
+	margin: 20px 5px 0px 21px;
+	padding: 0px;
+	line-height: 20px;
+}
+
+ul.navigation {
+	margin: 10px;
+	padding: 0px 0px 0px 20px;
+}
+
+li.navigation {
+	margin: 0px;
+	padding: 0px;
+	vertical-align: middle;
+}

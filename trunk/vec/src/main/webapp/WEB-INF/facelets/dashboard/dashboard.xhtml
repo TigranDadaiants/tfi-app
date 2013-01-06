@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<p:accordionPanel>
+		<s:authorize ifAnyGranted="ROLE_STUDENT">
+			<p:tab title="${msg['menu.tasks']}">
+				<ui:include src="student.xhtml"/>
+			</p:tab>
+		</s:authorize>
+		<s:authorize ifAnyGranted="ROLE_TEACHER">
+			<p:tab title="${msg['menu.review']}">
+				<ui:include src="teacher.xhtml"/>
+			</p:tab>
+		</s:authorize>
+		<p:tab title="#{msg['password.change']}">
+			<ui:include src="password.xhtml"/>
+		</p:tab>
+	</p:accordionPanel>
+</ui:composition>

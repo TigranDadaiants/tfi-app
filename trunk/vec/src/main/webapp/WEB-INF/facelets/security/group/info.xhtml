@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:panel>
+			<f:facet name="header">
+				<h:outputText value="#{msg['common.group']}"/>
+			</f:facet>
+			<h:panelGrid columns="1">
+				<h:outputText value="#{groupBean.item.name}"/>
+			</h:panelGrid>
+			<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
+				<h:outputLabel for="editName" style="font-size: 75%;">
+					<h:outputText value="#{msg['group.name']}"/>
+				</h:outputLabel>
+				<h:inputText id="editName" value="#{groupBean.item.name}"/>
+				<h:message for="editName" showDetail="false"/>
+			</h:panelGrid>
+			<p:pickList value="#{groupBean.courses}" var="course"
+				itemValue="#{course}" itemLabel="#{course.name}"
+				converter="course">
+				<f:facet name="sourceCaption">Available</f:facet>
+				<f:facet name="targetCaption">Assigned</f:facet>
+				<p:column>#{course.name}</p:column>
+			</p:pickList>
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{groupBean.save}"
+					value="#{msg['action.save']}"
+					styleClass="inputButton">
+					<f:setPropertyActionListener target="#{groupBean.item}"
+						value="#{groupBean.item}"/>
+				</h:commandButton>
+				<h:commandButton action="#{groupBean.cancel}"
+					value="#{msg['action.cancel']}" styleClass="inputButton"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>

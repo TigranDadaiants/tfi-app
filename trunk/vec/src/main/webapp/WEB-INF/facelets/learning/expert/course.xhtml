@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:panel>
+			<f:facet name="header">
+				<h:outputText value="#{msg['common.course']}"/>
+			</f:facet>
+			<h:panelGrid columns="1">
+				<h:outputText value="#{expertCourseBean.item.name}"/>
+			</h:panelGrid>
+			<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
+				<h:outputLabel for="editName" style="font-size: 75%;">
+					<h:outputText value="#{msg['course.name']}"/>
+				</h:outputLabel>
+				<h:inputText id="editName" value="#{expertCourseBean.item.name}"/>
+				<h:message for="editName" showDetail="false"/>
+			</h:panelGrid>
+			<p:fileUpload fileUploadListener="#{expertLabBean.importLab}"
+				mode="advanced" update="labsList" sizeLimit="1000000"/>
+			<p:dataTable width="100%" id="labsList" rows="20"
+				rendered="#{expertCourseBean.item.id != -1}"
+				columnClasses="col" value="#{expertLabBean.all}" var="lab">
+				<p:column style="width:1px">
+					<f:facet name="header">
+						<h:commandLink action="#{expertLabBean.add}">
+							<f:setPropertyActionListener value="#{lab}"
+								target="#{expertLabBean.item}"/>
+							<h:graphicImage value="/images/add.png"/>
+						</h:commandLink>
+					</f:facet>
+					<h:commandLink action="#{expertLabBean.edit}">
+						<f:setPropertyActionListener value="#{lab}"
+							target="#{expertLabBean.item}"/>
+						<h:graphicImage value="/images/edit.png"/>
+					</h:commandLink>
+				</p:column>
+				<p:column style="width: 1px">
+				<ui:remove>
+					<f:facet name="header">
+						<h:commandLink reRender="importLab"
+							oncomplete="Richfaces.showModalPanel('importLab',{top:200});">
+							<h:graphicImage value="/images/import.jpg"/>
+						</h:commandLink>
+					</f:facet>
+				</ui:remove>
+					<h:commandLink action="#{expertLabBean.delete}"
+						update="labsList">
+						<f:setPropertyActionListener value="#{lab}"
+							target="#{expertLabBean.item}"/>
+						<h:graphicImage value="/images/delete.png"/>
+					</h:commandLink>
+				</p:column>
+				<p:column styleClass="userNameCol" sortBy="#{lab.name}">
+					<f:facet name="header">
+						<h:outputText styleClass="headerText"
+							value="#{msg['lab.name']}"/>
+					</f:facet>
+					<h:outputText id="name" value="#{lab.name}"/>
+				</p:column>
+			</p:dataTable>
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{expertCourseBean.save}"
+					value="#{msg['action.save']}"
+					styleClass="inputButton">
+					<f:setPropertyActionListener
+						value="#{expertCourseBean.item}"
+						target="#{expertCourseBean.item}"/>
+				</h:commandButton>
+				<h:commandButton action="#{expertCourseBean.cancel}"
+					value="#{msg['action.cancel']}" styleClass="inputButton"/>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>
