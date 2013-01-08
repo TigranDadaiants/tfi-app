@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<h:panelGrid columns="3">
+			<p:outputLabel for="number" value="#{msg['study.number']}"/>
+			<p:inputText id="number" value="#{studyBean.item.number}"
+				required="true"/>
+			<h:message for="number" showDetail="false"/>
+
+			<p:outputLabel for="name" value="#{msg['study.name']}"/>
+			<p:inputText id="name" value="#{studyBean.item.name}"
+				required="true"/>
+			<h:message for="name" showDetail="false"/>
+
+			<p:outputLabel for="identity" value="#{msg['study.identity']}"/>
+			<p:selectOneMenu id="identity" value="#{studyBean.item.identity}">
+				<f:selectItems value="#{studyBean.identities}" var="identity"
+					itemLabel="#{msg[identity.key]}" itemValue="#{identity}"/>
+			</p:selectOneMenu>
+			<h:message for="identity" showDetail="false"/>
+
+			<p:outputLabel for="glp"
+				value="#{msg['study.status.normative']}: #{msg['study.status.glp']}"/>
+			<h:selectBooleanCheckbox id="glp" value="#{studyBean.item.glp}"/>
+			<h:message for="glp" showDetail="false"/>
+
+			<p:outputLabel for="legal" value="#{msg['study.status.legal']}"/>
+			<p:selectOneMenu id="legal" value="#{studyBean.item.legalStatus}">
+				<f:selectItems value="#{studyBean.legalStatuses}" var="status"
+					itemLabel="#{msg[status.key]}" itemValue="#{status}"/>
+			</p:selectOneMenu>
+			<h:message for="legal" showDetail="false"/>
+
+			<p:outputLabel for="director" value="#{msg['study.director']}"/>
+			<p:selectOneMenu id="director" value="#{studyBean.item.director}">
+				<f:selectItems value="#{studyBean.employees}" var="employee"
+					itemLabel="#{employee.fullName}" itemValue="#{employee}"/>
+			</p:selectOneMenu>
+			<h:message for="director" showDetail="false"/>
+
+			<p:outputLabel for="date" value="#{msg['study.date.start']}"/>
+			<p:calendar value="#{studyBean.item.dateOfDesignation}" id="date"/>
+			<h:message for="date" showDetail="false"/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton id="save" value="#{msg['action.save']}"
+				action="#{studyBean.save}" ajax="false"/>
+			<p:commandButton id="cancel" value="#{msg['action.cancel']}"
+				action="#{studyBean.cancel}" ajax="false"/>
+		</h:panelGrid>
+		<h:messages/>
+	</h:form>
+</ui:composition>

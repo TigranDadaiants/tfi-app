@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:dataTable id="studies" var="study" value="#{studyBean.all}">
+			<p:column style="width: 1px">
+				<f:facet name="header">
+					<p:commandButton action="#{studyBean.add}" ajax="false"
+						value="#{msg['action.add']}"/>
+				</f:facet>
+				<p:commandButton action="#{studyBean.edit}" ajax="false"
+					value="#{msg['action.edit']}">
+					<f:setPropertyActionListener value="#{study}"
+						target="#{studyBean.item}"/>
+				</p:commandButton>
+			</p:column>
+			<p:column style="width: 1px">
+				<p:commandButton action="#{studyBean.delete}" ajax="false"
+					update="roles" value="#{msg['action.delete']}">
+					<f:setPropertyActionListener value="#{study}"
+						target="#{studyBean.item}"/>
+				</p:commandButton>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msg['position.name']}"/>
+				</f:facet>
+				<h:outputText value="#{study.name}"/>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</ui:composition>

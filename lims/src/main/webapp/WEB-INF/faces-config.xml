@@ -30,6 +30,15 @@
 		</converter-class>
 	</converter>
 
+	<converter>
+		<converter-for-class>
+			ru.sstu.lims.core.domain.Employee
+		</converter-for-class>
+		<converter-class>
+			ru.sstu.lims.core.web.converters.EmployeeConverter
+		</converter-class>
+	</converter>
+
 	<!-- configuration of navigation rules -->	
 	<navigation-rule>
 		<navigation-case>
@@ -47,6 +56,14 @@
 		<navigation-case>
 			<from-outcome>employeeInfo</from-outcome>
 			<to-view-id>/pages/employeeInfo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>studiesList</from-outcome>
+			<to-view-id>/pages/studiesList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>studyInfo</from-outcome>
+			<to-view-id>/pages/studyInfo.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 </faces-config>
