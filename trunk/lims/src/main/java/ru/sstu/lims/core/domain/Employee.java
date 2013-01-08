@@ -185,4 +185,30 @@ public class Employee implements Serializable {
 		}
 		return age;
 	}
+
+	@Override
+	public int hashCode() {
+		final int offset = 32;
+		return (int) (id ^ (id >>> offset));
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Employee other = (Employee) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		return fullName;
+	}
 }
