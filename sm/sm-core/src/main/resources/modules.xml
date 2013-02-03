@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<modules>
-	<module id="sm-longitudinal">ru.sstu.sm.longitudinal.gui.ModuleImpl</module>
-	<module id="sm-torsion">ru.sstu.sm.torsion.gui.ModuleImpl</module>
-	<module id="sm-cross">ru.sstu.sm.cross.gui.ModuleImpl</module>
-</modules>

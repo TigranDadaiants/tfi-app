@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<table class="ru.sstu.sms.domain.Person">
-	<column index="0" field="phone"/>
-	<column index="1" field="lastName" default="-"/>
-	<column index="2" field="firstName" default="-"/>
-	<column index="3" field="middleName" default="-"/>
-</table>
