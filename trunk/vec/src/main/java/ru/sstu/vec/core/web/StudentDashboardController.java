@@ -1,9 +1,9 @@
 package ru.sstu.vec.core.web;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.LabResult;
@@ -19,7 +19,7 @@ import ru.sstu.vec.core.service.StudentDashboardManager;
  * @since VEC 2.0
  */
 @Controller("studentDashboardBean")
-@SessionScoped
+@Scope("session")
 public class StudentDashboardController
 		extends AbstractItemController<LabResult> {
 

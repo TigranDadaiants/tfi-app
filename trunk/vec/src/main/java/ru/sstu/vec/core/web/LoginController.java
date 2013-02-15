@@ -3,9 +3,9 @@ package ru.sstu.vec.core.web;
 import java.io.IOException;
 
 import javax.annotation.Resource;
-import javax.faces.bean.RequestScoped;
 import javax.servlet.ServletException;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.service.UserManager;
@@ -17,7 +17,7 @@ import ru.sstu.vec.core.service.UserManager;
  * @since VEC 2.0
  */
 @Controller("login")
-@RequestScoped
+@Scope("request")
 public class LoginController extends VecController {
 
 	private static final long serialVersionUID = 606616802514226716L;

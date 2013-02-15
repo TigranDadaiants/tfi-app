@@ -3,8 +3,8 @@ package ru.sstu.vec.core.web;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.CourseGrant;
@@ -20,7 +20,7 @@ import ru.sstu.vec.core.service.model.UserModel;
  * @since VEC 2.0
  */
 @Controller("userBean")
-@SessionScoped
+@Scope("session")
 public class UserController extends AbstractItemController<UserModel> {
 
 	private static final long serialVersionUID = -4819388044419023937L;

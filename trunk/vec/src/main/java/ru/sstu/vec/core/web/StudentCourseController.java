@@ -1,9 +1,9 @@
 package ru.sstu.vec.core.web;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.CourseResult;
@@ -18,7 +18,7 @@ import ru.sstu.vec.core.service.StudentCourseManager;
  * @since VEC 2.0
  */
 @Controller("studentCourseBean")
-@SessionScoped
+@Scope("session")
 public class StudentCourseController
 		extends AbstractItemController<CourseResult> {
 

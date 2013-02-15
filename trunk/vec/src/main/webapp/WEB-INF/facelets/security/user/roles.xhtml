@@ -10,17 +10,17 @@
 		<p:outputLabel for="name" value="#{msg['user.name']}"/>
 		<p:inputText id="name" value="#{userBean.item.user.name}"
 			required="true"/>
-		<h:message for="name" showDetail="false"/>
+		<p:message for="name"/>
 
 		<p:outputLabel for="login" value="#{msg['user.login']}"/>
 		<p:inputText id="login" value="#{userBean.item.user.login}"
 			disabled="#{userBean.item.user.id != -1}" required="true"/>
-		<h:message for="login" showDetail="false"/>
+		<p:message for="login"/>
 
 		<p:outputLabel for="password" value="#{msg['user.password']}"/>
-		<p:inputSecret id="password" value="#{userBean.item.user.password}"
+		<p:password id="password" value="#{userBean.item.user.password}"
 			required="#{userBean.item.user.id == -1}"/>
-		<h:message for="password" showDetail="false"/>
+		<p:message for="password"/>
 	</h:panelGrid>
 	<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
 		<h:selectBooleanCheckbox id="admin"

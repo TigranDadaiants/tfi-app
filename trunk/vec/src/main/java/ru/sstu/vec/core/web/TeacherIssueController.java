@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.IssueStatus;
@@ -21,7 +21,7 @@ import ru.sstu.vec.core.service.LabIssueManager;
  * @since VEC 2.0
  */
 @Controller("teacherIssueBean")
-@SessionScoped
+@Scope("session")
 public class TeacherIssueController extends AbstractItemController<LabIssue> {
 
 	private static final long serialVersionUID = -2676877215053332683L;

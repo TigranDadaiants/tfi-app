@@ -104,11 +104,11 @@ public class GroupGrant implements Serializable {
 		private static final long serialVersionUID = -4584730497409879330L;
 
 		@ManyToOne
-		@JoinColumn(name = "USER_ID_FK")
+		@JoinColumn(name = "USER_ID_FK", nullable = false)
 		private User user;
 
 		@ManyToOne
-		@JoinColumn(name = "GROUP_ID_FK")
+		@JoinColumn(name = "GROUP_ID_FK", nullable = false)
 		private Group group;
 	}
 }

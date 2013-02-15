@@ -1,8 +1,8 @@
 package ru.sstu.vec.core.web;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.LabStatus;
@@ -17,7 +17,7 @@ import ru.sstu.vec.core.service.LabResultManager;
  * @since VEC 2.0
  */
 @Controller("studentLabBean")
-@SessionScoped
+@Scope("session")
 public class StudentLabController extends LabResultController {
 
 	private static final long serialVersionUID = -6590060265917204376L;

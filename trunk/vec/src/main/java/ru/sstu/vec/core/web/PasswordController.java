@@ -1,8 +1,8 @@
 package ru.sstu.vec.core.web;
 
 import javax.annotation.Resource;
-import javax.faces.bean.RequestScoped;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.User;
@@ -15,7 +15,7 @@ import ru.sstu.vec.core.service.UserManager;
  * @since VEC 2.0
  */
 @Controller("passwordBean")
-@RequestScoped
+@Scope("request")
 public class PasswordController extends VecController {
 
 	private static final long serialVersionUID = -9120281655104755743L;

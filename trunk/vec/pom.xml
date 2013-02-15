@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>ru.sstu.tfi.app</groupId>
 		<artifactId>webapp-parent</artifactId>
-		<version>1-SNAPSHOT</version>
+		<version>1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.sstu.tfi.app</groupId>
@@ -19,6 +19,9 @@
 		<server.id>localhost</server.id>
 		<server.context.xml>src/main/webapp/META-INF/context.xml</server.context.xml>
 	</properties>
+	<build>
+		<finalName>vec2</finalName>
+	</build>
 	<dependencies>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -45,13 +48,6 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>1.0-SP1</version>
-		</dependency>
-		 -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -80,7 +76,7 @@
 		<dependency>
 			<groupId>ru.sstu.tfi.sdk</groupId>
 			<artifactId>tfi-docs</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

@@ -144,7 +144,6 @@
 		<res-auth>Container</res-auth>
 		<res-sharing-scope>Unshareable</res-sharing-scope>
 	</resource-ref>
-
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/pages/error.html</location>
