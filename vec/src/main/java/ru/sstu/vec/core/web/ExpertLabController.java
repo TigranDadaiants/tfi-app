@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.docs.DocumentException;
@@ -26,7 +26,7 @@ import ru.sstu.vec.core.service.model.LabFileFormat;
  * @since VEC 2.0
  */
 @Controller("expertLabBean")
-@SessionScoped
+@Scope("session")
 public class ExpertLabController extends AbstractItemController<Lab> {
 
 	private static final long serialVersionUID = 1266309652663054399L;

@@ -1,8 +1,8 @@
 package ru.sstu.vec.core.web;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.Course;
@@ -15,7 +15,7 @@ import ru.sstu.vec.core.service.ExpertCourseManager;
  * @since VEC 2.0
  */
 @Controller("expertCourseBean")
-@SessionScoped
+@Scope("session")
 public class ExpertCourseController extends AbstractItemController<Course> {
 
 	private static final long serialVersionUID = 5191106643341940466L;

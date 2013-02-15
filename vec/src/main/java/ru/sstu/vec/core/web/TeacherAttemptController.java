@@ -3,8 +3,8 @@ package ru.sstu.vec.core.web;
 import java.util.Date;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.LabAttempt;
@@ -18,7 +18,7 @@ import ru.sstu.vec.core.domain.LabResult;
  * @since VEC 2.0
  */
 @Controller("teacherAttemptBean")
-@SessionScoped
+@Scope("session")
 public class TeacherAttemptController extends LabAttemptController {
 
 	private static final long serialVersionUID = -2698816687126738657L;

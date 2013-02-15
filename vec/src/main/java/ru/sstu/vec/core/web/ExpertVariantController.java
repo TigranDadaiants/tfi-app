@@ -1,8 +1,8 @@
 package ru.sstu.vec.core.web;
 
 import javax.annotation.Resource;
-import javax.faces.bean.SessionScoped;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.LabVariant;
@@ -16,7 +16,7 @@ import ru.sstu.vec.core.service.ExpertVariantManager;
  * @since VEC 2.0
  */
 @Controller("expertVariantBean")
-@SessionScoped
+@Scope("session")
 public class ExpertVariantController
 		extends AbstractItemController<LabVariant> {
 

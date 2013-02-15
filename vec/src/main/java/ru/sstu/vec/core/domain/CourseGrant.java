@@ -103,11 +103,11 @@ public class CourseGrant implements Serializable {
 		private static final long serialVersionUID = -7092175528467669095L;
 
 		@ManyToOne
-		@JoinColumn(name = "USER_ID_FK")
+		@JoinColumn(name = "USER_ID_FK", nullable = false)
 		private User user;
 
 		@ManyToOne
-		@JoinColumn(name = "COURSE_ID_FK")
+		@JoinColumn(name = "COURSE_ID_FK", nullable = false)
 		private Course course;
 	}
 }
