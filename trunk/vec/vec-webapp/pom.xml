@@ -4,18 +4,17 @@
 		http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<groupId>ru.sstu.tfi.app</groupId>
-		<artifactId>webapp-parent</artifactId>
-		<version>1</version>
+		<artifactId>vec-parent</artifactId>
+		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ru.sstu.tfi.app</groupId>
-	<artifactId>vec</artifactId>
+	<artifactId>vec-webapp</artifactId>
 	<packaging>war</packaging>
-	<version>2.0-SNAPSHOT</version>
-	<name>Virtual Educational Center</name>
+	<version>0.1-SNAPSHOT</version>
+	<name>VEC 2 Web Application</name>
+	<description>Virtual Educational Center 2nd Generation</description>
 	<properties>
-		<jsf.version>2.1.6</jsf.version>
-		<spring.security.version>3.1.2.RELEASE</spring.security.version>
 		<server.id>localhost</server.id>
 		<server.context.xml>src/main/webapp/META-INF/context.xml</server.context.xml>
 	</properties>
@@ -24,39 +23,25 @@
 	</build>
 	<dependencies>
 		<dependency>
+			<groupId>ru.sstu.tfi.app</groupId>
+			<artifactId>vec-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ru.sstu.tfi.app</groupId>
+			<artifactId>vec-core-jsf</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
-			<version>${jsf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
-			<version>${jsf.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>3.4.2</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${spring.security.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${spring.security.version}</version>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -66,17 +51,17 @@
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-faces</artifactId>
-			<version>2.2.0.RELEASE</version>
+			<version>2.3.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.8.0.GA</version>
-		</dependency>
-		<dependency>
-			<groupId>ru.sstu.tfi.sdk</groupId>
-			<artifactId>tfi-docs</artifactId>
-			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
