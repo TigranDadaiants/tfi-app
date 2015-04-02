@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * {@code Course} class represents learning course in VEC system.
@@ -34,12 +37,17 @@ public class Course implements Serializable {
 	@Column(name = "COURSE_ID_PK")
 	private long id = -1L;
 
-	@Column(name = "COURSE_NAME", nullable = false, unique = true,
-			length = NAME)
+	@Column(name = "COURSE_NAME", nullable = false, unique = true, length = NAME)
 	private String name = "";
 
 	@ManyToMany(mappedBy = "courses")
 	private List<Group> groups = Collections.emptyList();
+
+	/**
+	 * Mapped to avoid referential integrity constraint violation.
+	 */
+	@OneToMany(mappedBy = "id.course", cascade = CascadeType.REMOVE)
+	private List<CourseGrant> courseGrants;
 
 	/**
 	 * @return Course's id
@@ -49,7 +57,8 @@ public class Course implements Serializable {
 	}
 
 	/**
-	 * @param id course id
+	 * @param id
+	 *            course id
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -63,7 +72,8 @@ public class Course implements Serializable {
 	}
 
 	/**
-	 * @param name course name
+	 * @param name
+	 *            course name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -77,7 +87,8 @@ public class Course implements Serializable {
 	}
 
 	/**
-	 * @param groups the groups to set
+	 * @param groups
+	 *            the groups to set
 	 */
 	public void setGroups(List<Group> groups) {
 		this.groups = groups;

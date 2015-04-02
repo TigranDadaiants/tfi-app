@@ -5,11 +5,12 @@
 		auth="Container"
 		name="jdbc/vec"
 		type="javax.sql.DataSource"
-		password=""
-		driverClassName="org.hsqldb.jdbcDriver"
+		password="admin"
+		driverClassName="org.h2.Driver"
 		maxIdle="2"
 		maxWait="5000"
-		username="sa"
-		url="jdbc:hsqldb:file:/database/vec/vec"
-		maxActive="4"/>
+		username="admin"
+		url="jdbc:h2:file:C:\Program Files (x86)\H2\bin\vec"
+		maxActive="4"
+		characterEncoding="UTF-8"/>
 </Context>

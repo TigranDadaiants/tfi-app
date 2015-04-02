@@ -30,7 +30,8 @@ public class LabVariant implements Serializable {
 	@Column(name = "LAB_VARIANT_ID_PK")
 	private long id = -1L;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE,
+			CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "LAB_ID_FK")
 	private Lab lab;
 
@@ -49,7 +50,8 @@ public class LabVariant implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -63,7 +65,8 @@ public class LabVariant implements Serializable {
 	}
 
 	/**
-	 * @param lab parent lab
+	 * @param lab
+	 *            parent lab
 	 */
 	public void setLab(Lab lab) {
 		this.lab = lab;
@@ -77,7 +80,8 @@ public class LabVariant implements Serializable {
 	}
 
 	/**
-	 * @param index index
+	 * @param index
+	 *            index
 	 */
 	public void setIndex(int index) {
 		this.index = index;
@@ -91,7 +95,8 @@ public class LabVariant implements Serializable {
 	}
 
 	/**
-	 * @param text variant text
+	 * @param text
+	 *            variant text
 	 */
 	public void setText(String text) {
 		this.text = text;

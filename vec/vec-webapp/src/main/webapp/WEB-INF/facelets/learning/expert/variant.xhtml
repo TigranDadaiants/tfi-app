@@ -13,14 +13,14 @@
 			</f:facet>
 			<p:editor id="text" value="#{expertVariantBean.item.text}" width="600"/>
 			<h:panelGrid columns="2">
-				<h:commandButton action="#{expertVariantBean.save}"
+				<p:commandButton action="#{expertVariantBean.save}"
 					value="#{msg['action.save']}"
 					styleClass="inputButton">
 					<f:setPropertyActionListener
 						value="#{expertVariantBean.item}"
 						target="#{expertVariantBean.item}"/>
-				</h:commandButton>
-				<h:commandButton action="#{expertVariantBean.cancel}"
+				</p:commandButton>
+				<p:commandButton action="#{expertVariantBean.cancel}"
 					value="#{msg['action.cancel']}" styleClass="inputButton"/>
 			</h:panelGrid>
 		</p:panel>

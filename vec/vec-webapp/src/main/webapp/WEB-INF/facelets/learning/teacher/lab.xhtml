@@ -24,7 +24,7 @@
 						itemLabel="#{msg[status.key]}"/>
 				</p:selectOneMenu>
 				<h:message for="status" details="false"/>
-				<h:commandButton action="#{teacherAttemptBean.update}"
+				<p:commandButton action="#{teacherAttemptBean.update}"
 					value="#{msg['action.apply']}"/>
 			</h:panelGrid>
 			<p:dataTable width="100%" id="attemptsList" rows="20"

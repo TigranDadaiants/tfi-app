@@ -115,6 +115,7 @@ class UserManagerImpl implements UserManager {
 	}
 
 	@Override
+	@Transactional
 	public void delete(UserModel model) {
 		groupGrantDao.delete(groupGrantDao.find(model.getUser()));
 		courseGrantDao.delete(courseGrantDao.find(model.getUser()));

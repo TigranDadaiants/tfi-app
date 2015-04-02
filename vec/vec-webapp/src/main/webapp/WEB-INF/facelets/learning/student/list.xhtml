@@ -14,7 +14,7 @@
 				</f:facet>
 				<p:dataTable width="100%" id="coursesList" rows="20"
 					columnClasses="col" value="#{studentCourseBean.all}" var="course">
-					<p:column style="width:1px">
+					<p:column styleClass="editColumn">
 						<h:commandLink action="#{studentCourseBean.edit}">
 							<f:setPropertyActionListener
 								target="#{studentCourseBean.item}"

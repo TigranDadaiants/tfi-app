@@ -14,7 +14,7 @@
 				</f:facet>
 				<p:dataTable width="100%" id="groupsList" rows="20"
 					columnClasses="col" value="#{groupBean.all}" var="group">
-					<p:column style="width:1px">
+					<p:column styleClass="editColumn">
 						<f:facet name="header">
 							<h:commandLink action="#{groupBean.add}">
 								<f:setPropertyActionListener
@@ -30,7 +30,7 @@
 							<h:graphicImage value="/images/edit.png"/>
 						</h:commandLink>
 					</p:column>
-					<p:column style="width: 1px">
+					<p:column styleClass="editColumn">
 						<h:commandLink action="#{groupBean.delete}"
 							update="groupsList">
 							<f:setPropertyActionListener

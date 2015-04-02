@@ -8,14 +8,14 @@
 	xmlns:s="http://www.springframework.org/security/tags">
 	<p:dataTable width="100%" id="groupsList" rows="20" columnClasses="col"
 		value="#{userBean.groups}" var="group">
-		<p:column style="width:1px">
+		<p:column style="width:20px">
 			<f:facet name="header">
 				<h:outputText value="#{msg['role.observer']}"/>
 			</f:facet>
 			<h:selectBooleanCheckbox id="editCurator" value="#{group.observer}"
 				disabled="#{not userBean.item.user.observer}"/>
 		</p:column>
-		<p:column style="width:1px">
+		<p:column style="width:20px">
 			<f:facet name="header">
 				<h:outputText value="#{msg['role.student']}" />
 			</f:facet>

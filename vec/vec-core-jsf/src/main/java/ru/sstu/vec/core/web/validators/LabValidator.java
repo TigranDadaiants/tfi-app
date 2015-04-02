@@ -38,7 +38,7 @@ public class LabValidator {
 		String name = (String) value;
 		StringValidator validator = new StringValidator(context,
 				(UIInput) component, name);
-		validator.checkLength(1, Lab.NAME, "error.length", Lab.NAME);
+		validator.checkLength(1, Lab.NAME_LENGTH, "error.length", Lab.NAME_LENGTH);
 		Lab lab = (Lab) component.getAttributes().get("lab");
 		Lab dbLab = labDao.find(lab.getCourse(), name);
 		validator.checkExists(lab, dbLab, "error.exists");

@@ -5,7 +5,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:s="http://www.springframework.org/security/tags">
-	<p:accordionPanel>
+	<p:accordionPanel styleClass="accordion" activeIndex="-">
+		<p:tab title="${msg['menu.lectures']}">
+		</p:tab>
 		<s:authorize ifAnyGranted="ROLE_STUDENT">
 			<p:tab title="${msg['menu.tasks']}">
 				<ui:include src="student.xhtml"/>
@@ -18,6 +20,9 @@
 		</s:authorize>
 		<p:tab title="#{msg['password.change']}">
 			<ui:include src="password.xhtml"/>
+		</p:tab>
+		<p:tab title="#{msg['menu.theme']}">
+			<ui:include src="theme.xhtml"/>
 		</p:tab>
 	</p:accordionPanel>
 </ui:composition>

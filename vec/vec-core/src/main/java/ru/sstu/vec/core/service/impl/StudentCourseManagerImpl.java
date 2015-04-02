@@ -69,6 +69,7 @@ class StudentCourseManagerImpl implements StudentCourseManager {
 
 	@Override
 	public void reload(CourseResult object) {
+		System.out.println("!! CourseResult: "+object);
 	}
 
 	@Override

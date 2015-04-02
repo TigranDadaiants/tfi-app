@@ -51,7 +51,7 @@ class LabVariantDaoImpl extends GenericDao<LabVariant>
 	 */
 	public void delete(Lab lab) {
 		for (LabVariant v : find(lab)) {
-			delete(v.getId());
+			delete(v);
 		}
 	}
 }

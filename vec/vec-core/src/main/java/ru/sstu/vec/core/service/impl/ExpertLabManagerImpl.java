@@ -53,6 +53,7 @@ class ExpertLabManagerImpl implements ExpertLabManager {
 	}
 
 	@Override
+	@Transactional
 	public void delete(Lab object) {
 		labVariantDao.delete(object);
 		labDao.delete(object);

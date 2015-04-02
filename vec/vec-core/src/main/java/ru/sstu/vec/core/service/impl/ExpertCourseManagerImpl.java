@@ -62,6 +62,7 @@ class ExpertCourseManagerImpl implements ExpertCourseManager {
 	}
 
 	@Override
+	@Transactional
 	public void delete(Course object) {
 		courseDao.delete(object);
 	}

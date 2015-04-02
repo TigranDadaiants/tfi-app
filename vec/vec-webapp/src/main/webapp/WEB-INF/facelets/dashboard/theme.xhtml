@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:outputStylesheet library="css" name="common.css"/>
+	<h:form>
+		<p:panelGrid styleClass="noBorders" columns="2">
+			<p:themeSwitcher styleClass="themeSwitcher" value ="#{userThemeBean.theme}" style="width:165px" effect="fade" id="themePreview">    
+	            <f:selectItems value="#{themeBean.themes}"/>
+	        </p:themeSwitcher> 
+		   	<p:commandButton  styleClass="themeButton" ajax="false" value="#{msg['action.save']}" action="#{userThemeBean.save}" />
+	   	</p:panelGrid>
+	</h:form>
+</ui:composition>

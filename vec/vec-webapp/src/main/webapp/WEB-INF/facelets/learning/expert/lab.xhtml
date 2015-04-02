@@ -12,15 +12,17 @@
 				<h:outputText value="#{msg['common.lab']}"/>
 			</f:facet>
 			<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
-				<p:outputLabel for="name" value="#{msg['lab.name']}"/>
+				<p:outputLabel style="padding-right:10px;" for="name" value="#{msg['lab.name']}"/>
 				<p:inputText id="name" value="#{expertLabBean.item.name}"/>
 				<h:message for="name" showDetail="false"/>
 			</h:panelGrid>
+			<p:spacer height="5px"/>
 			<p:editor id="text" value="#{expertLabBean.item.text}" width="600"/>
+			<p:spacer height="15px"/>
 			<p:dataTable width="100%" id="variantsList" rows="20"
 				rendered="#{expertLabBean.item.id != -1}"
 				columnClasses="col" value="#{expertVariantBean.all}" var="variant">
-				<p:column style="width:1px">
+				<p:column styleClass="editColumn">
 					<f:facet name="header">
 						<h:commandLink action="#{expertVariantBean.add}">
 							<f:setPropertyActionListener value="#{variant}"
@@ -34,7 +36,7 @@
 						<h:graphicImage value="/images/edit.png"/>
 					</h:commandLink>
 				</p:column>
-				<p:column style="width: 1px">
+				<p:column styleClass="editColumn">
 					<h:commandLink action="#{expertVariantBean.delete}"
 						update="variantsList">
 						<f:setPropertyActionListener value="#{variant}"
@@ -51,14 +53,14 @@
 				</p:column>
 			</p:dataTable>
 			<h:panelGrid columns="2">
-				<h:commandButton action="#{expertLabBean.save}"
+				<p:commandButton action="#{expertLabBean.save}"
 					value="#{msg['action.save']}"
 					styleClass="inputButton">
 					<f:setPropertyActionListener
 						value="#{expertLabBean.item}"
 						target="#{expertLabBean.item}"/>
-				</h:commandButton>
-				<h:commandButton action="#{expertLabBean.cancel}"
+				</p:commandButton>
+				<p:commandButton action="#{expertLabBean.cancel}"
 					value="#{msg['action.cancel']}" styleClass="inputButton"/>
 			</h:panelGrid>
 		</p:panel>

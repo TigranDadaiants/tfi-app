@@ -16,7 +16,7 @@
 	color: #567;
 }
 
-div.shadow {
+div.shadow, .dashboard {
 	background:#fff;
 	border: 1px solid #ddd;
 	box-shadow:0 0px 16px rgba(0, 0, 0, 0.1);
@@ -60,3 +60,89 @@ table.flat td {
 table.wide {
 	width: 100%;
 }
+
+
+.noBorders tr, .noBorders td {
+    background: none !important;
+    border: none !important;
+}
+
+.noBorders .ui-panelgrid  td{
+    background: none !important;
+    border: none !important;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 90%;
+}
+
+.themeButton{
+	margin-left:5px;
+}
+
+.themeSwitcher{
+	height:29px;
+}
+
+.dashboard{
+	min-height:500px;
+	height:calc(100%-20px);
+	width:1000px; 
+	margin: 0 auto; 
+}
+
+.accordion{
+	width:1000px;
+	min-height:500px;
+}
+.spacer{
+	height:calc(100%-20px);
+	min-height:500px;
+	width:1px;
+}
+
+.commondiv{
+	height:100%;
+	width:1000px;
+	margin: 0 auto;
+}
+
+html, body
+{
+	height:100% !important;
+    min-height: 500px !important;
+}
+
+.ui-panel .ui-panel-content {
+     padding: 5px 5px !important;
+}
+
+.ui-tabs .ui-tabs-panel {
+      padding: 5px 5px !important;
+}
+
+.ui-carousel {
+   width: 100% !important;
+    height: 100% !important;
+}
+.ui-carousel-viewport {
+   height: 100% !important;
+}
+
+
+.carousel{
+	min-height:650px;
+}
+
+.carouselItem{
+	height:600px;
+	width:952px;
+	border:none; 
+	padding: 5px; 
+}
+
+.editColumn{
+	width:1%;
+	min-width:16px;
+}
+

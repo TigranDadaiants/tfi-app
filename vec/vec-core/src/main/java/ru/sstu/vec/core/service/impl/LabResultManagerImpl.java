@@ -6,6 +6,8 @@ import java.util.Random;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.vec.core.dao.CourseResultDao;
@@ -32,6 +34,8 @@ abstract class LabResultManagerImpl implements LabResultManager {
 
 	private static final Random RANDOM = new Random();
 
+	private Log log = LogFactory.getLog(LabResultManagerImpl.class);
+
 	@Resource
 	private CourseResultDao courseResultDao;
 
@@ -49,6 +53,11 @@ abstract class LabResultManagerImpl implements LabResultManager {
 	@Transactional
 	@Override
 	public List<LabResult> find() {
+		if (courseResult == null) {
+			log.error("CourseResult is NULL!");
+			System.err.println("CourseResult is NULL!");
+			return new ArrayList<LabResult>();
+		}
 		List<Lab> labs = labDao.find(courseResult.getCourse());
 		List<LabResult> results = new ArrayList<LabResult>();
 		for (Lab lab : labs) {
@@ -89,7 +98,8 @@ abstract class LabResultManagerImpl implements LabResultManager {
 	}
 
 	/**
-	 * @param lab lab
+	 * @param lab
+	 *            lab
 	 * @return lab variant
 	 */
 	private LabVariant getVariant(Lab lab) {

@@ -1,6 +1,8 @@
 package ru.sstu.vec.core.domain;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -26,7 +29,7 @@ public class Lab implements Serializable {
 	/**
 	 * Lab name length.
 	 */
-	public static final int NAME = 200;
+	public static final int NAME_LENGTH = 200;
 
 	private static final long serialVersionUID = 5403625397709357252L;
 
@@ -35,7 +38,7 @@ public class Lab implements Serializable {
 	@Column(name = "LAB_ID_PK")
 	private long id = -1L;
 
-	@Column(name = "LAB_NAME", nullable = false, length = NAME)
+	@Column(name = "LAB_NAME", nullable = false, length = NAME_LENGTH)
 	private String name = "";
 
 	@ManyToOne
@@ -49,6 +52,9 @@ public class Lab implements Serializable {
 	@Column(name = "LAB_TEXT", nullable = false)
 	private String text = "";
 
+	@ManyToMany(mappedBy = "labs")
+	private List<Lecture> lectures = Collections.emptyList();
+
 	/**
 	 * @return the id
 	 */
@@ -57,7 +63,8 @@ public class Lab implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -71,7 +78,8 @@ public class Lab implements Serializable {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -85,7 +93,8 @@ public class Lab implements Serializable {
 	}
 
 	/**
-	 * @param course the course to set
+	 * @param course
+	 *            the course to set
 	 */
 	public void setCourse(Course course) {
 		this.course = course;
@@ -101,7 +110,8 @@ public class Lab implements Serializable {
 	/**
 	 * Sets task's index in course.
 	 *
-	 * @param index index
+	 * @param index
+	 *            index
 	 */
 	public void setIndex(int index) {
 		this.index = index;
@@ -119,10 +129,22 @@ public class Lab implements Serializable {
 	/**
 	 * Sets lab description text.
 	 *
-	 * @param text text
+	 * @param text
+	 *            text
 	 */
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	/**
+	 * @return
+	 */
+	public List<Lecture> getLectures() {
+		return lectures;
+	}
+
+	public void setLectures(List<Lecture> lectures) {
+		this.lectures = lectures;
 	}
 
 	/**

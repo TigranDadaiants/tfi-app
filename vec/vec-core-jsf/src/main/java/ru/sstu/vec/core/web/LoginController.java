@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -24,6 +25,9 @@ public class LoginController extends VecController {
 
 	@Resource
 	private UserManager userManager;
+
+	@Autowired
+	private UserThemeController userThemeController;
 
 	private String username;
 	private String password;
@@ -67,6 +71,7 @@ public class LoginController extends VecController {
 		forward("/j_spring_security_check");
 		complete();
 		setLoggedUser(userManager.find(username).getUser());
+		//userThemeController.loadTheme();
 		return null;
 	}
 }

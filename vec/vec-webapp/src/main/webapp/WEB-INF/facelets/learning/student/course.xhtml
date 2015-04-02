@@ -15,7 +15,7 @@
 			</h:panelGrid>
 			<p:dataTable width="100%" id="labsList" rows="20"
 				columnClasses="col" value="#{studentLabBean.all}" var="lab">
-				<p:column style="width:1px">
+				<p:column styleClass="editColumn">
 					<h:commandLink action="#{studentLabBean.edit}">
 						<f:setPropertyActionListener value="#{lab}"
 							target="#{studentLabBean.item}"/>

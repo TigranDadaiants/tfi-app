@@ -28,13 +28,13 @@
 				<p:column>#{course.name}</p:column>
 			</p:pickList>
 			<h:panelGrid columns="2">
-				<h:commandButton action="#{groupBean.save}"
+				<p:commandButton action="#{groupBean.save}"
 					value="#{msg['action.save']}"
 					styleClass="inputButton">
 					<f:setPropertyActionListener target="#{groupBean.item}"
 						value="#{groupBean.item}"/>
-				</h:commandButton>
-				<h:commandButton action="#{groupBean.cancel}"
+				</p:commandButton>
+				<p:commandButton action="#{groupBean.cancel}"
 					value="#{msg['action.cancel']}" styleClass="inputButton"/>
 			</h:panelGrid>
 		</p:panel>

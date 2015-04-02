@@ -14,7 +14,7 @@
 				</f:facet>
 				<p:dataTable width="100%" id="coursesList" rows="20"
 					columnClasses="col" value="#{expertCourseBean.all}" var="course">
-					<p:column style="width:1px">
+					<p:column styleClass="editColumn">
 						<f:facet name="header">
 							<h:commandLink action="#{expertCourseBean.add}">
 								<f:setPropertyActionListener
@@ -30,12 +30,12 @@
 							<h:graphicImage value="/images/edit.png"/>
 						</h:commandLink>
 					</p:column>
-					<p:column style="width: 1px">
+					<p:column styleClass="editColumn">
 						<h:commandLink action="#{expertCourseBean.delete}"
 							update="coursesList">
 							<f:setPropertyActionListener
 								target="#{expertCourseBean.item}"
-								value="#{expert}"/>
+								value="#{course}"/>
 							<h:graphicImage value="/images/delete.png"/>
 						</h:commandLink>
 					</p:column>

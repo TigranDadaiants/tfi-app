@@ -22,7 +22,7 @@
 							</p:outputPanel>
 						</f:facet>
 					</ui:remove>
-					<p:column style="width:1px">
+					<p:column styleClass="editColumn">
 						<f:facet name="header">
 							<h:commandLink action="#{userBean.add}">
 								<f:setPropertyActionListener
@@ -38,7 +38,7 @@
 							<h:graphicImage value="/images/edit.png"/>
 						</h:commandLink>
 					</p:column>
-					<p:column style="width: 1px">
+					<p:column styleClass="editColumn">
 						<h:commandLink action="#{userBean.delete}"
 							update="usersList"
 							disabled="#{user.user.id == sessionScope.user.id}">

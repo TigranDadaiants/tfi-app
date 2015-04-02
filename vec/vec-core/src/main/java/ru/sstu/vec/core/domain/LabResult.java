@@ -2,6 +2,7 @@ package ru.sstu.vec.core.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -51,7 +52,7 @@ public class LabResult implements Serializable {
 	@Column(name = "LAB_GRADE", nullable = false, length = GRADE)
 	private String grade = "";
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	@JoinColumn(name = "LAB_VARIANT_ID_FK", nullable = true)
 	private LabVariant variant;
 

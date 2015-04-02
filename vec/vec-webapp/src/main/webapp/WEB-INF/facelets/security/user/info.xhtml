@@ -30,13 +30,13 @@
 				</p:tab>
 			</p:tabView>
 			<h:panelGrid columns="2">
-				<h:commandButton action="#{userBean.save}"
+				<p:commandButton action="#{userBean.save}"
 					value="#{msg['action.save']}"
 					styleClass="inputButton">
 					<f:setPropertyActionListener target="#{userBean.item}"
 						value="#{userBean.item}"/>
-				</h:commandButton>
-				<h:commandButton action="#{userBean.cancel}"
+				</p:commandButton>
+				<p:commandButton action="#{userBean.cancel}"
 					value="#{msg['action.cancel']}" styleClass="inputButton"/>
 			</h:panelGrid>
 		</p:panel>

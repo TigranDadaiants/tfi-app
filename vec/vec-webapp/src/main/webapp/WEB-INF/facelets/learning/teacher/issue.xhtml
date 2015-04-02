@@ -20,14 +20,14 @@
 			<p:editor id="text" value="#{teacherIssueBean.item.description}"
 				width="600"/>
 			<h:panelGrid columns="2">
-				<h:commandButton action="#{teacherIssueBean.save}"
+				<p:commandButton action="#{teacherIssueBean.save}"
 					value="#{msg['action.save']}"
 					styleClass="inputButton">
 					<f:setPropertyActionListener
 						value="#{teacherIssueBean.item}"
 						target="#{teacherIssueBean.item}"/>
-				</h:commandButton>
-				<h:commandButton action="#{teacherIssueBean.cancel}"
+				</p:commandButton>
+				<p:commandButton action="#{teacherIssueBean.cancel}"
 					value="#{msg['action.cancel']}" styleClass="inputButton"/>
 			</h:panelGrid>
 		</p:panel>

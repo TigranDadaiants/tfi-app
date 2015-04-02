@@ -48,6 +48,7 @@ class ExpertVariantManagerImpl implements ExpertVariantManager {
 		labVariantDao.save(object);
 	}
 
+	@Transactional
 	@Override
 	public void delete(LabVariant object) {
 		labVariantDao.delete(object);

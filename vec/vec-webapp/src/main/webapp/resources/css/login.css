@@ -1,31 +1,77 @@
 div.loginOuter {
 	width: 320px;
-	height: 190px;
+	height: 120px;
 	margin: 100px auto;
-	border: 1px solid #E8E8E8;
-	background: #F4F4F4;
+	border: 1px solid #7F7F7F;
+	background:radial-gradient(circle at 50% 75% , #B8B8B8, #EEEEEE) repeat scroll 0 0 transparent;
+	border-radius: 10px 10px 10px 10px;
+	-moz-box-shadow: 10px 10px 10px rgba(0,0,0,0.5); 
+    -webkit-box-shadow: 10px 10px 10px rgba(0,0,0,0.5); 
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5); 
 }
 
 div.loginInner {
-	width: 220px;
+	width: 300px;
 	margin: 28px auto;
 	text-align:left;
-	background: #F4F4F4;
+	background:#EEEEEE;
 }
 
-input.loginInput {
-	height: 20px;
-	margin: 1px 0px 10px 0px;
-	text-indent: 3px;
-	border: 1px solid #E8E8E8;
+.loginInput {
+	width:98%;
+	height: 20px !important;
+	margin: 1px 0px 10px 0px !important;
+	text-indent: 3px !important;
+	border: 1px solid #B8B8B8 !important;
 }
 
-input.loginButton {
-	width: 72px;
-	height: 24px;
+.loginButton{
+border:1px #B8B8B8;
+border-style:solid;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+box-shadow:rgba(0, 0, 0, .30) 2px 2px 2px;
+-moz-box-shadow:1rgba(0, 0, 0, .30) 2px 2px 2px;
+-webkit-box-shadow:rgba(0, 0, 0, .30) 2px 2px 2px;
+
+background:-moz-linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
+background:-webkit-gradient(linear,lefttop,leftbottom,color-stop(50%,rgba(245,245,245,1)),color-stop(100%,rgba(185,185,185,1)));
+background:-webkit-linear-gradient(top,rgba(245,245,245,1)50%,rgba(190,190,190,1)100%);
+background:-o-linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
+background:-ms-linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
+background:linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
 }
+
+.loginButton:hover
+{
+box-shadow:rgba(0, 0, 0, .30) 3px 3px 3px;
+-moz-box-shadow:1rgba(0, 0, 0, .30) 3px 3px 3px;
+-webkit-box-shadow:rgba(0, 0, 0, .30) 3px 3px 3px;
+
+background:-moz-linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
+background:-webkit-gradient(linear,lefttop,leftbottom,color-stop(50%,rgba(245,245,245,1)),color-stop(100%,rgba(185,185,185,1)));
+background:-webkit-linear-gradient(top,rgba(245,245,245,1)50%,rgba(190,190,190,1)100%);
+background:-o-linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
+background:-ms-linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
+background:linear-gradient(top,rgba(245,245,245,1)50%,rgba(185,185,185,1)100%);
+} 
 
 input.loginCheckbox {
 	height: 12px;
 	margin: 0px 0px 0px 12px;
+}
+
+.noBorders tr, .noBorders td {
+    background: none !important;
+    border: none !important;
+}
+
+.column1 {
+    text-align: left;
+}
+
+.footerButton{
+	display:block; 
+	text-align:center;
 }
