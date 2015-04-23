@@ -47,4 +47,5 @@ public interface CourseDao extends Dao<Course> {
 	 * @return list of courses
 	 */
 	List<Course> find(Group group);
+
 }
