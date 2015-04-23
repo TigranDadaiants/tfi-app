@@ -17,12 +17,14 @@
 			<base-name>strings</base-name>
 			<var>msg</var>
 		</resource-bundle>
+		<resource-bundle>
+			<base-name>primefaces-themes</base-name>
+			<var>themes</var>
+		</resource-bundle>
 	</application>
 	<converter>
 		<converter-id>course</converter-id>
-		<converter-class>
-			ru.sstu.vec.core.web.converters.CourseConverter
-		</converter-class>
+		<converter-class>ru.sstu.vec.core.web.converters.CourseConverter</converter-class>
 	</converter>
 	<navigation-rule>
 		<navigation-case>
@@ -52,6 +54,10 @@
 		<navigation-case>
 			<from-outcome>expertLabInfo</from-outcome>
 			<to-view-id>/pages/expertLabInfo.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>expertLectureInfo</from-outcome>
+			<to-view-id>/pages/expertLectureInfo.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>expertVariantInfo</from-outcome>

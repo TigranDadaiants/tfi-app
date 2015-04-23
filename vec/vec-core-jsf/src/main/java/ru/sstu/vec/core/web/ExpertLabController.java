@@ -18,6 +18,7 @@ import ru.sstu.vec.core.service.ExpertLabManager;
 import ru.sstu.vec.core.service.LabImporter;
 import ru.sstu.vec.core.service.LabImporterFactory;
 import ru.sstu.vec.core.service.model.DocFileFormat;
+import ru.sstu.vec.core.web.util.FileUploadUtil;
 
 /**
  * {@code ExpertLabController} class is controller for lab editing.
@@ -29,85 +30,91 @@ import ru.sstu.vec.core.service.model.DocFileFormat;
 @Scope("session")
 public class ExpertLabController extends AbstractItemController<Lab> {
 
-	private static final long serialVersionUID = 1266309652663054399L;
+    private static final long serialVersionUID = 1266309652663054399L;
 
-	private static Logger log = Logger.getLogger(ExpertLabController.class);
+    private static Logger log = Logger.getLogger(ExpertLabController.class);
 
-	private static final String ERROR_UPLOAD_MESSAGE
-			= "Cannot read uploaded file";
+    private static final String ERROR_UPLOAD_MESSAGE = "Cannot read uploaded file";
 
-	@Resource
-	private ExpertLabManager expertLabManager;
+    @Resource
+    private ExpertLabManager expertLabManager;
 
-	@Resource
-	private LabImporterFactory labImporterFactory;
+    @Resource
+    private LabImporterFactory labImporterFactory;
 
-	@Resource
-	private ExpertCourseController expertCourseBean;
+    @Resource
+    private ExpertCourseController expertCourseBean;
 
-	// FIXME Try guess file format
-	private DocFileFormat format = DocFileFormat.DOCX;
+    private DocFileFormat format = DocFileFormat.DOCX;
 
-	/**
-	 * @return the format
-	 */
-	public DocFileFormat getFormat() {
-		return format;
-	}
+    /**
+     * @return the format
+     */
+    public DocFileFormat getFormat() {
+        return format;
+    }
 
-	/**
-	 * @param format the format to set
-	 */
-	public void setFormat(DocFileFormat format) {
-		this.format = format;
-	}
+    /**
+     * @param format
+     *            the format to set
+     */
+    public void setFormat(DocFileFormat format) {
+        this.format = format;
+    }
 
-	/**
-	 * @return possible file formats for uploaded lab
-	 */
-	public List<DocFileFormat> getFormats() {
-		return Arrays.asList(DocFileFormat.values());
-	}
+    /**
+     * @return possible file formats for uploaded lab
+     */
+    public List<DocFileFormat> getFormats() {
+        return Arrays.asList(DocFileFormat.values());
+    }
 
-	/**
-	 * Imports lab data from uploaded file.
-	 *
-	 * @param event upload event
-	 */
-	public void importLab(FileUploadEvent event) {
-		try {
-			LabImporter importer = labImporterFactory.get(format);
-			InputStream input = event.getFile().getInputstream();
-			importer.importLab(expertCourseBean.getItem(), input);
-		} catch (IOException e) {
-			// TODO Notify user about problem
-			log.error(ERROR_UPLOAD_MESSAGE, e);
-		} catch (DocumentException e) {
-			// TODO Notify user about problem
-			log.error(ERROR_UPLOAD_MESSAGE, e);
-		}
-	}
+    /**
+     * Imports lab data from uploaded file.
+     *
+     * @param event
+     *            upload event
+     */
+    public void importLab(FileUploadEvent event) {
+        try {
+            DocFileFormat fileFormat = FileUploadUtil.getDocFileFormat(event);
+            if (fileFormat != null) {
+                format = fileFormat;
+                LabImporter importer = labImporterFactory.get(format);
+                InputStream input = event.getFile().getInputstream();
+                importer.importLab(expertCourseBean.getItem(), input);
+            } else {
+                log.error("DocFileFormat not found for given file!");
+                return;
+            }
+        } catch (IOException e) {
+            // TODO use growl to notify user
+            log.error(ERROR_UPLOAD_MESSAGE, e);
+        } catch (DocumentException e) {
+            log.error(ERROR_UPLOAD_MESSAGE, e);
+        }
+    }
 
-	@Override
-	protected ExpertLabManager getManager() {
-		expertLabManager.setCourse(expertCourseBean.getItem());
-		return expertLabManager;
-	}
+    @Override
+    protected ExpertLabManager getManager() {
+        expertLabManager.setCourse(expertCourseBean.getItem());
+        return expertLabManager;
+    }
 
-	@Override
-	protected Lab newItem() {
-		Lab lab = new Lab();
-		lab.setCourse(expertCourseBean.getItem());
-		return lab;
-	}
+    @Override
+    protected Lab newItem() {
+        Lab lab = new Lab();
+        lab.setCourse(expertCourseBean.getItem());
+        return lab;
+    }
 
-	@Override
-	protected String getListViewId() {
-		return "expertCourseInfo";
-	}
+    @Override
+    protected String getListViewId() {
+        return "expertCourseInfo";
+    }
 
-	@Override
-	protected String getItemViewId() {
-		return "expertLabInfo";
-	}
+    @Override
+    protected String getItemViewId() {
+        return "expertLabInfo";
+    }
 }
