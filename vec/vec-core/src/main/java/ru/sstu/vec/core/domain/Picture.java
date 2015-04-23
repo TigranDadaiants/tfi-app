@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -22,116 +23,141 @@ import javax.persistence.Table;
 @Table(name = "PICTURES")
 public class Picture implements Serializable {
 
-	/**
-	 * Image name length.
-	 */
-	public static final int NAME = 50;
+    /**
+     * Image name length.
+     */
+    public static final int NAME = 50;
 
-	/**
-	 * Common type length.
-	 */
-	public static final int TYPE = 10;
+    /**
+     * Common type length.
+     */
+    public static final int TYPE = 10;
 
-	private static final long serialVersionUID = -524230739638350900L;
+    private static final long serialVersionUID = -524230739638350900L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "PICTURE_ID_PK")
-	private long id = -1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "PICTURE_ID_PK")
+    private long id = -1L;
 
-	@Column(name = "PICTURE_NAME", nullable = false, length = NAME)
-	private String name = "";
+    @Column(name = "PICTURE_NAME", nullable = false, length = NAME)
+    private String name = "";
 
-	@Column(name = "PICTURE_TYPE", nullable = false, length = TYPE)
-	private String type = "";
+    @Column(name = "PICTURE_TYPE", nullable = false, length = TYPE)
+    private String type = "";
 
-	@Lob
-	@Column(name = "PICTURE_DATA", nullable = false)
-	private byte[] data;
+    @Lob
+    @Column(name = "PICTURE_DATA", nullable = false)
+    private byte[] data;
 
-	@ManyToOne
-	@JoinColumn(name = "LAB_ID_FK", nullable = false)
-	private Lab lab;
+    @ManyToOne
+    @JoinTable(name = "LAB_PICTURES", joinColumns = { @JoinColumn(name = "PIC_ID", referencedColumnName = "PICTURE_ID_PK") }, inverseJoinColumns = { @JoinColumn(name = "LAB_ID", referencedColumnName = "LAB_ID_PK") })
+    private Lab lab;
 
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinTable(name = "LECTURE_PICTURES", joinColumns = { @JoinColumn(name = "PIC_ID", referencedColumnName = "PICTURE_ID_PK") }, inverseJoinColumns = { @JoinColumn(name = "LECTURE_ID", referencedColumnName = "LECTURE_ID_PK") })
+    private Lecture lecture;
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
 
-	/**
-	 * Gets the VEC object's name.
-	 *
-	 * @return VEC object name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	/**
-	 * Sets image name.
-	 *
-	 * @param name image name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * Gets the VEC object's name.
+     *
+     * @return VEC object name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Provides image type.
-	 *
-	 * @return type
-	 */
-	public String getType() {
-		return type;
-	}
+    /**
+     * Sets image name.
+     *
+     * @param name
+     *            image name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * Sets image type.
-	 *
-	 * @param type type
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+    /**
+     * Provides image type.
+     *
+     * @return type
+     */
+    public String getType() {
+        return type;
+    }
 
-	/**
-	 * Provides image data.
-	 *
-	 * @return image data
-	 */
-	public byte[] getData() {
-		return data;
-	}
+    /**
+     * Sets image type.
+     *
+     * @param type
+     *            type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	/**
-	 * Sets image data.
-	 *
-	 * @param data image data
-	 */
-	public void setData(byte[] data) {
-		this.data = data;
-	}
+    /**
+     * Provides image data.
+     *
+     * @return image data
+     */
+    public byte[] getData() {
+        return data;
+    }
 
-	/**
-	 * @return the lab
-	 */
-	public Lab getLab() {
-		return lab;
-	}
+    /**
+     * Sets image data.
+     *
+     * @param data
+     *            image data
+     */
+    public void setData(byte[] data) {
+        this.data = data;
+    }
 
-	/**
-	 * @param lab the lab to set
-	 */
-	public void setLab(Lab lab) {
-		this.lab = lab;
-	}
+    /**
+     * @return the lab
+     */
+    public Lab getLab() {
+        return lab;
+    }
+
+    /**
+     * @param lab
+     *            the lab to set
+     */
+    public void setLab(Lab lab) {
+        this.lab = lab;
+    }
+
+    /**
+     * @return lecture
+     */
+    public Lecture getLecture() {
+        return lecture;
+    }
+
+    /**
+     * @param lecture
+     *            the lecture to set
+     */
+    public void setLecture(Lecture lecture) {
+        this.lecture = lecture;
+    }
+
 }

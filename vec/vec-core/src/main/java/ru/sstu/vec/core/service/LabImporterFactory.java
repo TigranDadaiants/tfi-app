@@ -1,6 +1,6 @@
 package ru.sstu.vec.core.service;
 
-import ru.sstu.vec.core.service.model.LabFileFormat;
+import ru.sstu.vec.core.service.model.DocFileFormat;
 
 /**
  * <code>LabImporterFactory</code> interface is used for getting concrete
@@ -17,5 +17,5 @@ public interface LabImporterFactory {
 	 * @param format file format
 	 * @return importer
 	 */
-	LabImporter get(LabFileFormat format);
+	LabImporter get(DocFileFormat format);
 }

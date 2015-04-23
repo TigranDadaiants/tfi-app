@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ru.sstu.vec.core.service.LabImporter;
 import ru.sstu.vec.core.service.LabImporterFactory;
-import ru.sstu.vec.core.service.model.LabFileFormat;
+import ru.sstu.vec.core.service.model.DocFileFormat;
 
 /**
  * <code>LabImporterFactoryImpl</code> class is {@link LabImporterFactory}
@@ -36,11 +36,11 @@ class LabImporterFactoryImpl implements LabImporterFactory {
 	/**
 	 * {@inheritDoc}
 	 */
-	public LabImporter get(LabFileFormat format) {
-		Map<LabFileFormat, LabImporter> importers
-				= new HashMap<LabFileFormat, LabImporter>();
-		importers.put(LabFileFormat.DOC_XML, docXmlLabImporter);
-		importers.put(LabFileFormat.DOCX, docxLabImporter);
+	public LabImporter get(DocFileFormat format) {
+		Map<DocFileFormat, LabImporter> importers
+				= new HashMap<DocFileFormat, LabImporter>();
+		importers.put(DocFileFormat.DOC_XML, docXmlLabImporter);
+		importers.put(DocFileFormat.DOCX, docxLabImporter);
 		return importers.get(format);
 	}
 }

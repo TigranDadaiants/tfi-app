@@ -17,7 +17,7 @@ import ru.sstu.vec.core.domain.Lab;
 import ru.sstu.vec.core.service.ExpertLabManager;
 import ru.sstu.vec.core.service.LabImporter;
 import ru.sstu.vec.core.service.LabImporterFactory;
-import ru.sstu.vec.core.service.model.LabFileFormat;
+import ru.sstu.vec.core.service.model.DocFileFormat;
 
 /**
  * {@code ExpertLabController} class is controller for lab editing.
@@ -46,27 +46,27 @@ public class ExpertLabController extends AbstractItemController<Lab> {
 	private ExpertCourseController expertCourseBean;
 
 	// FIXME Try guess file format
-	private LabFileFormat format = LabFileFormat.DOCX;
+	private DocFileFormat format = DocFileFormat.DOCX;
 
 	/**
 	 * @return the format
 	 */
-	public LabFileFormat getFormat() {
+	public DocFileFormat getFormat() {
 		return format;
 	}
 
 	/**
 	 * @param format the format to set
 	 */
-	public void setFormat(LabFileFormat format) {
+	public void setFormat(DocFileFormat format) {
 		this.format = format;
 	}
 
 	/**
 	 * @return possible file formats for uploaded lab
 	 */
-	public List<LabFileFormat> getFormats() {
-		return Arrays.asList(LabFileFormat.values());
+	public List<DocFileFormat> getFormats() {
+		return Arrays.asList(DocFileFormat.values());
 	}
 
 	/**
