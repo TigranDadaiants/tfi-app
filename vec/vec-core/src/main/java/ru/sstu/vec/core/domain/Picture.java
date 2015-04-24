@@ -55,7 +55,7 @@ public class Picture implements Serializable {
     private Lab lab;
 
     @ManyToOne
-    @JoinTable(name = "LECTURE_PICTURES", joinColumns = { @JoinColumn(name = "PIC_ID", referencedColumnName = "PICTURE_ID_PK") }, inverseJoinColumns = { @JoinColumn(name = "LECTURE_ID", referencedColumnName = "LECTURE_ID_PK") })
+    @JoinTable(name = "LECT_PICTURES", joinColumns = { @JoinColumn(name = "PIC_ID", referencedColumnName = "PICTURE_ID_PK") }, inverseJoinColumns = { @JoinColumn(name = "LECT_ID", referencedColumnName = "LECT_ID_PK") })
     private Lecture lecture;
 
     /**
