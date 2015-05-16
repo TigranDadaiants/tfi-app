@@ -42,7 +42,6 @@ public class UserThemeManagerImpl implements UserThemeManager {
 
 	@Override
 	public void reload(UserTheme object) {
-		// TODO Auto-generated method stub
 	}
 
 	@Transactional

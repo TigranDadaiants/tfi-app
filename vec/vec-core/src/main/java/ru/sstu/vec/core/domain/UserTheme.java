@@ -1,17 +1,16 @@
 package ru.sstu.vec.core.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * {@code UserTheme} class represents user and theme match in the VEC system.
@@ -22,65 +21,40 @@ import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name = "USER_THEMES")
 public class UserTheme implements Serializable {
-	/**
-	 *serialVersionUID
-	 */
-	private static final long serialVersionUID = 4073400785415741570L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 4073400785415741570L;
 
-	@GenericGenerator(name = "generator", strategy = "foreign",
-	parameters = @Parameter(name = "property", value = "user"))
-	@Id
-	@GeneratedValue(generator = "generator")
-	@Column(name = "USER_ID_PK", unique = true, nullable = false)
-	private long userId;
+    @Id
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	private User user;
+    @Column(name = "THEME_NAME")
+    private String theme;
 
-	@ManyToOne
-	@JoinColumn(name = "THEME_NAME", nullable = false)
-	private Theme theme;
+    /**
+     * @return user
+     */
+    public User getUser() {
+        return user;
+    }
 
-	/**
-	 * @return id
-	 */
-	public long getUserId() {
-		return userId;
-	}
+    /**
+     * @param user
+     *            user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	/**
-	 * @param userId id to set
-	 */
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
+    public String getTheme() {
+        return theme;
+    }
 
-	/**
-	 * @return user
-	 */
-	public User getUser() {
-		return user;
-	}
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
 
-	/**
-	 * @param user user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	/**
-	 * @return theme
-	 */
-	public Theme getTheme() {
-		return theme;
-	}
-
-	/**
-	 * @param theme theme to set
-	 */
-	public void setTheme(Theme theme) {
-		this.theme = theme;
-	}
 }
