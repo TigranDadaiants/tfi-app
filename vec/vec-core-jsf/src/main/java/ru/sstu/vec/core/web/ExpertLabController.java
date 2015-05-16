@@ -18,7 +18,7 @@ import ru.sstu.vec.core.service.ExpertLabManager;
 import ru.sstu.vec.core.service.LabImporter;
 import ru.sstu.vec.core.service.LabImporterFactory;
 import ru.sstu.vec.core.service.model.DocFileFormat;
-import ru.sstu.vec.core.web.util.FileUploadUtil;
+import ru.sstu.vec.core.web.util.FileUtil;
 
 /**
  * {@code ExpertLabController} class is controller for lab editing.
@@ -77,7 +77,7 @@ public class ExpertLabController extends AbstractItemController<Lab> {
      */
     public void importLab(FileUploadEvent event) {
         try {
-            DocFileFormat fileFormat = FileUploadUtil.getDocFileFormat(event);
+            DocFileFormat fileFormat = FileUtil.getDocFileFormat(event);
             if (fileFormat != null) {
                 format = fileFormat;
                 LabImporter importer = labImporterFactory.get(format);

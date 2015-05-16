@@ -1,88 +1,34 @@
 package ru.sstu.vec.core.web;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.TreeMap;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import ru.sstu.vec.core.domain.Theme;
-import ru.sstu.vec.core.service.ThemeManager;
-
 /**
- * {@code UserController} class is controller for user management.
+ * {@code ThemeController} class is component containing a list of all themes.
  *
- * @author Denis_Murashev
- * @author Dadajanc_Tigran
- * @since VEC 2.0
+ * @author Tigran Dadaiants
+ * @since VEC 2.1
  */
 @Controller("themeBean")
+@Scope("singleton")
 public class ThemeController extends VecController {
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 2697915681929443431L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 2697915681929443431L;
 
-	public static final String DEFAULT_THEME = "aristo";
+    @Value("#{'${primefaces.themes}'.split(',')}")
+    private List<String> themes;
 
-	@Resource
-	private ThemeManager themeManager;
+    public List<String> getThemes() {
+        return themes;
+    }
 
-	private Map<String, Theme> themes = new TreeMap<String, Theme>();
+    public void setThemes(List<String> themes) {
+        this.themes = themes;
+    }
 
-	/**
-	 * Loading themes from database
-	 */
-	@PostConstruct
-	public void init() {
-		List<Theme> themeslist = themeManager.find();
-		if (themeslist.isEmpty()) {
-			loadDefaultThemes();
-		} else {
-			for (Theme theme : themeslist) {
-				themes.put(theme.getName(), theme);
-			}
-		}
-	}
-
-	private void loadDefaultThemes() {
-		Properties prop = new Properties();
-		try {
-			prop.load(Thread.currentThread().getContextClassLoader()
-					.getResourceAsStream("/primefaces-themes.properties"));
-			for (final String key : prop.stringPropertyNames()) {
-				String value = prop.getProperty(key);
-				Theme theme = new Theme(value);
-				themeManager.save(theme);
-				themes.put(value, theme);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			Theme theme = new Theme();
-			theme.setName(DEFAULT_THEME);
-			themeManager.save(theme);
-			themes.put(DEFAULT_THEME, theme);
-		}
-
-	}
-
-	/**
-	 * @return themes
-	 */
-	public Map<String, Theme> getThemes() {
-		return themes;
-	}
-
-	/**
-	 * @param themes
-	 *            the themes to set
-	 */
-	public void setThemes(Map<String, Theme> themes) {
-		this.themes = themes;
-	}
 }

@@ -21,57 +21,61 @@ import ru.sstu.vec.core.service.UserManager;
 @Scope("request")
 public class LoginController extends VecController {
 
-	private static final long serialVersionUID = 606616802514226716L;
+    private static final long serialVersionUID = 606616802514226716L;
 
-	@Resource
-	private UserManager userManager;
+    @Resource
+    private UserManager userManager;
 
-	@Autowired
-	private UserThemeController userThemeController;
+    @Autowired
+    private UserThemeController userThemeBean;
 
-	private String username;
-	private String password;
+    private String username;
+    private String password;
 
-	/**
-	 * @return the username
-	 */
-	public String getUsername() {
-		return username;
-	}
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
 
-	/**
-	 * @param username the username to set
-	 */
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    /**
+     * @param username
+     *            the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
 
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * @param password
+     *            the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	/**
-	 * Authenticates user.
-	 *
-	 * @return {@code null}
-	 * @throws ServletException if some error occurs
-	 * @throws IOException      if some error occurs
-	 */
-	public String login() throws ServletException, IOException {
-		forward("/j_spring_security_check");
-		complete();
-		setLoggedUser(userManager.find(username).getUser());
-		//userThemeController.loadTheme();
-		return null;
-	}
+    /**
+     * Authenticates user.
+     *
+     * @return {@code null}
+     * @throws ServletException
+     *             if some error occurs
+     * @throws IOException
+     *             if some error occurs
+     */
+    public String login() throws ServletException, IOException {
+        forward("/j_spring_security_check");
+        complete();
+        setLoggedUser(userManager.find(username).getUser());
+        userThemeBean.loadTheme();
+        return null;
+    }
 }

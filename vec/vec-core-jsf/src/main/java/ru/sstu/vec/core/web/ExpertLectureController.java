@@ -19,7 +19,7 @@ import ru.sstu.vec.core.service.ItemManager;
 import ru.sstu.vec.core.service.LectureImporter;
 import ru.sstu.vec.core.service.LectureImporterFactory;
 import ru.sstu.vec.core.service.model.DocFileFormat;
-import ru.sstu.vec.core.web.util.FileUploadUtil;
+import ru.sstu.vec.core.web.util.FileUtil;
 
 /**
  * {@code ExpertLectureController} class is controller for lecture editing.
@@ -50,7 +50,7 @@ public class ExpertLectureController extends AbstractItemController<Lecture> {
 
     public void importLecture(FileUploadEvent event) {
         try {
-            DocFileFormat fileFormat = FileUploadUtil.getDocFileFormat(event);
+            DocFileFormat fileFormat = FileUtil.getDocFileFormat(event);
             if (fileFormat != null) {
                 format = fileFormat;
                 LectureImporter importer = lectureImporterFactory.get(format);

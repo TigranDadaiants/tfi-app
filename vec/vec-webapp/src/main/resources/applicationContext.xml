@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop
@@ -14,58 +12,100 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd"
 	default-autowire="byName">
 
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations" value="classpath:hibernate.properties"/>
+
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:hibernate.properties</value>
+				<value>classpath:primefaces.properties</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/vec"/>
+		<property name="jndiName" value="java:comp/env/jdbc/vec" />
 	</bean>
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="packagesToScan" value="ru.sstu.vec.core.domain"/>
-		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
-		<property name="hibernateProperties" value="${hibernate.dialect}"/>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="ru.sstu.vec.core.domain" />
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="hibernateProperties" value="${hibernate.dialect}" />
 	</bean>
 
 	<bean id="template" class="org.springframework.orm.hibernate3.HibernateTemplate">
-		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="encoder"
-		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 
-	<tx:annotation-driven transaction-manager="txManager"/>
+	<tx:annotation-driven transaction-manager="txManager" />
 	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
 	</bean>
 
-	<context:annotation-config/>
+<!--    _________________________ Atmomicos JTA transaction ________________________________ -->
+
+	<bean id="AtomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+		init-method="init" destroy-method="close">
+		<property name="forceShutdown" value="false" />
+	</bean>
+
+	<bean id="AtomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+		<property name="transactionTimeout" value="300" />
+	</bean>
+
+	<bean id="JtaTransactionManager"
+		class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager" ref="AtomikosTransactionManager" />
+		<property name="userTransaction" ref="AtomikosUserTransaction" />
+		<qualifier value="jta"/>
+	</bean>
+<!--    ___________________________________ ModeShape beans ________________________________ -->
+
+	<bean id="atomikosTransactionManagerLookup"
+		class="ru.sstu.vec.core.service.jcr.AtomikosTransactionManagerLookup">
+		<property name="atomikosTransactionManager" ref="AtomikosTransactionManager" />
+	</bean>
+
+	<bean id="jcrFactory"
+		class="ru.sstu.vec.core.service.jcr.ModeShapeRepositoryFactory"
+		depends-on="atomikosTransactionManagerLookup">
+		<property name="configuration" value="classpath:repository-config.json" />
+	</bean>
+<!--    ____________________________________________________________________________________ -->
+
+	<context:annotation-config />
 
 	<context:component-scan base-package="ru.sstu.vec.core.dao">
 		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Repository"/>
+			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
 
 	<context:component-scan base-package="ru.sstu.vec.core.service">
 		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service"/>
+			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
 	<context:component-scan base-package="ru.sstu.vec.core.web">
 		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller"/>
+			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
 	<context:component-scan base-package="ru.sstu.vec.report.service">
 		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service"/>
+			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
 	<context:component-scan base-package="ru.sstu.vec.report.web">
 		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller"/>
+			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 </beans>

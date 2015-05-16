@@ -1,87 +1,82 @@
 package ru.sstu.vec.core.web;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import ru.sstu.vec.core.domain.Theme;
 import ru.sstu.vec.core.domain.User;
 import ru.sstu.vec.core.domain.UserTheme;
 import ru.sstu.vec.core.service.UserThemeManager;
 
+/**
+ * {@code UserThemeController} class is controller for theme of current user.
+ *
+ * @author Tigran Dadaiants
+ * @since VEC 2.
+ *
+ */
 @Controller("userThemeBean")
 @Scope("session")
 public class UserThemeController extends VecController {
 
-	/**
-	 * serialVersionUID
-	 */
-	private static final long serialVersionUID = 8473455459041730312L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 8473455459041730312L;
 
-	@Resource
-	private UserThemeManager userThemeManager;
+    @Autowired
+    private ThemeController themeController;
 
-	@Resource
-	private ThemeController themeController;
+    @Resource
+    private UserThemeManager userThemeManager;
 
-	private String theme = ThemeController.DEFAULT_THEME;
+    @Value("${primefaces.default-theme}")
+    private String defaultTheme;
 
-	private UserTheme userTheme;
+    private String theme;
 
-	/**
-	 * Setting theme for current user
-	 */
-	public void loadTheme() {
-		User user = getLoggedUser();
+    private UserTheme userTheme;
 
-		if (user == null) {
-			Map<String, Theme> themes = new HashMap<String, Theme>();
-			Theme aristo = new Theme();
-			aristo.setName("aristo");
-			themes.put("aristo", aristo);
-			return;
-		}
-		userTheme = userThemeManager.find(user);
-		Map<String, Theme> themes = themeController.getThemes();
-		System.out.println(themes.size());
-		Theme themeObj;
-		if (userTheme == null) {
-			themeObj = themes.values().iterator().next();
-			userTheme = new UserTheme();
-			userTheme.setUser(user);
-			userTheme.setTheme(themeObj);
-			userThemeManager.save(userTheme);
-			theme = themeObj.getName();
-		} else {
-			theme = userTheme.getTheme().getName();
-		}
-	}
+    @PostConstruct
+    private void init() {
+        theme = defaultTheme;
+    }
 
-	/**
-	 * @return current theme
-	 */
-	public String getTheme() {
-		return theme;
-	}
+    /**
+     * Setting theme for current user
+     */
+    public void loadTheme() {
+        User user = getLoggedUser();
+        if (user != null) {
+            userTheme = userThemeManager.find(user);
+            if (userTheme == null) {
+                userTheme = new UserTheme();
+                userTheme.setUser(user);
+                userTheme.setTheme(defaultTheme);
+                userThemeManager.save(userTheme);
+            } else {
+                theme = userTheme.getTheme();
+            }
+        }
+    }
 
-	/**
-	 * @param theme
-	 *            is theme to set
-	 */
-	public void setTheme(String theme) {
-		this.theme = theme;
-	}
+    public String getTheme() {
+        return theme;
+    }
 
-	/**
-	 * Saves chosen theme for current user
-	 */
-	public void save() {
-		Theme themeObj = themeController.getThemes().get(theme);
-		userTheme.setTheme(themeObj);
-		userThemeManager.save(userTheme);
-	}
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    /**
+     * Saves chosen theme for current user.
+     */
+    public void save() {
+        userTheme.setTheme(theme);
+        userThemeManager.save(userTheme);
+    }
 }
