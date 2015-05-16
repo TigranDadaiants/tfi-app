@@ -11,8 +11,8 @@ import ru.sstu.vec.core.domain.UserTheme;
  * {@code UserThemeDaoImpl} class is {@link UserThemeDao} implementation.
  *
  * @author Denis A. Murashev
- * @author Tigran K. Dadajanc
- * @since VEC 2.0
+ * @author Tigran Dadaiants
+ * @since VEC 2.1
  */
 @Repository("userThemeDao")
 public class UserThemeDaoImpl extends GenericDao<UserTheme>
