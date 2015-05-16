@@ -87,8 +87,8 @@ table.wide {
 .dashboard{
 	min-height:500px;
 	height:calc(100%-20px);
-	width:1000px; 
-	margin: 0 auto; 
+	width:1000px;
+	margin: 0 auto;
 }
 
 .accordion{
@@ -137,8 +137,8 @@ html, body
 .carouselItem{
 	height:600px;
 	width:952px;
-	border:none; 
-	padding: 5px; 
+	border:none;
+	padding: 5px;
 }
 
 .editColumn{
@@ -146,3 +146,7 @@ html, body
 	min-width:16px;
 }
 
+
+.spacer{
+	height:10px;
+}

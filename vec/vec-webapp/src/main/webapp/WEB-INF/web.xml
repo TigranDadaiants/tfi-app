@@ -15,17 +15,18 @@
 	</listener>
 	<listener>
 		<listener-class>
-			org.springframework.web.context.request.RequestContextListener</listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
 	</listener>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext*.xml</param-value>
 	</context-param>
-	<!-- <context-param> -->
-	<!-- <param-name>primefaces.THEME</param-name> -->
-	<!-- <param-value>#{userThemeBean.theme}</param-value> -->
-	<!-- </context-param> -->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>#{userThemeBean.theme}</param-value>
+	</context-param>
 	<context-param>
 		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
 		<param-value>2</param-value>
@@ -72,7 +73,8 @@
 	<filter>
 		<filter-name>hibernateFilter</filter-name>
 		<filter-class>
-			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
 		<init-param>
 			<param-name>singleSession</param-name>
 			<param-value>true</param-value>
