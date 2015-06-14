@@ -1,14 +1,14 @@
 {
-    "name" : "sample",
+    "name" : "repository",
     "monitoring" : {
         "enabled" : true
     },
     "storage" : {
-        "cacheName" : "sampleRepository",
+        "cacheName" : "repository",
         "cacheConfiguration" : "infinispan-config.xml",
         "binaryStorage" : {
             "type" : "file",
-            "directory": "${java.io.tmpdir}/modeshape_spring_sample/binaries",
+            "directory": "D:/tmp/binaries",
             "minimumBinarySizeInBytes" : 40
         }
     },

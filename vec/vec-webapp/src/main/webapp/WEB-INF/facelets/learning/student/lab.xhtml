@@ -9,103 +9,102 @@
 	<h:form style="height:100%; width:100%">
 		<p:tabView dynamic="true" cache="true">
 			<p:tab title="#{msg['common.lab']}">
-				
+
 				<p:panel header="#{studentLabBean.item.lab.name}">
-						<h:outputText value="#{studentLabBean.item.lab.text}" escape="false"/>
-						<br/>
-						<b><h:outputText value="${msg['lab.variant']}"/></b>
-						<br/>
-						<br/>
-						<h:outputText value="#{studentLabBean.item.variant.text}"
-							rendered="#{not empty studentLabBean.item.variant}" escape="false"/>
+					<h:outputText value="#{studentLabBean.item.lab.text}"
+						escape="false" />
+					<br />
+					<b><h:outputText value="${msg['lab.variant']}" /></b>
+					<br />
+					<br />
+					<h:outputText value="#{studentLabBean.item.variant.text}"
+						rendered="#{not empty studentLabBean.item.variant}" escape="false" />
 				</p:panel>
-			
-			</p:tab >
+
+			</p:tab>
 			<p:tab title="#{msg['menu.lectures']}" style="display:table;">
-				<p:dataGrid rows="1" paginator="true" header="#{lect.lab.name}"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
-						columns="1" var="lect" value="#{studentLabBean.all}">
+				<p:dataGrid rows="1" paginator="true" header="#{lecture.name}"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					columns="1" var="lecture" value="#{studentLabBean.lectures}">
 					<p:panel style="border:none;">
 						<f:facet name="header">
-							<h:outputText value="#{lect.lab.name}" style="font-size:medium;"/>
+							<h:outputText value="#{lecture.name}" style="font-size:medium;" />
 						</f:facet>
-						<h:outputText value="#{lect.lab.text}" escape="false"/>
+						<h:outputText value="#{lecture.text}" escape="false" />
 					</p:panel>
 				</p:dataGrid>
-			</p:tab >
+			</p:tab>
 			<p:tab title="${msg['lab.upload']}">
-						<p:fileUpload fileUploadListener="#{studentAttemptBean.upload}"
-							mode="advanced" update="attemptsList" sizeLimit="1000000"
-							label="#{msg['action.choose']}" uploadLabel="#{msg['action.upload']}" 
-							cancelLabel="#{msg['action.cancel']}"/>
-						<p:spacer height="10px"/>
-						<p:dataTable width="100%" id="attemptsList" rows="20"
-							columnClasses="col" value="#{studentAttemptBean.all}"
-							var="attempt">
-							<f:facet name="header">
-								<h:outputText value="#{msg['lab.attempts']}"/>
-							</f:facet>
-							<p:column styleClass="userNameCol">
-								<f:facet name="header">
-									<h:outputText styleClass="headerText"
-										value="#{msg['lab.attempt']}"/>
-								</f:facet>
-							</p:column>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="#{msg['lab.datesent']}"/>
-								</f:facet>
-								<h:outputText value="#{attempt.dateSent}">
-			 						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
-			 					</h:outputText>
-							</p:column>
-							<p:column>
-								<f:facet name="header">	
-									<h:outputText value="#{msg['lab.datechecked']}"/>
-								</f:facet>
-								<h:outputText value="#{attempt.dateChecked}">
-			 						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
-			 					</h:outputText>
-							</p:column>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="#{msg['lab.grade']}"/>
-								</f:facet>
-								<h:outputText value="#{attempt.grade}"/>
-							</p:column>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="#{msg['lab.file']}"/>
-								</f:facet>
-								<h:commandLink action="#{studentAttemptBean.download}">
-									<h:graphicImage value="../images/logo.gif"/>
-									<h:outputText value="#{msg['action.downloadlab']}"/>
-									<f:setPropertyActionListener
-										target="#{studentAttemptBean.item}"
-										value="#{attempt}"/>
-								</h:commandLink>
-							</p:column>
-						</p:dataTable>
-						<p:spacer height="10px"/>
-						<p:dataTable width="100%" id="issuesList" 
-							columnClasses="col" value="#{studentIssueBean.all}" var="issue"
-							columnsWidth="90%,10%">	
-							<f:facet name="header">
-								<h:outputText value="#{msg['issue.fixbugs']}"/>
-							</f:facet>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="#{msg['issue.commentary']}"/>
-								</f:facet>
-								<h:outputText value="#{issue.description}" escape="false"/>
-							</p:column>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="#{msg['common.status']}"/>
-								</f:facet>
-								<h:outputText value="#{msg[issue.status.key]}"/>
-							</p:column>
-						</p:dataTable>
+				<p:fileUpload fileUploadListener="#{studentAttemptBean.upload}"
+					mode="advanced" update="attemptsList" sizeLimit="1000000"
+					label="#{msg['action.choose']}"
+					uploadLabel="#{msg['action.upload']}"
+					cancelLabel="#{msg['action.cancel']}" />
+				<p:spacer height="10px" />
+				<p:dataTable width="100%" id="attemptsList" rows="20"
+					columnClasses="col" value="#{studentAttemptBean.all}" var="attempt">
+					<f:facet name="header">
+						<h:outputText value="#{msg['lab.attempts']}" />
+					</f:facet>
+					<p:column styleClass="userNameCol">
+						<f:facet name="header">
+							<h:outputText styleClass="headerText"
+								value="#{msg['lab.attempt']}" />
+						</f:facet>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['lab.datesent']}" />
+						</f:facet>
+						<h:outputText value="#{attempt.dateSent}">
+							<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['lab.datechecked']}" />
+						</f:facet>
+						<h:outputText value="#{attempt.dateChecked}">
+							<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['lab.grade']}" />
+						</f:facet>
+						<h:outputText value="#{attempt.grade}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['lab.file']}" />
+						</f:facet>
+						<h:commandLink action="#{studentAttemptBean.download}">
+							<h:graphicImage value="../images/logo.gif" />
+							<h:outputText value="#{msg['action.downloadlab']}" />
+							<f:setPropertyActionListener target="#{studentAttemptBean.item}"
+								value="#{attempt}" />
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+				<p:spacer height="10px" />
+				<p:dataTable width="100%" id="issuesList" columnClasses="col"
+					value="#{studentIssueBean.all}" var="issue" columnsWidth="90%,10%">
+					<f:facet name="header">
+						<h:outputText value="#{msg['issue.fixbugs']}" />
+					</f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['issue.commentary']}" />
+						</f:facet>
+						<h:outputText value="#{issue.description}" escape="false" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.status']}" />
+						</f:facet>
+						<h:outputText value="#{msg[issue.status.key]}" />
+					</p:column>
+				</p:dataTable>
 			</p:tab>
 		</p:tabView>
 	</h:form>

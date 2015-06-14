@@ -28,6 +28,7 @@
 					value="#{msg['action.cancel']}" styleClass="inputButton" />
 			</h:panelGrid>
 			<p:accordionPanel styleClass="accordion" activeIndex="-">
+
 				<p:tab title="${msg['menu.tasks']}">
 					<p:fileUpload fileUploadListener="#{expertLabBean.importLab}"
 						mode="advanced" update="labsList" sizeLimit="1000000"
@@ -74,9 +75,95 @@
 						</p:column>
 					</p:dataTable>
 				</p:tab>
+
 				<p:tab title="${msg['menu.lectures']}">
+					<p:fileUpload
+						fileUploadListener="#{expertLectureBean.importLecture}"
+						mode="advanced" update="lecturesList" sizeLimit="1000000"
+						label="#{msg['action.choose']}"
+						uploadLabel="#{msg['action.upload']}"
+						cancelLabel="#{msg['action.cancel']}" />
+					<p:dataTable width="100%" id="lecturesList" rows="20"
+						rendered="#{expertCourseBean.item.id != -1}" columnClasses="col"
+						value="#{expertLectureBean.all}" var="lecture">
+						<p:column styleClass="editColumn">
+							<f:facet name="header">
+								<h:commandLink action="#{expertLectureBean.add}">
+									<f:setPropertyActionListener value="#{lecture}"
+										target="#{expertLectureBean.item}" />
+									<h:graphicImage value="/images/add.png" />
+								</h:commandLink>
+							</f:facet>
+							<h:commandLink action="#{expertLectureBean.edit}">
+								<f:setPropertyActionListener value="#{lecture}"
+									target="#{expertLectureBean.item}" />
+								<h:graphicImage value="/images/edit.png" />
+							</h:commandLink>
+						</p:column>
+						<p:column styleClass="editColumn">
+							<ui:remove>
+								<f:facet name="header">
+									<h:commandLink reRender="importLecture"
+										oncomplete="Richfaces.showModalPanel('importLecture',{top:200});">
+										<h:graphicImage value="/images/import.jpg" />
+									</h:commandLink>
+								</f:facet>
+							</ui:remove>
+							<h:commandLink action="#{expertLectureBean.delete}"
+								update="lecturesList">
+								<f:setPropertyActionListener value="#{lecture}"
+									target="#{expertLectureBean.item}" />
+								<h:graphicImage value="/images/delete.png" />
+							</h:commandLink>
+						</p:column>
+						<p:column styleClass="userNameCol" sortBy="#{lecture.name}">
+							<f:facet name="header">
+								<h:outputText styleClass="headerText"
+									value="#{msg['lecture.name']}" />
+							</f:facet>
+							<h:outputText id="name" value="#{lecture.name}" />
+						</p:column>
+					</p:dataTable>
 				</p:tab>
+
 				<p:tab title="${msg['menu.files']}">
+					<p:fileUpload fileUploadListener="#{expertFileBean.upload}"
+						mode="advanced" update="filesList" sizeLimit="1000000"
+						label="#{msg['action.choose']}"
+						uploadLabel="#{msg['action.upload']}"
+						cancelLabel="#{msg['action.cancel']}" />
+					<p:dataTable width="100%" id="filesList" rows="20"
+						rendered="#{expertCourseBean.item.id != -1}" columnClasses="col"
+						value="#{expertFileBean.all}" var="file">
+						<p:column styleClass="editColumn">
+							<ui:remove>
+								<f:facet name="header">
+									<h:commandLink reRender="upload"
+										oncomplete="Richfaces.showModalPanel('upload',{top:200});">
+										<h:graphicImage value="/images/import.jpg" />
+									</h:commandLink>
+								</f:facet>
+							</ui:remove>
+							<h:commandLink action="#{expertFileBean.delete}"
+								update="filesList">
+								<f:setPropertyActionListener value="#{file}"
+									target="#{expertFileBean.item}" />
+								<h:graphicImage value="/images/delete.png" />
+							</h:commandLink>
+						</p:column>
+						<p:column styleClass="userNameCol" sortBy="#{file.name}">
+							<f:facet name="header">
+								<h:outputText styleClass="headerText"
+									value="#{msg['file.name']}" />
+							</f:facet>
+							<h:commandLink action="#{expertFileBean.download}"
+								update="filesList">
+								<f:setPropertyActionListener target="#{expertFileBean.item}"
+								value="#{file}" />
+								<h:outputText id="name" value="#{file.name}" />
+							</h:commandLink>
+						</p:column>
+					</p:dataTable>
 				</p:tab>
 			</p:accordionPanel>
 		</p:panel>

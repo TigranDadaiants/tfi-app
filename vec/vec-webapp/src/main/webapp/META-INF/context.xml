@@ -10,7 +10,7 @@
 		maxIdle="2"
 		maxWait="5000"
 		username="admin"
-		url="jdbc:h2:file:C:\Program Files (x86)\H2\bin\vec"
+		url="jdbc:h2:~/vec"
 		maxActive="4"
 		characterEncoding="UTF-8"/>
 </Context>
