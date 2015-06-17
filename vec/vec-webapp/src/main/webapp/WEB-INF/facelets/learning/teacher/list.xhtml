@@ -21,14 +21,14 @@
 							<h:graphicImage value="/images/edit.png"/>
 						</h:commandLink>
 <!-- 					</p:column> -->
-					<p:column styleClass="userNameCol" sortBy="#{course.course.name}">
+					<p:column  sortBy="#{course.course.name}">
 						<f:facet name="header">
 							<h:outputText styleClass="headerText"
 								value="#{msg['course.name']}"/>
 						</f:facet>
 						<h:outputText id="course" value="#{course.course.name}"/>
 					</p:column>
-					<p:column styleClass="userNameCol" sortBy="#{course.student.name}">
+					<p:column  sortBy="#{course.student.name}">
 						<f:facet name="header">
 							<h:outputText styleClass="headerText"
 								value="#{msg['user.name']}"/>

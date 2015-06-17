@@ -20,30 +20,36 @@ import ru.sstu.vec.core.domain.User;
  */
 public interface LabResultDao extends Dao<LabResult> {
 
-	/**
-	 * Looking for lab result for given student user and lab.
-	 *
-	 * @param courseResult course result
-	 * @param lab          lab
-	 * @return lab result
-	 */
-	LabResult find(CourseResult courseResult, Lab lab);
+    /**
+     * Looking for lab result for given student user and lab.
+     *
+     * @param courseResult
+     *            course result
+     * @param lab
+     *            lab
+     * @return lab result
+     */
+    LabResult find(CourseResult courseResult, Lab lab);
 
-	/**
-	 * Looking for lab results of given course and status.
-	 *
-	 * @param course course
-	 * @param status status
-	 * @return list of lab results
-	 */
-	List<LabResult> find(Course course, LabStatus status);
+    /**
+     * Looking for lab results of given course and status.
+     *
+     * @param course
+     *            course
+     * @param status
+     *            status
+     * @return list of lab results
+     */
+    List<LabResult> find(Course course, LabStatus status);
 
-	/**
-	 * Looking for lab results of given user and status.
-	 *
-	 * @param user user
-	 * @param status status
-	 * @return list of lab results
-	 */
-	List<LabResult> find(User user, LabStatus status);
+    /**
+     * Looking for lab results of given user and status.
+     *
+     * @param user
+     *            user
+     * @param status
+     *            status
+     * @return list of lab results
+     */
+    List<LabResult> find(User user, LabStatus status);
 }

@@ -22,7 +22,7 @@
 			<h:selectBooleanCheckbox id="editStudent" value="#{group.student}"
 				disabled="#{not userBean.item.user.student}"/>
 		</p:column>
-		<p:column styleClass="userNameCol" sortBy="#{group.group.name}">
+		<p:column  sortBy="#{group.group.name}">
 			<f:facet name="header">
 				<h:outputText styleClass="headerText" value="#{msg['group.name']}"/>
 			</f:facet>

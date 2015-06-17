@@ -7,14 +7,15 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.primefaces.event.FileUploadEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.docs.DocumentException;
 import ru.sstu.vec.core.domain.Lecture;
-import ru.sstu.vec.core.service.ExpertLectureManager;
+import ru.sstu.vec.core.service.LectureManager;
 import ru.sstu.vec.core.service.ItemManager;
 import ru.sstu.vec.core.service.LectureImporter;
 import ru.sstu.vec.core.service.LectureImporterFactory;
@@ -33,12 +34,13 @@ public class ExpertLectureController extends AbstractItemController<Lecture> {
 
     private static final long serialVersionUID = 7437950548869616722L;
 
-    private static Logger log = Logger.getLogger(ExpertLectureController.class);
+    private static Log logger = LogFactory
+            .getLog(ExpertLectureController.class);
 
     private static final String ERROR_UPLOAD_MESSAGE = "Cannot read uploaded file";
 
     @Resource
-    private ExpertLectureManager expertLectureManager;
+    private LectureManager lectureManager;
 
     @Resource
     private ExpertCourseController expertCourseBean;
@@ -57,14 +59,14 @@ public class ExpertLectureController extends AbstractItemController<Lecture> {
                 InputStream input = event.getFile().getInputstream();
                 importer.importLecture(expertCourseBean.getItem(), input);
             } else {
-                log.error("DocFileFormat not found for given file!");
+                logger.error("DocFileFormat not found for given file!");
                 return;
             }
         } catch (IOException e) {
             // TODO use growl to notify user
-            log.error(ERROR_UPLOAD_MESSAGE, e);
+            logger.error(ERROR_UPLOAD_MESSAGE, e);
         } catch (DocumentException e) {
-            log.error(ERROR_UPLOAD_MESSAGE, e);
+            logger.error(ERROR_UPLOAD_MESSAGE, e);
         }
     }
 
@@ -92,8 +94,8 @@ public class ExpertLectureController extends AbstractItemController<Lecture> {
 
     @Override
     protected ItemManager<Lecture> getManager() {
-        expertLectureManager.setCourse(expertCourseBean.getItem());
-        return expertLectureManager;
+        lectureManager.setCourse(expertCourseBean.getItem());
+        return lectureManager;
     }
 
     @Override

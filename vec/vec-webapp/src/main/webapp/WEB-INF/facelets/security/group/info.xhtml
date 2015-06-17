@@ -23,8 +23,8 @@
 			<p:pickList value="#{groupBean.courses}" var="course"
 				itemValue="#{course}" itemLabel="#{course.name}"
 				converter="course">
-				<f:facet name="sourceCaption">Available</f:facet>
-				<f:facet name="targetCaption">Assigned</f:facet>
+				<f:facet name="sourceCaption">#{msg['common.available']}</f:facet>
+				<f:facet name="targetCaption">#{msg['common.assigned']}</f:facet>
 				<p:column>#{course.name}</p:column>
 			</p:pickList>
 			<h:panelGrid columns="2">

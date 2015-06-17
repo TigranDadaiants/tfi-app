@@ -7,22 +7,24 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.vec.core.dao.LectureDao;
 import ru.sstu.vec.core.domain.Course;
+import ru.sstu.vec.core.domain.Lab;
 import ru.sstu.vec.core.domain.Lecture;
-import ru.sstu.vec.core.service.ExpertLectureManager;
+import ru.sstu.vec.core.service.LectureManager;
 
 /**
- * {@code ExpertLectureManagerImpl} class is {@link ExpertLectureManager}
+ * {@code ExpertLectureManagerImpl} class is {@link LectureManager}
  * implementation.
  *
  * @author Tigran Dadaiants
  * @since VEC 2.1
  */
-@Service("expertLectureManager")
+@Service("lectureManager")
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class ExpertLectureManagerImpl implements ExpertLectureManager {
+public class LectureManagerImpl implements LectureManager {
 
     private static final long serialVersionUID = -2778533219021619193L;
 
@@ -37,14 +39,21 @@ public class ExpertLectureManagerImpl implements ExpertLectureManager {
     }
 
     @Override
+    public List<Lecture> find(Lab lab) {
+        return lectureDao.find(lab);
+    }
+
+    @Override
     public void reload(Lecture object) {
     }
 
+    @Transactional
     @Override
     public void save(Lecture object) {
         lectureDao.save(object);
     }
 
+    @Transactional
     @Override
     public void delete(Lecture object) {
         lectureDao.delete(object);

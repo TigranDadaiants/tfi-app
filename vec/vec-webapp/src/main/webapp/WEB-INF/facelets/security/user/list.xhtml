@@ -10,7 +10,7 @@
 		<h:form>
 			<p:panel>
 				<f:facet name="header">
-					<h:outputText value="#{msg['menu.users']}"/>
+					<h:outputText value="#{msg['menu.users']}" />
 				</f:facet>
 				<p:dataTable width="100%" id="usersList" rows="20"
 					columnClasses="col" value="#{userBean.all}" var="user">
@@ -18,42 +18,42 @@
 						<f:facet name="header">
 							<p:outputPanel>
 								<h:outputText value="#{msg['filter.byname']}" />
-								<p:inputText id="globalFilter" onkeyup="usersList.filter()" style="width:150px" />
+								<p:inputText id="globalFilter" onkeyup="usersList.filter()"
+									style="width:150px" />
 							</p:outputPanel>
 						</f:facet>
 					</ui:remove>
 					<p:column styleClass="editColumn">
 						<f:facet name="header">
 							<h:commandLink action="#{userBean.add}">
-								<f:setPropertyActionListener
-									target="#{userBean.item}"
-									value="#{user}"/>
-								<h:graphicImage value="/images/add.png"/>
+								<f:setPropertyActionListener target="#{userBean.item}"
+									value="#{user}" />
+								<h:graphicImage value="/images/add.png" />
 							</h:commandLink>
 						</f:facet>
 						<h:commandLink action="#{userBean.edit}">
-							<f:setPropertyActionListener
-								target="#{userBean.item}"
-								value="#{user}"/>
-							<h:graphicImage value="/images/edit.png"/>
+							<f:setPropertyActionListener target="#{userBean.item}"
+								value="#{user}" />
+							<h:graphicImage value="/images/edit.png" />
 						</h:commandLink>
 					</p:column>
 					<p:column styleClass="editColumn">
-						<h:commandLink action="#{userBean.delete}"
-							update="usersList"
+						<h:commandLink action="#{userBean.delete}" update="usersList"
 							disabled="#{user.user.id == sessionScope.user.id}">
-							<f:setPropertyActionListener
-								target="#{userBean.item}"
-								value="#{user}"/>
-							<h:graphicImage value="/images/delete.png"/>
+							<f:setPropertyActionListener target="#{userBean.item}"
+								value="#{user}" />
+							<h:graphicImage value="/images/delete.png" />
 						</h:commandLink>
 					</p:column>
-					<p:column styleClass="userNameCol" sortBy="#{user.name}">
+					<p:column  sortBy="#{user.name}">
 						<f:facet name="header">
-							<h:outputText styleClass="headerText"
-								value="#{msg['user.name']}"/>
+							<h:outputText styleClass="headerText" value="#{msg['user.name']}" />
 						</f:facet>
-						<h:outputText id="name" value="#{user.user.name}"/>
+						<h:commandLink styleClass="hiddenLink" action="#{userBean.edit}">
+							<f:setPropertyActionListener target="#{userBean.item}"
+								value="#{user}" />
+							<h:outputText id="name" value="#{user.user.name}" />
+						</h:commandLink>
 					</p:column>
 				</p:dataTable>
 			</p:panel>

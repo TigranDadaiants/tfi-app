@@ -146,6 +146,14 @@ html, body
 	min-width:16px;
 }
 
+.headerColumn {
+    width:1%;
+    white-space:nowrap;
+}
+
+.hiddenLink{
+	text-decoration: none;
+}
 
 .spacer{
 	height:10px;

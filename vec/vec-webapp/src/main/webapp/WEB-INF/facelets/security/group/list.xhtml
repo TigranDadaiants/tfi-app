@@ -10,41 +10,41 @@
 		<h:form>
 			<p:panel>
 				<f:facet name="header">
-					<h:outputText value="#{msg['menu.groups']}"/>
+					<h:outputText value="#{msg['menu.groups']}" />
 				</f:facet>
 				<p:dataTable width="100%" id="groupsList" rows="20"
-					columnClasses="col" value="#{groupBean.all}" var="group">
+					value="#{groupBean.all}" var="group">
 					<p:column styleClass="editColumn">
 						<f:facet name="header">
 							<h:commandLink action="#{groupBean.add}">
-								<f:setPropertyActionListener
-									target="#{groupBean.item}"
-									value="#{group}"/>
-								<h:graphicImage value="/images/add.png"/>
+								<f:setPropertyActionListener target="#{groupBean.item}"
+									value="#{group}" />
+								<h:graphicImage value="/images/add.png" />
 							</h:commandLink>
 						</f:facet>
 						<h:commandLink action="#{groupBean.edit}">
-							<f:setPropertyActionListener
-								target="#{groupBean.item}"
-								value="#{group}"/>
-							<h:graphicImage value="/images/edit.png"/>
+							<f:setPropertyActionListener target="#{groupBean.item}"
+								value="#{group}" />
+							<h:graphicImage value="/images/edit.png" />
 						</h:commandLink>
 					</p:column>
 					<p:column styleClass="editColumn">
-						<h:commandLink action="#{groupBean.delete}"
-							update="groupsList">
-							<f:setPropertyActionListener
-								target="#{groupBean.item}"
-								value="#{group}"/>
-							<h:graphicImage value="/images/delete.png"/>
+						<h:commandLink action="#{groupBean.delete}" update="groupsList">
+							<f:setPropertyActionListener target="#{groupBean.item}"
+								value="#{group}" />
+							<h:graphicImage value="/images/delete.png" />
 						</h:commandLink>
 					</p:column>
-					<p:column styleClass="userNameCol" sortBy="#{group.name}">
+					<p:column  sortBy="#{group.name}">
 						<f:facet name="header">
 							<h:outputText styleClass="headerText"
-								value="#{msg['group.name']}"/>
+								value="#{msg['group.name']}" />
 						</f:facet>
-						<h:outputText id="name" value="#{group.name}"/>
+						<h:commandLink styleClass="hiddenLink" action="#{groupBean.edit}">
+							<f:setPropertyActionListener target="#{groupBean.item}"
+								value="#{group}" />
+							<h:outputText id="name" value="#{group.name}" />
+						</h:commandLink>
 					</p:column>
 				</p:dataTable>
 			</p:panel>

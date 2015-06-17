@@ -1,6 +1,9 @@
 package ru.sstu.vec.core.service;
 
+import java.util.List;
+
 import ru.sstu.vec.core.domain.Course;
+import ru.sstu.vec.core.domain.Lab;
 import ru.sstu.vec.core.domain.Lecture;
 
 /**
@@ -10,7 +13,7 @@ import ru.sstu.vec.core.domain.Lecture;
  * @author Tigran Dadaiants
  * @since VEC 2.1
  */
-public interface ExpertLectureManager extends ItemManager<Lecture> {
+public interface LectureManager extends ItemManager<Lecture> {
 
     /**
      * Sets actual course object.
@@ -19,5 +22,7 @@ public interface ExpertLectureManager extends ItemManager<Lecture> {
      *            course
      */
     void setCourse(Course course);
+
+    List<Lecture> find(Lab lab);
 
 }

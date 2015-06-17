@@ -17,18 +17,23 @@
 				<p:tab title="${msg['menu.tasks']}">
 					<p:dataTable width="100%" id="labsList" rows="20"
 						columnClasses="col" value="#{studentLabBean.all}" var="lab">
-						<p:column styleClass="editColumn">
+						<!-- 						<p:column styleClass="editColumn">
 							<h:commandLink action="#{studentLabBean.edit}">
 								<f:setPropertyActionListener value="#{lab}"
 									target="#{studentLabBean.item}" />
 								<h:graphicImage value="/images/edit.png" />
 							</h:commandLink>
-						</p:column>
-						<p:column styleClass="userNameCol">
+						</p:column> -->
+						<p:column>
 							<f:facet name="header">
 								<h:outputText styleClass="headerText" value="#{msg['lab.name']}" />
 							</f:facet>
-							<h:outputText id="name" value="#{lab.lab.name}" />
+							<h:commandLink action="#{studentLabBean.edit}"
+								styleClass="hiddenLink">
+								<f:setPropertyActionListener value="#{lab}"
+									target="#{studentLabBean.item}" />
+								<h:outputText id="name" value="#{lab.lab.name}" />
+							</h:commandLink>
 						</p:column>
 						<p:column>
 							<f:facet name="header">
@@ -49,23 +54,46 @@
 				</p:tab>
 				<p:tab title="${msg['menu.lectures']}">
 					<p:dataTable width="100%" id="lectureList" rows="20"
-						columnClasses="col" value="#{studentLectureBean.all}" var="lecture">
-						<p:column styleClass="editColumn">
+						columnClasses="col" value="#{studentLectureBean.all}"
+						var="lecture">
+						<!-- 						<p:column styleClass="editColumn">
 							<h:commandLink action="#{studentLectureBean.edit}">
-								<f:setPropertyActionListener value="#{lab}"
+								<f:setPropertyActionListener value="#{lecture}"
 									target="#{studentLectureBean.item}" />
 								<h:graphicImage value="/images/edit.png" />
 							</h:commandLink>
-						</p:column>
-						<p:column styleClass="userNameCol">
+						</p:column> -->
+						<p:column>
 							<f:facet name="header">
-								<h:outputText styleClass="headerText" value="${msg['lecture.name']}" />
+								<h:outputText styleClass="headerText"
+									value="${msg['lecture.name']}" />
 							</f:facet>
-							<h:outputText id="name" value="#{lecture.name}" />
+							<h:commandLink action="#{studentLectureBean.edit}"
+								styleClass="hiddenLink">
+								<f:setPropertyActionListener value="#{lecture}"
+									target="#{studentLectureBean.item}" />
+								<h:outputText id="name" value="#{lecture.name}" />
+							</h:commandLink>
 						</p:column>
 					</p:dataTable>
 				</p:tab>
-				<p:tab title="${msg['menu.files']}"></p:tab>
+				<p:tab title="${msg['menu.files']}">
+					<p:dataTable width="100%" id="filesList" rows="20"
+						value="#{studentFileBean.all}" var="file">
+						<p:column sortBy="#{file.name}">
+							<f:facet name="header">
+								<h:outputText styleClass="headerText"
+									value="#{msg['file.name']}" />
+							</f:facet>
+							<h:commandLink action="#{studentFileBean.download}"
+								update="filesList">
+								<f:setPropertyActionListener target="#{studentFileBean.item}"
+									value="#{file}" />
+								<h:outputText id="name" value="#{file.name}" />
+							</h:commandLink>
+						</p:column>
+					</p:dataTable>
+				</p:tab>
 			</p:accordionPanel>
 		</p:panel>
 	</h:form>

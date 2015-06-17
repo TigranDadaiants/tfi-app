@@ -17,9 +17,11 @@
 package ru.sstu.vec.core.service.jcr;
 
 import java.util.concurrent.TimeUnit;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.jcr.Repository;
+
 import org.apache.log4j.Logger;
 import org.modeshape.jcr.ModeShapeEngine;
 import org.modeshape.jcr.RepositoryConfiguration;

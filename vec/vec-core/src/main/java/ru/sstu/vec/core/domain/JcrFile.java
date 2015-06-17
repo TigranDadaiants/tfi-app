@@ -1,10 +1,17 @@
-package ru.sstu.vec.core.domain.jcr;
+package ru.sstu.vec.core.domain;
 
+import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.jcr.Binary;
+import javax.jcr.RepositoryException;
 
-public class JcrFile {
+import ru.sstu.vec.core.util.JcrException;
+
+public class JcrFile implements Serializable {
+
+    private static final long serialVersionUID = -5473124365722001797L;
 
     private String name;
 
@@ -54,6 +61,17 @@ public class JcrFile {
 
     public void setData(Binary data) {
         this.data = data;
+    }
+
+    public InputStream getStream() throws JcrException {
+        if (data != null) {
+            try {
+                return data.getStream();
+            } catch (RepositoryException e) {
+                throw new JcrException();
+            }
+        }
+        return null;
     }
 
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://www.springframework.org/security/tags">
+	<h:form>
+		<p:panel>
+			<f:facet name="header">
+				<h:outputText value="#{msg['common.group']}" />
+			</f:facet>
+			<h:panelGrid columns="1">
+				<h:outputText value="#{expertLabBean.item.name}" />
+			</h:panelGrid>
+			<p:pickList value="#{labLectureBean.lectures}" var="lecture"
+				itemValue="#{lecture}" itemLabel="#{lecture.name}"
+				converter="lecture">
+				<f:facet name="sourceCaption">#{msg['common.available']}</f:facet>
+				<f:facet name="targetCaption">#{msg['common.assigned']}</f:facet>
+				<p:column>#{lecture.name}</p:column>
+			</p:pickList>
+			<h:panelGrid columns="2">
+				<p:commandButton action="#{labLectureBean.save}"
+					value="#{msg['action.save']}" styleClass="inputButton">
+					<f:setPropertyActionListener target="#{expertLabBean.item}"
+						value="#{expertLabBean.item}" />
+				</p:commandButton>
+				<p:commandButton action="#{labLectureBean.cancel}"
+					value="#{msg['action.cancel']}" styleClass="inputButton" />
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</ui:composition>

@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**
  * {@code LabResult} class represents student's result of lab.
  *
@@ -25,124 +28,131 @@ import javax.persistence.Table;
 @Table(name = "LAB_RESULTS")
 public class LabResult implements Serializable {
 
-	/**
-	 * Length of GRADE field.
-	 */
-	public static final int GRADE = 5;
+    /**
+     * Length of GRADE field.
+     */
+    public static final int GRADE = 5;
 
-	private static final long serialVersionUID = -6147201496495231251L;
+    private static final long serialVersionUID = -6147201496495231251L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "LAB_RESULT_ID_PK")
-	private long id = -1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "LAB_RESULT_ID_PK")
+    private long id = -1L;
 
-	@ManyToOne
-	@JoinColumn(name = "COURSE_RESULT_ID_FK", nullable = false)
-	private CourseResult courseResult;
+    @ManyToOne
+    @JoinColumn(name = "COURSE_RESULT_ID_FK", nullable = false)
+    private CourseResult courseResult;
 
-	@ManyToOne
-	@JoinColumn(name = "LAB_ID_FK", nullable = false)
-	private Lab lab;
+    @ManyToOne
+    @JoinColumn(name = "LAB_ID_FK", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Lab lab;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "LAB_RESULT_STATUS")
-	private LabStatus status = LabStatus.NEW;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "LAB_RESULT_STATUS")
+    private LabStatus status = LabStatus.NEW;
 
-	@Column(name = "LAB_GRADE", nullable = false, length = GRADE)
-	private String grade = "";
+    @Column(name = "LAB_GRADE", nullable = false, length = GRADE)
+    private String grade = "";
 
-	@ManyToOne(cascade=CascadeType.REMOVE)
-	@JoinColumn(name = "LAB_VARIANT_ID_FK", nullable = true)
-	private LabVariant variant;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "LAB_VARIANT_ID_FK", nullable = true)
+    private LabVariant variant;
 
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the courseResult
-	 * @since VEC 2.0
-	 */
-	public CourseResult getCourseResult() {
-		return courseResult;
-	}
+    /**
+     * @return the courseResult
+     * @since VEC 2.0
+     */
+    public CourseResult getCourseResult() {
+        return courseResult;
+    }
 
-	/**
-	 * @param courseResult the courseResult to set
-	 * @since VEC 2.0
-	 */
-	public void setCourseResult(CourseResult courseResult) {
-		this.courseResult = courseResult;
-	}
+    /**
+     * @param courseResult
+     *            the courseResult to set
+     * @since VEC 2.0
+     */
+    public void setCourseResult(CourseResult courseResult) {
+        this.courseResult = courseResult;
+    }
 
-	/**
-	 * @return the lab
-	 */
-	public Lab getLab() {
-		return lab;
-	}
+    /**
+     * @return the lab
+     */
+    public Lab getLab() {
+        return lab;
+    }
 
-	/**
-	 * @param lab the lab to set
-	 */
-	public void setLab(Lab lab) {
-		this.lab = lab;
-	}
+    /**
+     * @param lab
+     *            the lab to set
+     */
+    public void setLab(Lab lab) {
+        this.lab = lab;
+    }
 
-	/**
-	 * @return status
-	 */
-	public LabStatus getStatus() {
-		return status;
-	}
+    /**
+     * @return status
+     */
+    public LabStatus getStatus() {
+        return status;
+    }
 
-	/**
-	 * Sets status.
-	 *
-	 * @param status status
-	 */
-	public void setStatus(LabStatus status) {
-		this.status = status;
-	}
+    /**
+     * Sets status.
+     *
+     * @param status
+     *            status
+     */
+    public void setStatus(LabStatus status) {
+        this.status = status;
+    }
 
-	/**
-	 * @return lab variant
-	 */
-	public LabVariant getVariant() {
-		return variant;
-	}
+    /**
+     * @return lab variant
+     */
+    public LabVariant getVariant() {
+        return variant;
+    }
 
-	/**
-	 * Sets lab variant.
-	 *
-	 * @param variant variant
-	 */
-	public void setVariant(LabVariant variant) {
-		this.variant = variant;
-	}
+    /**
+     * Sets lab variant.
+     *
+     * @param variant
+     *            variant
+     */
+    public void setVariant(LabVariant variant) {
+        this.variant = variant;
+    }
 
-	/**
-	 * @return grade
-	 */
-	public String getGrade() {
-		return grade;
-	}
+    /**
+     * @return grade
+     */
+    public String getGrade() {
+        return grade;
+    }
 
-	/**
-	 * @param grade grade
-	 */
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
+    /**
+     * @param grade
+     *            grade
+     */
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 }

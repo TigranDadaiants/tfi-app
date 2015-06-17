@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import ru.sstu.docs.Document;
 import ru.sstu.docs.DocumentException;
 import ru.sstu.docs.DocumentReader;
@@ -30,6 +32,7 @@ public abstract class AbstractLectureImporter implements LectureImporter {
      */
     protected abstract DocumentReader getReader();
 
+    @Transactional
     @Override
     public Lecture importLecture(Course course, InputStream input)
             throws DocumentException {

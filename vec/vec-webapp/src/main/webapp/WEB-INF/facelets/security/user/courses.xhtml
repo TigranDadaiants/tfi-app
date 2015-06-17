@@ -6,28 +6,27 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:s="http://www.springframework.org/security/tags">
-	<p:dataTable width="100%" id="coursesList" rows="20" columnClasses="col"
-		value="#{userBean.courses}" var="course" columnsWidth="1,1,*">
-		<p:column style="width: 1px">
+	<p:dataTable width="100%" id="coursesList" rows="20"
+		value="#{userBean.courses}" var="course">
+		<p:column styleClass="headerColumn">
 			<f:facet name="header">
-				<h:outputText value="#{msg['role.expert']}"/>
+				<h:outputText value="#{msg['role.expert']}" />
 			</f:facet>
 			<h:selectBooleanCheckbox id="editExpert" value="#{course.expert}"
-				disabled="#{not userBean.item.user.expert}"/>
+				disabled="#{not userBean.item.user.expert}" />
 		</p:column>
-		<p:column style="width: 1px">
+		<p:column styleClass="headerColumn">
 			<f:facet name="header">
 				<h:outputText value="#{msg['role.teacher']}" />
 			</f:facet>
 			<h:selectBooleanCheckbox id="editTeacher" value="#{course.teacher}"
-				disabled="#{not userBean.item.user.teacher}"/>
+				disabled="#{not userBean.item.user.teacher}" />
 		</p:column>
 		<p:column sortBy="#{course.course.name}">
 			<f:facet name="header">
-				<h:outputText styleClass="headerText"
-					value="#{msg['course.name']}"/>
+				<h:outputText styleClass="headerText" value="#{msg['course.name']}" />
 			</f:facet>
-			<h:outputText id="name" value="#{course.course.name}"/>
+			<h:outputText id="name" value="#{course.course.name}" />
 		</p:column>
 	</p:dataTable>
 </ui:composition>

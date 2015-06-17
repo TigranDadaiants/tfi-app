@@ -26,40 +26,39 @@ import ru.sstu.vec.core.domain.User;
 @Repository("labResultDao")
 class LabResultDaoImpl extends GenericDao<LabResult> implements LabResultDao {
 
-	private static final long serialVersionUID = 7900616590853432911L;
+    private static final long serialVersionUID = 7900616590853432911L;
 
-	private static final String STATUS = "status";
+    private static final String STATUS = "status";
 
-	private static final String COURSE = "course";
+    private static final String COURSE = "course";
 
-	private static final String LAB = "lab";
+    private static final String LAB = "lab";
 
-	private static final String COURSE_RESULT = "courseResult";
+    private static final String COURSE_RESULT = "courseResult";
 
-	@Override
-	public LabResult find(CourseResult courseResult, Lab lab) {
-		return unique(getCriteria().add(Restrictions.eq(LAB, lab))
-				.add(Restrictions.eq(COURSE_RESULT, courseResult)));
-	}
+    @Override
+    public LabResult find(CourseResult courseResult, Lab lab) {
+        return unique(getCriteria().add(Restrictions.eq(LAB, lab)).add(
+                Restrictions.eq(COURSE_RESULT, courseResult)));
+    }
 
-	@Override
-	public List<LabResult> find(Course course, LabStatus status) {
-		DetachedCriteria labs = DetachedCriteria.forClass(Lab.class);
-		labs.add(Restrictions.eq(COURSE, course));
-		labs.setProjection(Projections.id());
-		return list(getCriteria()
-				.add(Subqueries.propertyIn(LAB, labs))
-				.add(Restrictions.eq(STATUS, status)));
-	}
+    @Override
+    public List<LabResult> find(Course course, LabStatus status) {
+        DetachedCriteria labs = DetachedCriteria.forClass(Lab.class);
+        labs.add(Restrictions.eq(COURSE, course));
+        labs.setProjection(Projections.id());
+        return list(getCriteria().add(Subqueries.propertyIn(LAB, labs)).add(
+                Restrictions.eq(STATUS, status)));
+    }
 
-	@Override
-	public List<LabResult> find(User user, LabStatus status) {
-		DetachedCriteria results = DetachedCriteria
-				.forClass(CourseResult.class);
-		results.add(Restrictions.eq("student", user));
-		results.setProjection(Projections.id());
-		return list(getCriteria()
-				.add(Subqueries.propertyIn(COURSE_RESULT, results))
-				.add(Restrictions.eq(STATUS, status)));
-	}
+    @Override
+    public List<LabResult> find(User user, LabStatus status) {
+        DetachedCriteria results = DetachedCriteria
+                .forClass(CourseResult.class);
+        results.add(Restrictions.eq("student", user));
+        results.setProjection(Projections.id());
+        return list(getCriteria().add(
+                Subqueries.propertyIn(COURSE_RESULT, results)).add(
+                Restrictions.eq(STATUS, status)));
+    }
 }

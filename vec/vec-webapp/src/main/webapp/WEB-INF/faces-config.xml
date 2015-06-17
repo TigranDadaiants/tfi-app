@@ -26,6 +26,10 @@
 		<converter-id>course</converter-id>
 		<converter-class>ru.sstu.vec.core.web.converters.CourseConverter</converter-class>
 	</converter>
+	<converter>
+		<converter-id>lecture</converter-id>
+		<converter-class>ru.sstu.vec.core.web.converters.LectureConverter</converter-class>
+	</converter>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>usersList</from-outcome>

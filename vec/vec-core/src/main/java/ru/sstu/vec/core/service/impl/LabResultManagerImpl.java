@@ -30,84 +30,85 @@ import ru.sstu.vec.core.service.LabResultManager;
  */
 abstract class LabResultManagerImpl implements LabResultManager {
 
-	private static final long serialVersionUID = 734984585957169597L;
+    private static final long serialVersionUID = 734984585957169597L;
 
-	private static final Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
-	private Log log = LogFactory.getLog(LabResultManagerImpl.class);
+    private Log log = LogFactory.getLog(LabResultManagerImpl.class);
 
-	@Resource
-	private CourseResultDao courseResultDao;
+    @Resource
+    private CourseResultDao courseResultDao;
 
-	@Resource
-	private LabResultDao labResultDao;
+    @Resource
+    private LabResultDao labResultDao;
 
-	@Resource
-	private LabDao labDao;
+    @Resource
+    private LabDao labDao;
 
-	@Resource
-	private LabVariantDao labVariantDao;
+    @Resource
+    private LabVariantDao labVariantDao;
 
-	private CourseResult courseResult;
+    private CourseResult courseResult;
 
-	@Transactional
-	@Override
-	public List<LabResult> find() {
-		if (courseResult == null) {
-			log.error("CourseResult is NULL!");
-			System.err.println("CourseResult is NULL!");
-			return new ArrayList<LabResult>();
-		}
-		List<Lab> labs = labDao.find(courseResult.getCourse());
-		List<LabResult> results = new ArrayList<LabResult>();
-		for (Lab lab : labs) {
-			LabResult result = labResultDao.find(courseResult, lab);
-			if (result == null) {
-				result = new LabResult();
-				result.setLab(lab);
-				result.setVariant(getVariant(lab));
-				result.setCourseResult(courseResult);
-				labResultDao.save(result);
-			}
-			results.add(result);
-		}
-		return results;
-	}
+    @Transactional
+    @Override
+    public List<LabResult> find() {
+        if (courseResult == null) {
+            log.error("CourseResult is NULL!");
+            System.err.println("CourseResult is NULL!");
+            return new ArrayList<LabResult>();
+        }
+        List<Lab> labs = labDao.find(courseResult.getCourse());
+        List<LabResult> results = new ArrayList<LabResult>();
+        for (Lab lab : labs) {
+            LabResult result = labResultDao.find(courseResult, lab);
+            if (result == null) {
+                result = new LabResult();
+                result.setLab(lab);
+                result.setVariant(getVariant(lab));
+                result.setCourseResult(courseResult);
+                labResultDao.save(result);
+            }
+            results.add(result);
+        }
+        return results;
+    }
 
-	@Transactional
-	@Override
-	public void save(LabResult object) {
-		labResultDao.save(object);
-	}
+    @Transactional
+    @Override
+    public void save(LabResult object) {
+        labResultDao.save(object);
+    }
 
-	@Transactional
-	@Override
-	public void delete(LabResult object) {
-	}
+    @Transactional
+    @Override
+    public void delete(LabResult object) {
+    }
 
-	@Override
-	public void setCourseResult(CourseResult courseResult) {
-		this.courseResult = courseResult;
-	}
+    @Override
+    public void setCourseResult(CourseResult courseResult) {
+        this.courseResult = courseResult;
+    }
 
-	/**
-	 * @return {@link LabResultDao} implementation
-	 */
-	protected LabResultDao getLabResultDao() {
-		return labResultDao;
-	}
+    /**
+     * @return {@link LabResultDao} implementation
+     */
+    protected LabResultDao getLabResultDao() {
+        return labResultDao;
+    }
 
-	/**
-	 * @param lab
-	 *            lab
-	 * @return lab variant
-	 */
-	private LabVariant getVariant(Lab lab) {
-		List<LabVariant> variants = labVariantDao.find(lab);
-		if (variants.isEmpty()) {
-			return null;
-		}
-		int index = RANDOM.nextInt(variants.size());
-		return variants.get(index);
-	}
+    /**
+     * @param lab
+     *            lab
+     * @return lab variant
+     */
+    private LabVariant getVariant(Lab lab) {
+        List<LabVariant> variants = labVariantDao.find(lab);
+        if (variants.isEmpty()) {
+            return null;
+        }
+        int index = RANDOM.nextInt(variants.size());
+        return variants.get(index);
+    }
+
 }

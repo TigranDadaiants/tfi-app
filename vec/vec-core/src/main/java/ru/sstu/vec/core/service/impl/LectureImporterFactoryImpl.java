@@ -3,6 +3,7 @@ package ru.sstu.vec.core.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ public class LectureImporterFactoryImpl implements LectureImporterFactory {
     private Map<DocFileFormat, LectureImporter> importers = new HashMap<DocFileFormat, LectureImporter>();
 
     public LectureImporterFactoryImpl() {
+
+    }
+
+    @PostConstruct
+    void init() {
         importers.put(DocFileFormat.DOC_XML, docXmlLectureImporter);
         importers.put(DocFileFormat.DOCX, docxLectureImporter);
     }

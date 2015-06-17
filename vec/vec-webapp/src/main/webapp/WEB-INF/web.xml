@@ -15,8 +15,7 @@
 	</listener>
 	<listener>
 		<listener-class>
-			org.springframework.web.context.request.RequestContextListener
-		</listener-class>
+			org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 
 	<context-param>
@@ -51,6 +50,10 @@
 		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
 		<param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
 	</context-param>
+	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
 
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -73,8 +76,7 @@
 	<filter>
 		<filter-name>hibernateFilter</filter-name>
 		<filter-class>
-			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
-		</filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 		<init-param>
 			<param-name>singleSession</param-name>
 			<param-value>true</param-value>

@@ -27,7 +27,8 @@
 				<p:commandButton action="#{expertCourseBean.cancel}"
 					value="#{msg['action.cancel']}" styleClass="inputButton" />
 			</h:panelGrid>
-			<p:accordionPanel styleClass="accordion" activeIndex="-">
+			<p:accordionPanel styleClass="accordion" activeIndex="-"
+				rendered="#{expertCourseBean.item.id != -1}">
 
 				<p:tab title="${msg['menu.tasks']}">
 					<p:fileUpload fileUploadListener="#{expertLabBean.importLab}"
@@ -67,11 +68,16 @@
 								<h:graphicImage value="/images/delete.png" />
 							</h:commandLink>
 						</p:column>
-						<p:column styleClass="userNameCol" sortBy="#{lab.name}">
+						<p:column sortBy="#{lab.name}">
 							<f:facet name="header">
 								<h:outputText styleClass="headerText" value="#{msg['lab.name']}" />
 							</f:facet>
-							<h:outputText id="name" value="#{lab.name}" />
+							<h:commandLink action="#{expertLabBean.edit}"
+								styleClass="hiddenLink">
+								<f:setPropertyActionListener value="#{lab}"
+									target="#{expertLabBean.item}" />
+								<h:outputText id="name" value="#{lab.name}" />
+							</h:commandLink>
 						</p:column>
 					</p:dataTable>
 				</p:tab>
@@ -116,12 +122,17 @@
 								<h:graphicImage value="/images/delete.png" />
 							</h:commandLink>
 						</p:column>
-						<p:column styleClass="userNameCol" sortBy="#{lecture.name}">
+						<p:column sortBy="#{lecture.name}">
 							<f:facet name="header">
 								<h:outputText styleClass="headerText"
 									value="#{msg['lecture.name']}" />
 							</f:facet>
-							<h:outputText id="name" value="#{lecture.name}" />
+							<h:commandLink action="#{expertLectureBean.edit}"
+								styleClass="hiddenLink">
+								<f:setPropertyActionListener value="#{lecture}"
+									target="#{expertLectureBean.item}" />
+								<h:outputText id="name" value="#{lecture.name}" />
+							</h:commandLink>
 						</p:column>
 					</p:dataTable>
 				</p:tab>
@@ -151,7 +162,7 @@
 								<h:graphicImage value="/images/delete.png" />
 							</h:commandLink>
 						</p:column>
-						<p:column styleClass="userNameCol" sortBy="#{file.name}">
+						<p:column sortBy="#{file.name}">
 							<f:facet name="header">
 								<h:outputText styleClass="headerText"
 									value="#{msg['file.name']}" />
@@ -159,7 +170,7 @@
 							<h:commandLink action="#{expertFileBean.download}"
 								update="filesList">
 								<f:setPropertyActionListener target="#{expertFileBean.item}"
-								value="#{file}" />
+									value="#{file}" />
 								<h:outputText id="name" value="#{file.name}" />
 							</h:commandLink>
 						</p:column>
