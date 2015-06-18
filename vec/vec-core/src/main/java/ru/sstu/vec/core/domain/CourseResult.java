@@ -49,7 +49,7 @@ public class CourseResult implements Serializable {
      * Mapped to avoid null-check constraint violation
      */
     @OneToMany(mappedBy = "courseResult", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<LabResult> labRrsults;
+    private List<LabResult> labResults;
 
     /**
      * @return course result id
