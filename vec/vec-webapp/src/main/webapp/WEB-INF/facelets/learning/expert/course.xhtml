@@ -12,10 +12,11 @@
 					value="#{msg['common.course']} #{expertCourseBean.item.name}" />
 			</f:facet>
 			<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
-				<h:outputLabel for="editName" style="font-size: 75%;">
+				<h:outputLabel for="editName" styleClass="nameLabel">
 					<h:outputText value="#{msg['course.name']}" />
 				</h:outputLabel>
-				<h:inputText id="editName" value="#{expertCourseBean.item.name}" />
+				<h:inputText id="editName" value="#{expertCourseBean.item.name}"
+					styleClass="nameInput" />
 				<p:message id="growl" for="editName" />
 			</h:panelGrid>
 			<h:panelGrid columns="2">

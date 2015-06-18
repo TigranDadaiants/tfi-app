@@ -44,16 +44,22 @@ public class Course implements Serializable {
     private List<Group> groups = Collections.emptyList();
 
     /**
-     * Mapped to avoid referential integrity constraint violation.
+     * Following is mapped to avoid referential integrity constraint violation.
      */
     @OneToMany(mappedBy = "id.course", cascade = CascadeType.ALL)
     private List<CourseGrant> courseGrants;
 
-    /**
-     * Mapped to avoid referential integrity constraint violation.
-     */
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
     private List<CourseResult> courseResults;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
+    private List<Lab> labs;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
+    private List<Lecture> lectures;
+    /**
+     *
+     */
 
     /**
      * @return Course's id

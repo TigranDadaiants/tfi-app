@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -59,6 +60,9 @@ public class Lab implements Serializable {
             CascadeType.MERGE, CascadeType.REFRESH })
     @JoinTable(name = "LECT_LAB", joinColumns = { @JoinColumn(name = "LAB_ID_FK", referencedColumnName = "LAB_ID_PK") }, inverseJoinColumns = { @JoinColumn(name = "LECT_ID_FK", referencedColumnName = "LECT_ID_PK") })
     private List<Lecture> lectures = Collections.emptyList();
+
+    @OneToMany(mappedBy = "lab", cascade = CascadeType.REMOVE)
+    private List<LabResult> labResults;
 
     /**
      * @return the id

@@ -12,14 +12,15 @@
 				<h:outputText value="#{msg['common.lecture']}" />
 			</f:facet>
 			<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
-				<p:outputLabel style="padding-right:10px;" for="name"
+				<p:outputLabel styleClass="nameLabel" for="name"
 					value="#{msg['lecture.name']}" />
-				<p:inputText id="name" value="#{expertLectureBean.item.name}"/>
+				<p:inputText id="name" value="#{expertLectureBean.item.name}" styleClass="nameInput"/>
 				<p:message for="name" showDetail="false" />
 			</h:panelGrid>
 			<p:spacer height="5px" />
 			<p:editor id="text" value="#{expertLectureBean.item.text}"
 				width="600" />
+			<p:spacer height="15px"/>
 			<h:panelGrid columns="2">
 				<p:commandButton action="#{expertLectureBean.save}"
 					value="#{msg['action.save']}" styleClass="inputButton">

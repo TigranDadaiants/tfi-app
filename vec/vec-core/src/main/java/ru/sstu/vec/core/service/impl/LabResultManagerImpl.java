@@ -55,7 +55,6 @@ abstract class LabResultManagerImpl implements LabResultManager {
     public List<LabResult> find() {
         if (courseResult == null) {
             log.error("CourseResult is NULL!");
-            System.err.println("CourseResult is NULL!");
             return new ArrayList<LabResult>();
         }
         List<Lab> labs = labDao.find(courseResult.getCourse());

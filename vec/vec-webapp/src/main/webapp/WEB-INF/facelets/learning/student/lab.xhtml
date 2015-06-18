@@ -13,12 +13,12 @@
 				<p:panel header="#{studentLabBean.item.lab.name}">
 					<h:outputText value="#{studentLabBean.item.lab.text}"
 						escape="false" />
-					<br />
-					<b><h:outputText value="${msg['lab.variant']}" /></b>
-					<br />
-					<br />
-					<h:outputText value="#{studentLabBean.item.variant.text}"
-						rendered="#{not empty studentLabBean.item.variant}" escape="false" />
+					<p:spacer height="15px" />
+					<p:panel header="${msg['lab.variant']}"
+						rendered="#{not empty studentLabBean.item.variant}">
+						<h:outputText value="#{studentLabBean.item.variant.text}"
+							escape="false" />
+					</p:panel>
 				</p:panel>
 
 			</p:tab>
@@ -46,7 +46,7 @@
 					<f:facet name="header">
 						<h:outputText value="#{msg['lab.attempts']}" />
 					</f:facet>
-					<p:column >
+					<p:column>
 						<f:facet name="header">
 							<h:outputText styleClass="headerText"
 								value="#{msg['lab.attempt']}" />

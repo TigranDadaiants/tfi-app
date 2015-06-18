@@ -24,15 +24,15 @@ public class LabLectureController extends VecController {
     private ExpertCourseController expertCourseBean;
 
     @Resource
-    private ExpertLectureManager lectureManager;
+    private ExpertLectureManager expertLectureManager;
 
     public List<Lecture> getAll() {
-        return lectureManager.find(expertLabBean.getItem());
+        return expertLectureManager.find(expertLabBean.getItem());
     }
 
     public DualListModel<Lecture> getLectures() {
-        lectureManager.setCourse(expertCourseBean.getItem());
-        List<Lecture> list = lectureManager.find();
+        expertLectureManager.setCourse(expertCourseBean.getItem());
+        List<Lecture> list = expertLectureManager.find();
         list.removeAll(expertLabBean.getLectures());
         return new DualListModel<Lecture>(list, expertLabBean.getLectures());
     }

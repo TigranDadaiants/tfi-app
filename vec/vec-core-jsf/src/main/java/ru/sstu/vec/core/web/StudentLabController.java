@@ -43,6 +43,7 @@ public class StudentLabController extends LabResultController {
 
     @Override
     protected LabResultManager getManager() {
+        System.out.println("COURSE RESULT: " + studentCourseBean.getItem());
         studentLabResultManager.setCourseResult(studentCourseBean.getItem());
         return studentLabResultManager;
     }

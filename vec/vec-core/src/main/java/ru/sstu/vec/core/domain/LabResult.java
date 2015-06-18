@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,13 +41,12 @@ public class LabResult implements Serializable {
     @Column(name = "LAB_RESULT_ID_PK")
     private long id = -1L;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "COURSE_RESULT_ID_FK", nullable = false)
     private CourseResult courseResult;
 
     @ManyToOne
     @JoinColumn(name = "LAB_ID_FK", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Lab lab;
 
     @Enumerated(EnumType.STRING)
