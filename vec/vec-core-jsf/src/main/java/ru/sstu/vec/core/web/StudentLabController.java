@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import ru.sstu.vec.core.domain.LabStatus;
 import ru.sstu.vec.core.domain.Lecture;
 import ru.sstu.vec.core.service.LabResultManager;
-import ru.sstu.vec.core.service.LectureManager;
 
 /**
  * {@code StudentLabController} class is controller for lab result performing by
@@ -31,9 +30,6 @@ public class StudentLabController extends LabResultController {
 
     @Resource
     private StudentCourseController studentCourseBean;
-
-    @Resource
-    private LectureManager lectureManager;
 
     /**
      * Checks if results of this lab is uploadable or not.

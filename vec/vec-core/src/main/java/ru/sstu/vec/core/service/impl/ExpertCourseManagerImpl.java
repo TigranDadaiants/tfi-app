@@ -13,6 +13,7 @@ import ru.sstu.vec.core.dao.CourseDao;
 import ru.sstu.vec.core.dao.CourseGrantDao;
 import ru.sstu.vec.core.domain.Course;
 import ru.sstu.vec.core.domain.CourseGrant;
+import ru.sstu.vec.core.domain.Group;
 import ru.sstu.vec.core.domain.User;
 import ru.sstu.vec.core.service.ExpertCourseManager;
 
@@ -28,47 +29,51 @@ import ru.sstu.vec.core.service.ExpertCourseManager;
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 class ExpertCourseManagerImpl implements ExpertCourseManager {
 
-	private static final long serialVersionUID = 5152214804504759941L;
+    private static final long serialVersionUID = 5152214804504759941L;
 
-	@Resource
-	private CourseDao courseDao;
+    @Resource
+    private CourseDao courseDao;
 
-	@Resource
-	private CourseGrantDao courseGrantDao;
+    @Resource
+    private CourseGrantDao courseGrantDao;
 
-	private User expert;
+    private User expert;
 
-	@Override
-	public List<Course> find() {
-		return courseDao.findForExpert(expert);
-	}
+    @Override
+    public List<Course> find() {
+        return courseDao.findForExpert(expert);
+    }
 
-	@Override
-	public void reload(Course object) {
-	}
+    @Override
+    public void reload(Course object) {
+    }
 
-	@Transactional
-	@Override
-	public void save(Course object) {
-		boolean needGrant = object.getId() == -1L;
-		courseDao.save(object);
-		if (needGrant) {
-			CourseGrant grant = new CourseGrant();
-			grant.setUser(expert);
-			grant.setCourse(object);
-			grant.setExpert(true);
-			courseGrantDao.save(grant);
-		}
-	}
+    @Transactional
+    @Override
+    public void save(Course object) {
+        boolean needGrant = object.getId() == -1L;
+        courseDao.save(object);
+        if (needGrant) {
+            CourseGrant grant = new CourseGrant();
+            grant.setUser(expert);
+            grant.setCourse(object);
+            grant.setExpert(true);
+            courseGrantDao.save(grant);
+        }
+    }
 
-	@Override
-	@Transactional
-	public void delete(Course object) {
-		courseDao.delete(object);
-	}
+    @Override
+    @Transactional
+    public void delete(Course object) {
+        for (Group group : object.getGroups()) {
+            group.getCourses().remove(object);
+        }
+        object.getGroups().clear();
+        courseDao.delete(object);
+    }
 
-	@Override
-	public void setExpert(User expert) {
-		this.expert = expert;
-	}
+    @Override
+    public void setExpert(User expert) {
+        this.expert = expert;
+    }
 }

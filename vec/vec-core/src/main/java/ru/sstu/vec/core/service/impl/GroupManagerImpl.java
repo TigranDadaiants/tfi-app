@@ -48,6 +48,7 @@ class GroupManagerImpl implements GroupManager {
 	@Transactional
 	@Override
 	public void delete(Group group) {
+	        group.getCourses().clear();
 		groupDao.delete(group);
 	}
 }

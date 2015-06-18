@@ -20,7 +20,7 @@ import ru.sstu.vec.core.domain.Lecture;
 import ru.sstu.vec.core.service.ExpertLabManager;
 import ru.sstu.vec.core.service.LabImporter;
 import ru.sstu.vec.core.service.LabImporterFactory;
-import ru.sstu.vec.core.service.LectureManager;
+import ru.sstu.vec.core.service.ExpertLectureManager;
 import ru.sstu.vec.core.service.model.DocFileFormat;
 import ru.sstu.vec.core.web.util.FileUtil;
 
@@ -44,7 +44,7 @@ public class ExpertLabController extends AbstractItemController<Lab> {
     private ExpertLabManager expertLabManager;
 
     @Resource
-    private LectureManager lectureManager;
+    private ExpertLectureManager expertLectureManager;
 
     @Resource
     private LabImporterFactory labImporterFactory;

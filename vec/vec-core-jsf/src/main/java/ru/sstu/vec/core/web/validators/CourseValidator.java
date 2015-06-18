@@ -1,6 +1,7 @@
 package ru.sstu.vec.core.web.validators;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
@@ -43,5 +44,6 @@ public class CourseValidator {
 		Course course = (Course) component.getAttributes().get("course");
 		Course dbCourse = courseDao.find(name);
 		validator.checkExists(course, dbCourse, "error.exists");
+		context.addMessage(null, new FacesMessage("Successful",  "Your message: " + "HERE") );
 	}
 }

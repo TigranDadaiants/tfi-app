@@ -13,6 +13,12 @@ import org.springframework.util.StringUtils;
 import ru.sstu.vec.core.domain.JcrFile;
 import ru.sstu.vec.core.service.model.DocFileFormat;
 
+/**
+ * Utility for work with files.
+ *
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
+ */
 public class FileUtil {
 
     private static final int DEFAULT_BUFFER_SIZE = 10240;

@@ -6,10 +6,10 @@ import ru.sstu.docs.DocXmlReader;
 import ru.sstu.docs.DocumentReader;
 
 /**
- * {@code DocXmlLecturemporter} class is used for importing {@code Lecture}
- * data from MS Word 2003 XML format files.
+ * {@code DocXmlLecturemporter} class is used for importing {@code Lecture} data
+ * from MS Word 2003 XML format files.
  *
- * @author Tigran Dadaiants
+ * @author Tigran_Dadaiants
  * @since VEC 2.1
  */
 @Service("docXmlLectureImporter")

@@ -7,6 +7,12 @@ import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.Course;
 
+/**
+ * {@code StudentFileController} class is controller for files download.
+ *
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
+ */
 @Controller("studentFileBean")
 @Scope("session")
 public class StudentFileController extends AbstractFileController {

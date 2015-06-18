@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 
 import ru.sstu.docs.DocumentException;
 import ru.sstu.vec.core.domain.Lecture;
-import ru.sstu.vec.core.service.LectureManager;
+import ru.sstu.vec.core.service.ExpertLectureManager;
 import ru.sstu.vec.core.service.ItemManager;
 import ru.sstu.vec.core.service.LectureImporter;
 import ru.sstu.vec.core.service.LectureImporterFactory;
@@ -40,7 +40,7 @@ public class ExpertLectureController extends AbstractItemController<Lecture> {
     private static final String ERROR_UPLOAD_MESSAGE = "Cannot read uploaded file";
 
     @Resource
-    private LectureManager lectureManager;
+    private ExpertLectureManager expertLectureManager;
 
     @Resource
     private ExpertCourseController expertCourseBean;
@@ -94,8 +94,8 @@ public class ExpertLectureController extends AbstractItemController<Lecture> {
 
     @Override
     protected ItemManager<Lecture> getManager() {
-        lectureManager.setCourse(expertCourseBean.getItem());
-        return lectureManager;
+        expertLectureManager.setCourse(expertCourseBean.getItem());
+        return expertLectureManager;
     }
 
     @Override

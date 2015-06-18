@@ -13,18 +13,18 @@ import ru.sstu.vec.core.dao.LectureDao;
 import ru.sstu.vec.core.domain.Course;
 import ru.sstu.vec.core.domain.Lab;
 import ru.sstu.vec.core.domain.Lecture;
-import ru.sstu.vec.core.service.LectureManager;
+import ru.sstu.vec.core.service.ExpertLectureManager;
 
 /**
- * {@code ExpertLectureManagerImpl} class is {@link LectureManager}
+ * {@code LectureManagerImpl} class is {@link ExpertLectureManager}
  * implementation.
  *
- * @author Tigran Dadaiants
+ * @author Tigran_Dadaiants
  * @since VEC 2.1
  */
-@Service("lectureManager")
+@Service("expertLectureManager")
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class LectureManagerImpl implements LectureManager {
+public class ExpertLectureManagerImpl implements ExpertLectureManager {
 
     private static final long serialVersionUID = -2778533219021619193L;
 
@@ -56,6 +56,10 @@ public class LectureManagerImpl implements LectureManager {
     @Transactional
     @Override
     public void delete(Lecture object) {
+        for (Lab lab : object.getLabs()) {
+            lab.getLectures().remove(object);
+        }
+        object.getLabs().clear();
         lectureDao.delete(object);
     }
 

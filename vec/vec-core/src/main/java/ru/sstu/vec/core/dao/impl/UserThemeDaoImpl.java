@@ -10,18 +10,18 @@ import ru.sstu.vec.core.domain.UserTheme;
 /**
  * {@code UserThemeDaoImpl} class is {@link UserThemeDao} implementation.
  *
- * @author Denis A. Murashev
- * @author Tigran Dadaiants
+ * @author Tigran_Dadaiants
  * @since VEC 2.1
  */
 @Repository("userThemeDao")
-public class UserThemeDaoImpl extends GenericDao<UserTheme>
-implements UserThemeDao {
+public class UserThemeDaoImpl extends GenericDao<UserTheme> implements
+        UserThemeDao {
+    private static final long serialVersionUID = 3029381255892370736L;
 
-	private static final long serialVersionUID = 3029381255892370736L;
+    private static final String USER = "user";
 
-	@Override
-	public UserTheme find(User user) {
-		return unique(getCriteria().add(Restrictions.eq("user", user)));
-	}
+    @Override
+    public UserTheme find(User user) {
+        return unique(getCriteria().add(Restrictions.eq(USER, user)));
+    }
 }

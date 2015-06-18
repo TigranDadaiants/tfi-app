@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * {@code UserTheme} class represents user and theme match in the VEC system.
  *
  * @author Tigran_Dadaiants
- * @since VEC 2.0
+ * @since VEC 2.1
  */
 @Entity
 @Table(name = "USER_THEMES")
@@ -46,10 +46,17 @@ public class UserTheme implements Serializable {
         this.user = user;
     }
 
+    /**
+     * @return name of theme
+     */
     public String getTheme() {
         return theme;
     }
 
+    /**
+     * @param theme
+     *            theme name to set
+     */
     public void setTheme(String theme) {
         this.theme = theme;
     }

@@ -56,6 +56,7 @@ class ExpertLabManagerImpl implements ExpertLabManager {
 	@Transactional
 	public void delete(Lab object) {
 		labVariantDao.delete(object);
+		object.getLectures().clear();
 		labDao.delete(object);
 	}
 

@@ -13,6 +13,12 @@ import org.springframework.stereotype.Controller;
 import ru.sstu.vec.core.domain.Course;
 import ru.sstu.vec.core.domain.JcrFile;
 
+/**
+ * {@code ExpertFileController} class is controller for file editing.
+ *
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
+ */
 @Controller("expertFileBean")
 @Scope("session")
 public class ExpertFileController extends AbstractFileController {

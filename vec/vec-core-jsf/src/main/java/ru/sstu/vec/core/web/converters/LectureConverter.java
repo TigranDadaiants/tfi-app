@@ -3,9 +3,14 @@ package ru.sstu.vec.core.web.converters;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-
 import ru.sstu.vec.core.domain.Lecture;
 
+/**
+ * {@code LectureConverter} class is JSF converter for type {@link Lecture}.
+ *
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
+ */
 public class LectureConverter implements Converter {
 
     private static final String SEPARATOR = ":";

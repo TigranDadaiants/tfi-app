@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.Lecture;
 import ru.sstu.vec.core.service.ItemManager;
-import ru.sstu.vec.core.service.LectureManager;
+import ru.sstu.vec.core.service.StudentLectureManager;
 
 @Controller("studentLectureBean")
 @Scope("session")
@@ -16,15 +16,16 @@ public class StudentLectureController extends AbstractItemController<Lecture> {
     private static final long serialVersionUID = -8848354233018551322L;
 
     @Resource
-    private LectureManager lectureManager;
+    private StudentLectureManager studentLectureManager;
 
     @Resource
     private StudentCourseController studentCourseBean;
 
     @Override
     protected ItemManager<Lecture> getManager() {
-        lectureManager.setCourse(studentCourseBean.getItem().getCourse());
-        return lectureManager;
+        studentLectureManager
+                .setCourse(studentCourseBean.getItem().getCourse());
+        return studentLectureManager;
     }
 
     @Override

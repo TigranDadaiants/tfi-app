@@ -7,28 +7,28 @@ import ru.sstu.vec.core.domain.User;
 import ru.sstu.vec.core.domain.UserTheme;
 
 /**
- * <code>UserThemeDao</code> interface is DAO
- * for working with UserTheme objects.
+ * <code>UserThemeDao</code> interface is DAO for working with UserTheme
+ * objects.
  *
- * @author Denis A. Murashev
- * @author Tigran K. Dadajanc
- * @since VEC 2.0
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
  */
 public interface UserThemeDao extends Dao<UserTheme> {
 
-	/**
-	 * Looking for all user theme objects
-	 *
-	 * @return list of user themes
-	 *
-	 */
-	List<UserTheme> find();
+    /**
+     * Looking for all user theme objects
+     *
+     * @return list of user themes
+     *
+     */
+    List<UserTheme> find();
 
-	/**
-	 * Looking for user theme for given user.
-	 *
-	 * @param user user
-	 * @return user theme
-	 */
-	UserTheme find(User user);
+    /**
+     * Looking for user theme for given user.
+     *
+     * @param user
+     *            user
+     * @return user theme
+     */
+    UserTheme find(User user);
 }

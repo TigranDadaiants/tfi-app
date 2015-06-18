@@ -14,8 +14,8 @@
 			<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
 				<p:outputLabel style="padding-right:10px;" for="name"
 					value="#{msg['lab.name']}" />
-				<p:inputText id="name" value="#{expertLabBean.item.name}" />
-				<h:message for="name" showDetail="false" />
+				<p:inputText id="name" value="#{expertLabBean.item.name}"/>
+				<p:message for="name" showDetail="false" />
 			</h:panelGrid>
 			<p:spacer height="5px" />
 			<p:editor id="text" value="#{expertLabBean.item.text}" width="600" />

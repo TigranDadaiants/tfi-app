@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,14 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "LECTURES")
@@ -50,7 +47,8 @@ public class Lecture implements Serializable {
     @Column(name = "LECT_TEXT", nullable = false)
     private String text = "";
 
-    @ManyToMany(mappedBy = "lectures")
+    @ManyToMany(mappedBy = "lectures", cascade = { CascadeType.PERSIST,
+            CascadeType.MERGE, CascadeType.REFRESH })
     private List<Lab> labs = Collections.emptyList();
 
     /**
@@ -132,6 +130,21 @@ public class Lecture implements Serializable {
      */
     public void setText(String text) {
         this.text = text;
+    }
+
+    /**
+     * @return list of Labs associated with lecture
+     */
+    public List<Lab> getLabs() {
+        return labs;
+    }
+
+    /**
+     * @param labs
+     *            list of Labs to associate with lecture
+     */
+    public void setLabs(List<Lab> labs) {
+        this.labs = labs;
     }
 
     /**

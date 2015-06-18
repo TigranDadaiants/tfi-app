@@ -7,6 +7,13 @@ import ru.sstu.vec.core.domain.Course;
 import ru.sstu.vec.core.domain.Lab;
 import ru.sstu.vec.core.domain.Lecture;
 
+/**
+ * <code>LectureDao</code> interface is DAO for working with Lecture objects.
+ *
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
+ *
+ */
 public interface LectureDao extends Dao<Lecture> {
 
     /**

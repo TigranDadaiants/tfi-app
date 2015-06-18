@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,94 +26,104 @@ import javax.persistence.Table;
 @Table(name = "GROUPS")
 public class Group implements Serializable {
 
-	/**
-	 * Common name length.
-	 */
-	public static final int NAME = 50;
+    /**
+     * Common name length.
+     */
+    public static final int NAME = 50;
 
-	private static final long serialVersionUID = 2114530894689308841L;
+    private static final long serialVersionUID = 2114530894689308841L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "GROUP_ID_PK")
-	private long id = -1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "GROUP_ID_PK")
+    private long id = -1L;
 
-	@Column(name = "GROUP_NAME", nullable = false, length = NAME)
-	private String name = "";
+    @Column(name = "GROUP_NAME", nullable = false, length = NAME)
+    private String name = "";
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "GROUP_COURSE",
-		joinColumns = {@JoinColumn(name = "GROUP_ID_FK",
-			referencedColumnName = "GROUP_ID_PK")},
-		inverseJoinColumns = {@JoinColumn(name = "COURSE_ID_FK",
-			referencedColumnName = "COURSE_ID_PK")})
-	private List<Course> courses = Collections.emptyList();
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH })
+    @JoinTable(name = "GROUP_COURSE",
+    joinColumns =
+        { @JoinColumn(name = "GROUP_ID_FK", referencedColumnName = "GROUP_ID_PK") },
+    inverseJoinColumns =
+        { @JoinColumn(name = "COURSE_ID_FK", referencedColumnName = "COURSE_ID_PK") })
+    private List<Course> courses = Collections.emptyList();
 
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
+    /**
+     * Mapped to avoid referential integrity constraint violation.
+     */
+    @OneToMany(mappedBy = "id.group", cascade = CascadeType.ALL)
+    private List<GroupGrant> groupGrants = Collections.emptyList();
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+    /**
+     * @return the id
+     */
+    public long getId() {
+        return id;
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @return the courses
-	 */
-	public List<Course> getCourses() {
-		return courses;
-	}
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @param courses the courses to set
-	 */
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
+    /**
+     * @return the courses
+     */
+    public List<Course> getCourses() {
+        return courses;
+    }
 
-	@Override
-	public int hashCode() {
-		final int offset = 32;
-		return (int) (id ^ (id >>> offset));
-	}
+    /**
+     * @param courses
+     *            the courses to set
+     */
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Group)) {
-			return false;
-		}
-		Group other = (Group) obj;
-		return id == other.id;
-	}
+    @Override
+    public int hashCode() {
+        final int offset = 32;
+        return (int) (id ^ (id >>> offset));
+    }
 
-	@Override
-	public String toString() {
-		return name;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Group)) {
+            return false;
+        }
+        Group other = (Group) obj;
+        return id == other.id;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

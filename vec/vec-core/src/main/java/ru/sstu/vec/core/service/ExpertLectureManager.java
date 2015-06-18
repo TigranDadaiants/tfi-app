@@ -7,13 +7,13 @@ import ru.sstu.vec.core.domain.Lab;
 import ru.sstu.vec.core.domain.Lecture;
 
 /**
- * {@code ExpertLabManager} interface describes methods for lecture objects
+ * {@code ExpertLectureManager} interface describes methods for lecture objects
  * editing management.
  *
- * @author Tigran Dadaiants
+ * @author Tigran_Dadaiants
  * @since VEC 2.1
  */
-public interface LectureManager extends ItemManager<Lecture> {
+public interface ExpertLectureManager extends ItemManager<Lecture> {
 
     /**
      * Sets actual course object.
@@ -23,6 +23,11 @@ public interface LectureManager extends ItemManager<Lecture> {
      */
     void setCourse(Course course);
 
+    /**
+     * @param lab
+     *            lab object
+     * @return list of Lectures for given Lab
+     */
     List<Lecture> find(Lab lab);
 
 }

@@ -6,14 +6,14 @@ import ru.sstu.docs.DocumentReader;
 import ru.sstu.docs.DocxReader;
 
 /**
- * <code>DocxLectureImporter</code> class is used for importing <code>Lecture</code>
- * data from MS Word 2007 format files.
+ * <code>DocxLectureImporter</code> class is used for importing
+ * <code>Lecture</code> data from MS Word 2007 format files.
  *
- * @author Tigran Dadaiants
+ * @author Tigran_Dadaiants
  * @since VEC 2.1
  */
 @Service("docxLectureImporter")
-public class DocxLectureImporter extends AbstractLectureImporter{
+public class DocxLectureImporter extends AbstractLectureImporter {
 
     @Override
     protected DocumentReader getReader() {

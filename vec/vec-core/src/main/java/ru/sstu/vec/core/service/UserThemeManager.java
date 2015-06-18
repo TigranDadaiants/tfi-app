@@ -8,8 +8,8 @@ import ru.sstu.vec.core.domain.UserTheme;
  * management.
  *
  * @author Denis_Murashev
- * @author Tigran_Dadajanc
- * @since VEC 2.0
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
  */
 public interface UserThemeManager extends ItemManager<UserTheme> {
 

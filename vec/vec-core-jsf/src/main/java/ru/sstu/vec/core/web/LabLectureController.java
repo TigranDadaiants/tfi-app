@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import ru.sstu.vec.core.domain.Lecture;
-import ru.sstu.vec.core.service.LectureManager;
+import ru.sstu.vec.core.service.ExpertLectureManager;
 
 @Controller("labLectureBean")
 @Scope("session")
@@ -24,7 +24,7 @@ public class LabLectureController extends VecController {
     private ExpertCourseController expertCourseBean;
 
     @Resource
-    private LectureManager lectureManager;
+    private ExpertLectureManager lectureManager;
 
     public List<Lecture> getAll() {
         return lectureManager.find(expertLabBean.getItem());

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,9 +17,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 /**
  * {@code Lab} class represents lab in the VEC system.
@@ -57,7 +55,8 @@ public class Lab implements Serializable {
     @Column(name = "LAB_TEXT", nullable = false)
     private String text = "";
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
+            CascadeType.MERGE, CascadeType.REFRESH })
     @JoinTable(name = "LECT_LAB", joinColumns = { @JoinColumn(name = "LAB_ID_FK", referencedColumnName = "LAB_ID_PK") }, inverseJoinColumns = { @JoinColumn(name = "LECT_ID_FK", referencedColumnName = "LECT_ID_PK") })
     private List<Lecture> lectures = Collections.emptyList();
 

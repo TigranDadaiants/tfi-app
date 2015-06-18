@@ -16,9 +16,8 @@ import ru.sstu.vec.core.service.UserThemeManager;
  * {@code UserThemeManagerImpl} class is {@link UserThemeManager}
  * implementation.
  *
- * @author Denis_Murashev
- * @author Tigran_Dadajanc
- * @since VEC 2.0
+ * @author Tigran_Dadaiants
+ * @since VEC 2.1
  */
 @Service("userThemeManager")
 public class UserThemeManagerImpl implements UserThemeManager {

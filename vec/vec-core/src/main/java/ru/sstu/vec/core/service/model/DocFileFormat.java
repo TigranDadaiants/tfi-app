@@ -8,7 +8,7 @@ import java.util.Map;
  * importing.
  *
  * @author Denis_Murashev
- * @author Tigran Dadaiants
+ * @author Tigran_Dadaiants
  * @since VEC 2.1 (renamed from 2.0 LabFileFormat)
  */
 public enum DocFileFormat {

@@ -16,10 +16,10 @@
 					<h:outputText value="#{msg['course.name']}" />
 				</h:outputLabel>
 				<h:inputText id="editName" value="#{expertCourseBean.item.name}" />
-				<h:message for="editName" showDetail="false" />
+				<p:message id="growl" for="editName" />
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<p:commandButton action="#{expertCourseBean.save}"
+				<p:commandButton action="#{expertCourseBean.save}" update="growl"
 					value="#{msg['action.save']}" styleClass="inputButton">
 					<f:setPropertyActionListener value="#{expertCourseBean.item}"
 						target="#{expertCourseBean.item}" />
