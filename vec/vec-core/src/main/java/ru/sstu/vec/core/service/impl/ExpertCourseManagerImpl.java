@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.vec.core.dao.CourseDao;
 import ru.sstu.vec.core.dao.CourseGrantDao;
+import ru.sstu.vec.core.dao.JcrFileDao;
 import ru.sstu.vec.core.domain.Course;
 import ru.sstu.vec.core.domain.CourseGrant;
 import ru.sstu.vec.core.domain.Group;
@@ -36,6 +39,9 @@ class ExpertCourseManagerImpl implements ExpertCourseManager {
 
     @Resource
     private CourseGrantDao courseGrantDao;
+
+    @Resource
+    private JcrFileDao jcrFileDao;
 
     private User expert;
 
@@ -69,6 +75,7 @@ class ExpertCourseManagerImpl implements ExpertCourseManager {
             group.getCourses().remove(object);
         }
         object.getGroups().clear();
+        jcrFileDao.delete(object);
         courseDao.delete(object);
     }
 

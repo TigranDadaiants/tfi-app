@@ -140,8 +140,7 @@
 
 				<p:tab title="${msg['menu.files']}">
 					<p:fileUpload fileUploadListener="#{expertFileBean.upload}"
-						mode="advanced" update="filesList" sizeLimit="1000000"
-						label="#{msg['action.choose']}"
+						mode="advanced" update="filesList" label="#{msg['action.choose']}"
 						uploadLabel="#{msg['action.upload']}"
 						cancelLabel="#{msg['action.cancel']}" />
 					<p:dataTable width="100%" id="filesList" rows="20"

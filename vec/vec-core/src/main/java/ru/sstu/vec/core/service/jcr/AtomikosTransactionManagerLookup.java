@@ -32,17 +32,17 @@ public class AtomikosTransactionManagerLookup implements TransactionManagerLooku
 
     private static final Logger LOGGER = Logger.getLogger(AtomikosTransactionManagerLookup.class);
 
-    private static TransactionManager atomikosTransactionManager;
+    private static TransactionManager transactionManager;
 
-    public void setAtomikosTransactionManager( TransactionManager atomikosTransactionManager ) {
-        AtomikosTransactionManagerLookup.atomikosTransactionManager = atomikosTransactionManager;
+    public void setAtomikosTransactionManager( TransactionManager transactionManager ) {
+        AtomikosTransactionManagerLookup.transactionManager = transactionManager;
     }
 
     @Override
     public TransactionManager getTransactionManager() {
-        if (atomikosTransactionManager != null) {
+        if (transactionManager != null) {
             LOGGER.info("Using Atomikos transaction manager...");
-            return atomikosTransactionManager;
+            return transactionManager;
         } else {
             LOGGER.warn("Atomikos transaction manager has not been injected by Spring, defaulting to the Dummy Transaction Manager");
             return new DummyTransactionManager();

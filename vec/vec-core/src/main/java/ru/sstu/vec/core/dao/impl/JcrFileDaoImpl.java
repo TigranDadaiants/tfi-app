@@ -10,6 +10,9 @@ import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.jackrabbit.util.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -33,6 +36,8 @@ public class JcrFileDaoImpl implements JcrFileDao {
 
     private static final String COURSE_ROOT = "courses";
 
+    private final Log log = LogFactory.getLog(JcrFileDaoImpl.class);
+
     @Autowired
     private Session session;
 
@@ -41,7 +46,7 @@ public class JcrFileDaoImpl implements JcrFileDao {
             throws JcrException {
         Node file;
         try {
-            file = folder.addNode(fileData.getName(), NT_FILE);
+            file = folder.addNode(escape(fileData.getName()), NT_FILE);
             if (file.hasProperty(JCR_CREATED_BY)) {
                 file.setProperty(JCR_CREATED_BY, fileData.getCreatedBy());
             }
@@ -61,13 +66,23 @@ public class JcrFileDaoImpl implements JcrFileDao {
         return _getOrCreateFolder(session.getRootNode(), COURSE_ROOT);
     }
 
+    private String getCourseNodeName(Course course) {
+        return Long.toString(course.getId());
+    }
+
+    private String escape(String fileName) {
+        return Text.escapeIllegalJcrChars(fileName);
+    }
+
     @Override
     public JcrFile find(Course course, String name) throws JcrException {
         Node fileNode;
+        name = escape(name);
         try {
             Node root = getCourseRoot();
-            if (root.hasNode(course.getName())) {
-                Node folder = root.getNode(course.getName());
+            String courseNode = getCourseNodeName(course);
+            if (root.hasNode(courseNode)) {
+                Node folder = root.getNode(courseNode);
                 if (folder.hasNode(name)) {
                     fileNode = folder.getNode(name);
                     return getFile(fileNode);
@@ -106,7 +121,8 @@ public class JcrFileDaoImpl implements JcrFileDao {
     }
 
     public Node _getOrCreateFolder(Course course) throws RepositoryException {
-        return _getOrCreateFolder(getCourseRoot(), course.getName());
+        return _getOrCreateFolder(getCourseRoot(),
+                Long.toString(course.getId()));
     }
 
     private Node _getOrCreateFolder(Node parent, String name)
@@ -122,8 +138,9 @@ public class JcrFileDaoImpl implements JcrFileDao {
 
     private Node _getFolder(Course course) throws RepositoryException {
         Node root = session.getRootNode();
-        if (root.hasNode(course.getName())) {
-            return root.getNode(course.getName());
+        String courseNode = getCourseNodeName(course);
+        if (root.hasNode(courseNode)) {
+            return root.getNode(courseNode);
         }
         return null;
     }
@@ -140,8 +157,10 @@ public class JcrFileDaoImpl implements JcrFileDao {
     public boolean isFileExists(Course course, String name) throws JcrException {
         try {
             Node root = getCourseRoot();
-            if (root.hasNode(course.getName())) {
-                Node folder = root.getNode(course.getName());
+            name = escape(name);
+            String courseNode = getCourseNodeName(course);
+            if (root.hasNode(courseNode)) {
+                Node folder = root.getNode(courseNode);
                 if (folder.hasNode(name))
                     return true;
                 return false;
@@ -156,11 +175,13 @@ public class JcrFileDaoImpl implements JcrFileDao {
     @Override
     public void delete(Course course, String name) throws JcrException {
         try {
+            name = escape(name);
             Node folder = _getOrCreateFolder(course);
             if (folder.hasNode(name)) {
                 Node file;
                 file = folder.getNode(name);
                 file.remove();
+                session.save();
             }
         } catch (RepositoryException e) {
             throw new JcrException(e);
@@ -171,8 +192,10 @@ public class JcrFileDaoImpl implements JcrFileDao {
     public void delete(Course course) throws JcrException {
         try {
             Node folder = _getFolder(course);
-            if (folder != null)
+            if (folder != null) {
                 folder.remove();
+                session.save();
+            }
         } catch (RepositoryException e) {
             throw new JcrException(e);
         }

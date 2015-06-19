@@ -3,6 +3,8 @@ package ru.sstu.vec.core.web.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -48,8 +50,12 @@ public class FileUtil {
         try {
             response.reset();
             response.setContentType("application/octet-stream");
-            response.setHeader("Content-Disposition", "attachment; filename="
-                    + item.getName());
+            response.setHeader(
+                    "Content-Disposition",
+                    "attachment; filename=\""
+                            + URLDecoder.decode(
+                                    URLEncoder.encode(item.getName(), "UTF-8"),
+                                    "ISO8859_1") + "\"");
             output = response.getOutputStream();
             input = item.getStream();
             write(input, output, bufferSize);
