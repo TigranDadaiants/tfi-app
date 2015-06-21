@@ -32,58 +32,64 @@ import ru.sstu.vec.core.service.StudentCourseManager;
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 class StudentCourseManagerImpl implements StudentCourseManager {
 
-	private static final long serialVersionUID = -496460374003286621L;
+    private static final long serialVersionUID = -496460374003286621L;
 
-	@Resource
-	private GroupDao groupDao;
+    @Resource
+    private GroupDao groupDao;
 
-	@Resource
-	private CourseDao courseDao;
+    @Resource
+    private CourseDao courseDao;
 
-	@Resource
-	private CourseResultDao courseResultDao;
+    @Resource
+    private CourseResultDao courseResultDao;
 
-	private User student;
+    private User student;
 
-	@Transactional
-	@Override
-	public List<CourseResult> find() {
-		List<CourseResult> results = courseResultDao.findForStudent(student);
-		List<Group> groups = groupDao.findForStudent(student);
-		Set<Course> courses = new LinkedHashSet<Course>();
-		for (Group g : groups) {
-			courses.addAll(g.getCourses());
-		}
-		for (CourseResult r : results) {
-			courses.remove(r.getCourse());
-		}
-		for (Course c : courses) {
-			CourseResult result = new CourseResult();
-			result.setStudent(student);
-			result.setCourse(c);
-			courseResultDao.save(result);
-			results.add(result);
-		}
-		return results;
-	}
+    @Transactional
+    @Override
+    public List<CourseResult> find() {
+        List<CourseResult> results = courseResultDao.findForStudent(student);
+        List<Group> groups = groupDao.findForStudent(student);
+        Set<Course> courses = new LinkedHashSet<Course>();
+        for (Group g : groups) {
+            courses.addAll(g.getCourses());
+        }
+        for (CourseResult r : results) {
+            courses.remove(r.getCourse());
+        }
+        for (Course c : courses) {
+            CourseResult result = new CourseResult();
+            result.setStudent(student);
+            result.setCourse(c);
+            courseResultDao.save(result);
+            results.add(result);
+        }
+        return results;
+    }
 
-	@Override
-	public void reload(CourseResult object) {
-		System.out.println("!! CourseResult: "+object);
-	}
+    @Override
+    public void reload(CourseResult object) {
+        System.out.println("!! CourseResult: " + object);
+        try {
+            throw new Exception();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("!! CourseResult printed");
+    }
 
-	@Override
-	public void save(CourseResult object) {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void save(CourseResult object) {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
-	public void delete(CourseResult object) {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void delete(CourseResult object) {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
-	public void setStudent(User student) {
-		this.student = student;
-	}
+    @Override
+    public void setStudent(User student) {
+        this.student = student;
+    }
 }

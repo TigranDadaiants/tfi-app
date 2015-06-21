@@ -56,9 +56,14 @@ public class Lab implements Serializable {
     @Column(name = "LAB_TEXT", nullable = false)
     private String text = "";
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST,
-            CascadeType.MERGE, CascadeType.REFRESH })
-    @JoinTable(name = "LECT_LAB", joinColumns = { @JoinColumn(name = "LAB_ID_FK", referencedColumnName = "LAB_ID_PK") }, inverseJoinColumns = { @JoinColumn(name = "LECT_ID_FK", referencedColumnName = "LECT_ID_PK") })
+    @ManyToMany
+    @JoinTable(name = "LAB_LECTS",
+    joinColumns =
+        { @JoinColumn(name = "LAB_ID_FK",
+        referencedColumnName = "LAB_ID_PK") },
+    inverseJoinColumns =
+        { @JoinColumn(name = "LECT_ID_FK",
+        referencedColumnName = "LECT_ID_PK") })
     private List<Lecture> lectures = Collections.emptyList();
 
     @OneToMany(mappedBy = "lab", cascade = CascadeType.REMOVE)
@@ -180,6 +185,7 @@ public class Lab implements Serializable {
             return false;
         }
         Lab other = (Lab) obj;
+        System.out.println("// // // TRUE");
         return id == other.id;
     }
 }

@@ -27,41 +27,47 @@ import ru.sstu.vec.core.service.ExpertLabManager;
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 class ExpertLabManagerImpl implements ExpertLabManager {
 
-	private static final long serialVersionUID = -5417509135722092701L;
+    private static final long serialVersionUID = -5417509135722092701L;
 
-	@Resource
-	private LabDao labDao;
+    @Resource
+    private LabDao labDao;
 
-	@Resource
-	private LabVariantDao labVariantDao;
+    @Resource
+    private LabVariantDao labVariantDao;
 
-	private Course course;
+    private Course course;
 
-	@Override
-	public List<Lab> find() {
-		return labDao.find(course);
-	}
+    @Override
+    public List<Lab> find() {
+        List<Lab> labs = labDao.find(course);
+        System.out.println("// Labs");
+        for (Lab lab : labs) {
+            System.out.println("// // " + lab.getId() + " : " + lab.getName()
+                    + " : " + lab);
+        }
+        return labs;
+    }
 
-	@Override
-	public void reload(Lab object) {
-	}
+    @Override
+    public void reload(Lab object) {
+    }
 
-	@Transactional
-	@Override
-	public void save(Lab object) {
-		labDao.save(object);
-	}
+    @Transactional
+    @Override
+    public void save(Lab object) {
+        labDao.save(object);
+    }
 
-	@Override
-	@Transactional
-	public void delete(Lab object) {
-		labVariantDao.delete(object);
-		object.getLectures().clear();
-		labDao.delete(object);
-	}
+    @Override
+    @Transactional
+    public void delete(Lab object) {
+        labVariantDao.delete(object);
+        object.getLectures().clear();
+        labDao.delete(object);
+    }
 
-	@Override
-	public void setCourse(Course course) {
-		this.course = course;
-	}
+    @Override
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }

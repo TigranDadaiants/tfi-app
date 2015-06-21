@@ -14,7 +14,7 @@
 				<h:outputText value="#{groupBean.item.name}"/>
 			</h:panelGrid>
 			<h:panelGrid columns="3" columnClasses="formInputTitle,formInput">
-				<h:outputLabel for="editName" style="font-size: 75%;">
+				<h:outputLabel for="editName" styleClass="nameLabel">
 					<h:outputText value="#{msg['group.name']}"/>
 				</h:outputLabel>
 				<h:inputText id="editName" value="#{groupBean.item.name}"/>

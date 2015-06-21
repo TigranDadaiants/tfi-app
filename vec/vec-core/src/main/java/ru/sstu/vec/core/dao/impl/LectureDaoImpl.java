@@ -2,6 +2,7 @@ package ru.sstu.vec.core.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -22,11 +23,11 @@ public class LectureDaoImpl extends GenericDao<Lecture> implements LectureDao {
 
     private static final long serialVersionUID = 5458043446013189190L;
 
-    private static final String LABS = "labs";
+/*    private static final String LABS = "labs";
 
     private static final String LAB_ALIAS = "l";
 
-    private static final String LAB_ALIAS_ID = "l.id";
+    private static final String LAB_ALIAS_ID = "l.id";*/
 
     private static final String NAME = "name";
 
@@ -45,8 +46,8 @@ public class LectureDaoImpl extends GenericDao<Lecture> implements LectureDao {
 
     @Override
     public List<Lecture> find(Lab lab) {
-        return list(getCriteria().createAlias(LABS, LAB_ALIAS).add(
-                Restrictions.eq(LAB_ALIAS_ID, lab.getId())));
+        Hibernate.initialize(lab.getLectures());
+        return lab.getLectures();
     }
 
 }

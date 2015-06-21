@@ -47,8 +47,7 @@ public class Lecture implements Serializable {
     @Column(name = "LECT_TEXT", nullable = false)
     private String text = "";
 
-    @ManyToMany(mappedBy = "lectures", cascade = { CascadeType.PERSIST,
-            CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToMany(mappedBy = "lectures")
     private List<Lab> labs = Collections.emptyList();
 
     /**

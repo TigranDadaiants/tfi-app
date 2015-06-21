@@ -18,19 +18,20 @@ import ru.sstu.vec.core.domain.Lab;
 @Repository("labDao")
 class LabDaoImpl extends GenericDao<Lab> implements LabDao {
 
-	private static final long serialVersionUID = 4101041564560862610L;
+    private static final String NAME = "name";
 
-	private static final String COURSE = "course";
+    private static final long serialVersionUID = 4101041564560862610L;
 
-	@Override
-	public List<Lab> find(Course course) {
-		return list(getCriteria().add(Restrictions.eq(COURSE, course)));
-	}
+    private static final String COURSE = "course";
 
-	@Override
-	public Lab find(Course course, String name) {
-		return unique(getCriteria()
-				.add(Restrictions.eq(COURSE, course))
-				.add(Restrictions.eq("name", name)));
-	}
+    @Override
+    public List<Lab> find(Course course) {
+        return list(getCriteria().add(Restrictions.eq(COURSE, course)));
+    }
+
+    @Override
+    public Lab find(Course course, String name) {
+        return unique(getCriteria().add(Restrictions.eq(COURSE, course)).add(
+                Restrictions.eq(NAME, name)));
+    }
 }

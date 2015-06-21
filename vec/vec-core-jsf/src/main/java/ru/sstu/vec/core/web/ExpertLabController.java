@@ -9,14 +9,11 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DualListModel;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.docs.DocumentException;
 import ru.sstu.vec.core.domain.Lab;
-import ru.sstu.vec.core.domain.Lecture;
 import ru.sstu.vec.core.service.ExpertLabManager;
 import ru.sstu.vec.core.service.LabImporter;
 import ru.sstu.vec.core.service.LabImporterFactory;
@@ -100,10 +97,6 @@ public class ExpertLabController extends AbstractItemController<Lab> {
         } catch (DocumentException e) {
             log.error(ERROR_UPLOAD_MESSAGE, e);
         }
-    }
-
-    public List<Lecture> getLectures() {
-        return getItem().getLectures();
     }
 
     @Override

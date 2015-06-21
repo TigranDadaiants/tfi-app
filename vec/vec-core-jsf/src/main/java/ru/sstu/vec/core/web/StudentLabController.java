@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import ru.sstu.vec.core.domain.LabStatus;
 import ru.sstu.vec.core.domain.Lecture;
 import ru.sstu.vec.core.service.LabResultManager;
+import ru.sstu.vec.core.service.StudentLectureManager;
 
 /**
  * {@code StudentLabController} class is controller for lab result performing by
@@ -27,6 +28,9 @@ public class StudentLabController extends LabResultController {
 
     @Resource
     private LabResultManager studentLabResultManager;
+
+    @Resource
+    private StudentLectureManager studentLectureManager;
 
     @Resource
     private StudentCourseController studentCourseBean;
@@ -59,6 +63,6 @@ public class StudentLabController extends LabResultController {
     }
 
     public List<Lecture> getLectures() {
-        return getItem().getLab().getLectures();
+        return studentLectureManager.find(getItem().getLab());
     }
 }

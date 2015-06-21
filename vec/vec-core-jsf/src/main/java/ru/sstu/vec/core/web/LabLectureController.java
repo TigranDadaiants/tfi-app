@@ -8,6 +8,7 @@ import org.primefaces.model.DualListModel;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import ru.sstu.vec.core.domain.Lab;
 import ru.sstu.vec.core.domain.Lecture;
 import ru.sstu.vec.core.service.ExpertLectureManager;
 
@@ -33,8 +34,10 @@ public class LabLectureController extends VecController {
     public DualListModel<Lecture> getLectures() {
         expertLectureManager.setCourse(expertCourseBean.getItem());
         List<Lecture> list = expertLectureManager.find();
-        list.removeAll(expertLabBean.getLectures());
-        return new DualListModel<Lecture>(list, expertLabBean.getLectures());
+        Lab lab = expertLabBean.getItem();
+        List<Lecture> assigned = expertLectureManager.find(lab);
+        list.removeAll(assigned);
+        return new DualListModel<Lecture>(list, assigned);
     }
 
     public void setLectures(DualListModel<Lecture> lectures) {
