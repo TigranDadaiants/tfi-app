@@ -3,6 +3,8 @@ package ru.sstu.vec.core.service.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 /**
  * <code>DocFileFormat</code> enum contains supported formats for documents
  * importing.
@@ -24,6 +26,8 @@ public enum DocFileFormat {
     DOCX("file.format.docx", "docx");
 
     private static final Map<String, DocFileFormat> formatMap = new HashMap<String, DocFileFormat>();
+
+    private final static Logger log = Logger.getLogger(DocFileFormat.class);
 
     static {
         for (DocFileFormat format : values()) {
@@ -82,6 +86,8 @@ public enum DocFileFormat {
      * @return format or <b>null</b>
      */
     public static DocFileFormat getFormatByExtension(String ext) {
+        log.debug("getFormatByExtension(); extension: " + ext + "format: "
+                + formatMap.get(ext));
         return formatMap.get(ext);
     }
 }

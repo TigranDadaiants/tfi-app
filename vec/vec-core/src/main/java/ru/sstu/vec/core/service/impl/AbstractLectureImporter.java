@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 import ru.sstu.docs.Document;
@@ -20,6 +21,8 @@ import ru.sstu.vec.core.domain.Picture;
 import ru.sstu.vec.core.service.LectureImporter;
 
 public abstract class AbstractLectureImporter implements LectureImporter {
+
+    Logger log = Logger.getLogger(AbstractLectureImporter.class);
 
     @Resource
     private LectureDao lectureDao;
@@ -63,6 +66,7 @@ public abstract class AbstractLectureImporter implements LectureImporter {
      *            lecture
      */
     private void saveText(Document document, Lecture lecture) {
+        log.debug("saveText()");
         StringBuilder text = new StringBuilder();
         int size = document.size();
         for (int i = 1; i < size; i++) {
@@ -70,6 +74,7 @@ public abstract class AbstractLectureImporter implements LectureImporter {
             text.append(node);
         }
         lecture.setText(text.toString());
+        log.debug("lecture = " + lecture + "\n" + lecture.getText());
         lectureDao.save(lecture);
     }
 
@@ -82,6 +87,7 @@ public abstract class AbstractLectureImporter implements LectureImporter {
      *            lecture
      */
     private void saveImages(Collection<Image> images, Lecture lecture) {
+        log.debug("saveImages()");
         final String delimeter = "-";
         StringBuilder builder = new StringBuilder();
         builder.append(lecture.getCourse().getId()).append(delimeter);
@@ -100,6 +106,7 @@ public abstract class AbstractLectureImporter implements LectureImporter {
             lecture.setText(correctText(lecture.getText(), i.getUrl(),
                     picture.getId()));
         }
+        log.debug("lecture = " + lecture + "\n" + lecture.getText());
         lectureDao.save(lecture);
     }
 

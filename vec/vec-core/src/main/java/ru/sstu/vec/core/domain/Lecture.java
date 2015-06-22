@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -49,6 +50,9 @@ public class Lecture implements Serializable {
 
     @ManyToMany(mappedBy = "lectures")
     private List<Lab> labs = Collections.emptyList();
+
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.REMOVE)
+    private List<Picture> pictures = Collections.emptyList();
 
     /**
      * @return the id

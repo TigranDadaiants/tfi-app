@@ -39,13 +39,7 @@ class ExpertLabManagerImpl implements ExpertLabManager {
 
     @Override
     public List<Lab> find() {
-        List<Lab> labs = labDao.find(course);
-        System.out.println("// Labs");
-        for (Lab lab : labs) {
-            System.out.println("// // " + lab.getId() + " : " + lab.getName()
-                    + " : " + lab);
-        }
-        return labs;
+        return labDao.find(course);
     }
 
     @Override

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -68,6 +67,9 @@ public class Lab implements Serializable {
 
     @OneToMany(mappedBy = "lab", cascade = CascadeType.REMOVE)
     private List<LabResult> labResults;
+
+    @OneToMany(mappedBy = "lab", cascade = CascadeType.REMOVE)
+    private List<Picture> pictures = Collections.emptyList();
 
     /**
      * @return the id
@@ -185,7 +187,6 @@ public class Lab implements Serializable {
             return false;
         }
         Lab other = (Lab) obj;
-        System.out.println("// // // TRUE");
         return id == other.id;
     }
 }
