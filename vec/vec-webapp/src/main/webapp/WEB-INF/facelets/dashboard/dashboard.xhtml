@@ -7,8 +7,6 @@
 	xmlns:s="http://www.springframework.org/security/tags">
 	<p:accordionPanel styleClass="accordion" activeIndex="-">
 		<s:authorize ifAnyGranted="ROLE_STUDENT">
-			<p:tab title="${msg['menu.lectures']}">
-			</p:tab>
 			<p:tab title="${msg['menu.tasks']}">
 				<ui:include src="student.xhtml" />
 			</p:tab>

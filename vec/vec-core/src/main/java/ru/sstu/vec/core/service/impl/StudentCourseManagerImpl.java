@@ -70,12 +70,6 @@ class StudentCourseManagerImpl implements StudentCourseManager {
     @Override
     public void reload(CourseResult object) {
         System.out.println("!! CourseResult: " + object);
-        try {
-            throw new Exception();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("!! CourseResult printed");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ru.sstu.vec.core.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -63,6 +64,11 @@ public class StudentLabController extends LabResultController {
     }
 
     public List<Lecture> getLectures() {
-        return studentLectureManager.find(getItem().getLab());
+        try {
+            return studentLectureManager.find(getItem().getLab());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<Lecture>();
+        }
     }
 }

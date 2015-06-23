@@ -34,11 +34,13 @@ public class ExpertLectureManagerImpl implements ExpertLectureManager {
     private Course course;
 
     @Override
+    @Transactional
     public List<Lecture> find() {
         return lectureDao.find(course);
     }
 
     @Override
+    @Transactional
     public List<Lecture> find(Lab lab) {
         return lectureDao.find(lab);
     }
